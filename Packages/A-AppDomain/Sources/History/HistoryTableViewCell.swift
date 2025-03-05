@@ -114,15 +114,6 @@ class HistoryTableViewCell: UITableViewCell,IQModelableCell {
         }
     }
     
-    var colors: [String:UIColor] {
-        return [
-            "default" : UIColor(hex: "#3C38FF"),
-            "pdf" : UIColor(hex: "#FF521C"),
-            "doc" : UIColor(hex: "#1CA0FF"),
-            "csv" : UIColor(hex: "#02B84A"),
-            "ppt" : UIColor(hex: "#FF8B03"),
-        ]
-    }
     
     @objc func didTapContainer() {
         guard let model = model else {

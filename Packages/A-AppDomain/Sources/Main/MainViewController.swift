@@ -65,6 +65,7 @@ extension MainViewController {
     
     private func setupNavigationBar() {
         addNavigationbar()
+        navigationBar.setTitle("新对话")
         navigationBar.addLeft(UIImage(named: "home_left_nav_ic"),target: self,action: #selector(didTapSideMenu))
         navigationBar.addRight(UIImage(named: "home_new_chat_ic"),target: self,action: #selector(didTapNewChat))
     }
@@ -88,7 +89,7 @@ extension MainViewController {
 extension MainViewController {
     
     @objc private func didTapSideMenu() {
-        
+        present(leftSideMenu, animated: true, completion: nil)
     }
     
     @objc private func didTapNewChat() {

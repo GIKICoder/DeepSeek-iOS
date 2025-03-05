@@ -23,8 +23,6 @@ public class ChatViewController: AppViewController {
     let chatInputToolView = ChatInputToolView()
     var collectionView: UICollectionView! = nil
     var chatLayout: MagazineLayout! = nil
-
-    lazy var shareBottomView = ShareBottomToolView()
     
     lazy var adapter: ListAdapter = { return ListAdapter(updater: ListAdapterUpdater(), viewController: self) }()
     
@@ -64,7 +62,6 @@ public class ChatViewController: AppViewController {
         setupBinding()
     }
     
-    
     // MARK: - Setup
     
     private func setupContext() {
@@ -75,17 +72,20 @@ public class ChatViewController: AppViewController {
         view.backgroundColor = .white
         setupCollectionView()
         setupEmptyView()
-        setupShareBottomView()
     }
     
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: contentFrame, collectionViewLayout: createLayout())
         collectionView.keyboardDismissMode = .onDrag
         view.addSubview(collectionView)
+        collectionView.panGestureRecognizer.addTarget(self, action: #selector(panCollectionView))
         refreshHeader = collectionView.header.setAutoControl(height: 44)
         refreshHeader?.addTarget(self, action: #selector(headerRefresh), for: .valueChanged)
         adapter.dataSource = self
         adapter.collectionView = self.collectionView
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(panCollectionView))
+        collectionView.addGestureRecognizer(tap)
     }
     
     private func addHandlers() {
@@ -105,16 +105,7 @@ public class ChatViewController: AppViewController {
     private func setupEmptyView() {
         
     }
-    
-    private func setupShareBottomView() {
-        view.addSubview(shareBottomView)
-        shareBottomView.isHidden = true
-        shareBottomView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalTo(view.snp.bottom)
-            make.height.equalTo(76+AppF.screenBottomSafeAreaHeight)
-        }
-    }
+ 
     
     fileprivate var isUserInitiatedScrolling: Bool {
         collectionView.isDragging || collectionView.isDecelerating
@@ -125,50 +116,15 @@ public class ChatViewController: AppViewController {
 // MARK: - Action Method
 
 extension ChatViewController {
-    
-    @objc func didTapShareAction() {
-        self.view.endEditing(true)
-        showBottomShareView()
-        listContext?.editNotifier.setIsEditing(true, duration: .animated(duration: 0.25))
-        let sections = dataCenter.sections
-        listContext?.editNotifier.selectAll(items: sections)
-    }
-    
-    @objc func didTapCancelShareAction() {
-        hideBottomShareView()
-        listContext?.editNotifier.setIsEditing(false, duration: .animated(duration: 0.25))
-    }
+
     
     @objc func headerRefresh() {
         logUI("headerRefresh xxxxxx")
         loadMoreDatas()
     }
-    
-    private func showBottomShareView() {
-        shareBottomView.isHidden = false
-        chatInputToolView.isHidden = true
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut) {
-            self.shareBottomView.snp.remakeConstraints { make in
-                make.leading.trailing.equalToSuperview()
-                make.bottom.equalTo(self.view.snp.bottom)
-                make.height.equalTo(76+AppF.screenBottomSafeAreaHeight)
-            }
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    private func hideBottomShareView() {
-        chatInputToolView.isHidden = false
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut) {
-            self.shareBottomView.snp.remakeConstraints { make in
-                make.leading.trailing.equalToSuperview()
-                make.top.equalTo(self.view.snp.bottom)
-                make.height.equalTo(76+AppF.screenBottomSafeAreaHeight)
-            }
-            self.view.layoutIfNeeded()
-        } completion: { finish in
-            self.shareBottomView.isHidden = true
-        }
+
+    @objc func panCollectionView() {
+        view.endEditing(true)
     }
     
 }

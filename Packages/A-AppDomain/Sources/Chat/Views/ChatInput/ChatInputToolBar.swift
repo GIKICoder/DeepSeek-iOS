@@ -83,12 +83,12 @@ public class ChatInputToolBar: UIView {
     // MARK: - Private Methods
     
     private func setupUI() {
-        backgroundColor = UIColor(hex: "F2F4F7")
+        backgroundColor = .white
         
         // 设置 containerView
         addSubview(containerView)
-        containerView.backgroundColor = .white
-        containerView.layer.cornerRadius = 12
+        containerView.backgroundColor = UIColor(hex: "F2F4F7")
+        containerView.layer.cornerRadius = 24
         containerView.clipsToBounds = true
         
         containerView.snp.makeConstraints { make in
@@ -98,59 +98,24 @@ public class ChatInputToolBar: UIView {
         
         setupStackViews()
     }
-
+    
     
     private func setupStackViews() {
-        // 配置左侧和右侧的 StackView
-           [leftStackView, rightStackView].forEach { stackView in
-               stackView.axis = .horizontal
-               stackView.alignment = .center
-               stackView.spacing = 10
-               stackView.distribution = .fill
-               stackView.isHidden = false  // 初始隐藏，等有内容时再显示
-               // 设置布局边距
-               stackView.isLayoutMarginsRelativeArrangement = true
-               stackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-           }
-           
-           // 将子视图添加到 containerView
-           containerView.addSubview(leftStackView)
-           containerView.addSubview(growingTextView)
-           containerView.addSubview(rightStackView)
-           
-           // 设置 leftStackView 的约束
-           leftStackView.snp.makeConstraints { make in
-               make.leading.equalToSuperview()
-               make.bottom.equalToSuperview().offset(-10)
-               // 让 StackView 根据内容自适应大小
-               make.height.greaterThanOrEqualTo(0)
-           }
-           
-           // 设置 rightStackView 的约束
-           rightStackView.snp.makeConstraints { make in
-               make.trailing.equalToSuperview()
-               make.bottom.equalToSuperview().offset(-10)
-               // 让 StackView 根据内容自适应大小
-               make.height.greaterThanOrEqualTo(0)
-           }
-           
-           // 设置 growingTextView 的约束
-           growingTextView.snp.makeConstraints { make in
-               make.leading.equalTo(leftStackView.snp.trailing).offset(0)
-               make.trailing.equalTo(rightStackView.snp.leading).offset(0)
-               make.top.equalToSuperview().offset(8)
-               make.bottom.equalToSuperview().offset(-8)
-           }
-           
-           // 设置内容优先级，确保 StackView 能根据内容调整大小
-           leftStackView.setContentHuggingPriority(.required, for: .horizontal)
-           leftStackView.setContentCompressionResistancePriority(.required, for: .horizontal)
-           
-           rightStackView.setContentHuggingPriority(.required, for: .horizontal)
-           rightStackView.setContentCompressionResistancePriority(.required, for: .horizontal)
-           
-    }
+        
+        
+        containerView.addSubview(growingTextView)
+        
 
+        // 设置 growingTextView 的约束
+        growingTextView.snp.makeConstraints { make in
+            make.leading.equalTo(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalToSuperview().offset(8)
+            make.bottom.equalToSuperview().offset(-8)
+        }
+        
+    }
+    
     
     private func updateTextViewConfig() {
         growingTextView.configuration.minLines = textViewConfig.minLines
@@ -174,7 +139,7 @@ public class ChatInputToolBar: UIView {
             }
         }
     }
-
+    
     
     // MARK: - Override Methods
     
@@ -190,59 +155,5 @@ public class ChatInputToolBar: UIView {
         logUI("inputoolbar totalHeight: \(totalHeight)")
         return CGSize(width: UIView.noIntrinsicMetric, height: totalHeight)
     }
-
-}
-
-// MARK: - ChatInputToolBar Extension for Button Management
-
-public extension ChatInputToolBar {
-    func addLeftItemView(_ view: UIView) {
-        // 检查按钮是否已经设置了宽度约束
-        if !view.constraints.contains(where: { $0.firstAttribute == .width }) {
-            view.snp.makeConstraints { make in
-                make.size.equalTo(CGSize(width: defaultStackViewWidth, height: defaultStackViewWidth))
-            }
-        }
-        leftStackView.addArrangedSubview(view)
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
     
-    func addRightItemView(_ view: UIView) {
-        // 检查按钮是否已经设置了宽度约束
-        if !view.constraints.contains(where: { $0.firstAttribute == .width }) {
-            view.snp.makeConstraints { make in
-                make.size.equalTo(CGSize(width: defaultStackViewWidth, height: defaultStackViewWidth))
-            }
-        }
-        rightStackView.addArrangedSubview(view)
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
-    
-    func removeLeftItemView(_ view: UIView) {
-        leftStackView.removeArrangedSubview(view)
-        view.removeFromSuperview()
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
-    
-    func removeRightItemView(_ view: UIView) {
-        rightStackView.removeArrangedSubview(view)
-        view.removeFromSuperview()
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
-    
-    func removeAllLeftViews() {
-        leftStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
-    
-    func removeAllRightViews() {
-        rightStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
 }

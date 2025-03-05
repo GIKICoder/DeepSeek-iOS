@@ -87,7 +87,6 @@ public class ChatInputToolView: UIView {
         super.init(frame: frame)
         setupUI()
         setupKeyboardObservers()
-        setupInputBarConfigs()
     }
     
     required init?(coder: NSCoder) {
@@ -283,33 +282,6 @@ public extension ChatInputToolView {
 
 extension ChatInputToolView {
     
-    func setupInputBarConfigs() {
-        
-        // 配置右侧按钮
-        sendButton.setImage(UIImage(named: "pop_send"), for: .normal)
-        sendButton.setImage(UIImage(named: "pop_stop"), for: .selected)
-        sendButton.setImage(UIImage(named: "pop_send_disable"), for: .disabled)
-        sendButton.addTarget(self, action: #selector(didTapSendButton), for: .touchUpInside)
-        sendButton.snp.makeConstraints { make in
-            make.size.equalTo(28)
-        }
-        inputToolBar.addRightItemView(sendButton)
-        
-        uploadButton.setImage(UIImage(named: "pop_upload_img_ic"), for: .normal)
-        uploadButton.setImage(UIImage(named: "pop_upload_img_ic_disable"), for: .disabled)
-        uploadButton.addTarget(self, action: #selector(didTapUploadButton), for: .touchUpInside)
-        uploadButton.snp.makeConstraints { make in
-            make.size.equalTo(28)
-        }
-        inputToolBar.addLeftItemView(uploadButton)
-        
-        let line = UIView(color: UIColor(hex:"e5e5e5"))
-        line.snp.makeConstraints { make in
-            make.size.equalTo(CGSize(width: 1, height: 28))
-        }
-        inputToolBar.addLeftItemView(line)
-    }
-    
     @objc func didTapSendButton() {
         if sendButton.isSelected {
             delegate?.chatInputToolViewDidRequestStop(self)
@@ -327,10 +299,6 @@ extension ChatInputToolView {
             guard let self else { return }
             self.configurePhotoImage(image)
         }
-        
-//        DocumentPickerManager.shared.openUploadFile(from: topViewController) { fileURL in
-//            logDebug("upload FileURL: \(String(describing: fileURL))")
-//        }
     }
     
     /// 配置上传图片
