@@ -17,48 +17,75 @@ public class HistoryViewController: AppViewController {
         case main
     }
     
-    
     let provider = NetworkProvider<ChatApi>()
     var tableView: UITableView!
     private lazy var list = IQList(listView: tableView, delegateDataSource: self)
-
+    
     private var page:Int = 1
     private var pageSize:Int = 200
     
     private var dataSource:[ChatChannelHistory] = []
     
+    private let bottomLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray.withAlphaComponent(0.3)
+        return view
+    }()
+    
+    private let avatarButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "profile_default_icon"), for: .normal)
+        return button
+    }()
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(bottomLine)
+        view.addSubview(avatarButton)
+        avatarButton.snp.makeConstraints { make in
+            make.size.equalTo(60)
+            make.leading.equalTo(12)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+        }
+        bottomLine.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(0.5)
+            make.bottom.equalTo(avatarButton.snp.top).offset(-10)
+        }
+        
         setupTableView()
         list.removeDuplicates = true
-//        list.noItemStateView = customNoItemsView
+        //        list.noItemStateView = customNoItemsView
         list.noItemStateView?.tintColor = UIColor.black
-        list.noItemImage = UIImage(named: "gen_feed_empty")
+        list.noItemImage = UIImage(named: "dp_icon")
         list.noItemMessage = "No content yet~"
         list.noItemAction(title: "Reload", target: self, action: #selector(refreshData))
         loadDatas()
     }
-
+    
 }
 
 extension HistoryViewController {
     
-     func loadDatas() {
+    func loadDatas() {
         
         list.isLoading = true
-        let historyApi = ChatApi.channelHistory(page: page, pageSize: pageSize)
-        provider.request(historyApi, type: [ChatChannelHistory].self) {[weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let success):
-                logUI("\(success)")
-                dataSource = success
-                reloadDataSource(false)
-            case .failure(let failure):
-                logUI("\(failure)")
-                reloadDataSource(false)
+    
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+            for i in 1...20 {
+                var history = ChatChannelHistory.default
+                history.channel.channelId = "channelId-\(i)"
+                history.channel.channelName = "deepseek History - \(i) - Any message to chat"
+                self.dataSource.append(history)
+            }
+            
+            // 主线程更新UI
+            DispatchQueue.main.async {
+                self.reloadDataSource(false)
+                self.list.isLoading = false
             }
         }
+
     }
     
     @objc func refreshData() {
@@ -67,16 +94,19 @@ extension HistoryViewController {
 }
 
 extension HistoryViewController {
-
+    
     func setupTableView() {
-
+        
         tableView = UITableView(frame: contentFrame, style: .plain)
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor(hex: "#F4F4F4")
+        tableView.backgroundColor = .white
         view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(bottomLine.snp.top).offset(-10)
+        }
     }
-
+    
     func reloadDataSource(_ animation:Bool = true) {
         list.reloadData ({[dataSource = self.dataSource] builder in
             let section = IQSection(identifier: Section.main)
@@ -84,25 +114,21 @@ extension HistoryViewController {
             builder.append(HistoryTableViewCell.self, models: dataSource)
         },animatingDifferences: animation)
     }
-
+    
 }
 
 
 
 extension HistoryViewController: IQListViewDelegateDataSource {
- 
+    
     public func listView(_ listView: IQListView, modifyCell cell: some IQModelableCell, at indexPath: IndexPath) {
-       
+        
     }
-
+    
     public func listView(_ listView: IQListView, didSelect item: IQItem, at indexPath: IndexPath) {
         guard let model = item.model as? ChatChannelHistory else {
             return
         }
-//        let entrance = MessageEntrance()
-//        entrance.channel = model.channel
-//        let chat = MessageViewController(entrance: entrance)
-//        self.navigationController?.pushViewController(chat, animated: true)
     }
     
     public func listView(_ listView: IQListView, canEdit item: IQItem, at indexPath: IndexPath) -> Bool? {
@@ -110,7 +136,7 @@ extension HistoryViewController: IQListViewDelegateDataSource {
     }
     
     public func tableView(_ tableView: UITableView,
-                            shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+                          shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
         return true
     }
 }

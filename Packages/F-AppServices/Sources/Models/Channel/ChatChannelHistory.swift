@@ -10,6 +10,7 @@ import ReerCodable
 
 
 @Codable
+@DefaultInstance
 public struct ChatChannelHistory: Codable, Sendable {
     public var channel:ChatChannel = ChatChannel()
     public var message:ChatMessage?
