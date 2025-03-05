@@ -11,9 +11,24 @@ let projectName: String = "DeepSeek"
 let deploymentTarget: String = "14.0"
 let bundleId: String = "com.giki.deepseek"
 
+let packageNames = [
+    "A-AppDomain",
+    "D-AppComponents",
+    "F-AppServices",
+    "R-AppInfra",
+    "X-AppFoundation"
+]
 
+let packageTargets = [
+    "AppDomain",
+    "AppComponents",
+    "AppServices",
+    "AppInfra",
+    "AppFoundation"
+]
 let project = Project(
     name: projectName,
+    packages: packageNames.map { Package.package(path: "Packages/\($0)") },
     targets: [
         .target(
             name: projectName,
@@ -24,13 +39,7 @@ let project = Project(
             infoPlist: .file(path: "Info.plist"),
             sources: ["\(projectName)/Sources/**"],
             resources: ["\(projectName)/Resources/**"],
-            dependencies: [
-                // .external(name: "Then"),
-                // .external(name: "RxSwift"),
-                // .external(name: "RxCocoa"),
-                // .external(name: "FlexLayout"),
-                // .external(name: "PinLayout"),
-            ],
+            dependencies: packageTargets.map { TargetDependency.package(product: $0) },
             additionalFiles: [
                 "Project.swift",
             ]

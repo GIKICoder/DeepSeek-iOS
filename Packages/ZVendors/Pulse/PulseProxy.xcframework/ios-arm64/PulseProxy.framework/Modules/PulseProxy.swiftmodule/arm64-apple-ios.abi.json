@@ -1,0 +1,99 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "PulseProxy",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Pulse",
+        "printedName": "Pulse",
+        "declKind": "Import",
+        "moduleName": "PulseProxy"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NetworkLogger",
+        "printedName": "NetworkLogger",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "enableProxy",
+            "printedName": "enableProxy(logger:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Pulse.NetworkLogger?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NetworkLogger",
+                    "printedName": "Pulse.NetworkLogger",
+                    "usr": "s:5Pulse13NetworkLoggerC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Pulse13NetworkLoggerC0A5ProxyE06enableD06loggeryACSg_tFZ",
+            "mangledName": "$s5Pulse13NetworkLoggerC0A5ProxyE06enableD06loggeryACSg_tFZ",
+            "moduleName": "PulseProxy",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:5Pulse13NetworkLoggerC",
+        "mangledName": "$s5Pulse13NetworkLoggerC",
+        "moduleName": "Pulse",
+        "declAttributes": [
+          "Final"
+        ],
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/kean\/Developer\/Rift\/Pulse\/Sources\/PulseProxy\/URLSessionSwizzler.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1106,
+      "length": 5,
+      "value": "false"
+    }
+  ]
+}

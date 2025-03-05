@@ -1,0 +1,1369 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -package-name PulsePackageIdentifier -enable-bare-slash-regex -module-name Pulse
+import Combine
+import CommonCrypto
+import CoreData
+import CryptoKit
+import Foundation
+import Network
+import OSLog
+import Security
+import Swift
+import SwiftUI
+import UIKit.UIImage
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+final public class NetworkLogger : @unchecked Swift.Sendable {
+  public static var shared: Pulse.NetworkLogger {
+    get
+    set
+  }
+  public struct Configuration : Swift.Sendable {
+    public var label: Swift.String?
+    public var isWaitingForDecoding: Swift.Bool
+    public var includedHosts: Swift.Set<Swift.String>
+    public var includedURLs: Swift.Set<Swift.String>
+    public var excludedHosts: Swift.Set<Swift.String>
+    public var excludedURLs: Swift.Set<Swift.String>
+    public var sensitiveHeaders: Swift.Set<Swift.String>
+    public var sensitiveQueryItems: Swift.Set<Swift.String>
+    public var sensitiveDataFields: Swift.Set<Swift.String>
+    public var isRegexEnabled: Swift.Bool
+    public var willHandleEvent: @Sendable (Pulse.LoggerStore.Event) -> Pulse.LoggerStore.Event?
+    public init()
+  }
+  public init(store: Pulse.LoggerStore? = nil, configuration: Pulse.NetworkLogger.Configuration = .init())
+  final public func logTaskCreated(_ task: Foundation.URLSessionTask)
+  final public func logDataTask(_ dataTask: Foundation.URLSessionDataTask, didReceive data: Foundation.Data)
+  final public func logTask(_ task: Foundation.URLSessionTask, didUpdateProgress progress: (completed: Swift.Int64, total: Swift.Int64))
+  final public func logTask(_ task: Foundation.URLSessionTask, didCompleteWithError error: (any Swift.Error)?)
+  final public func logTask(_ task: Foundation.URLSessionTask, didFinishCollecting metrics: Foundation.URLSessionTaskMetrics)
+  final public func logTask(_ task: Foundation.URLSessionTask, didFinishCollecting metrics: Pulse.NetworkLogger.Metrics)
+  final public func logTask(_ task: Foundation.URLSessionTask, didFinishDecodingWithError error: (any Swift.Error)?)
+  @objc deinit
+}
+public protocol URLSessionProtocol {
+  func dataTask(with request: Foundation.URLRequest) -> Foundation.URLSessionDataTask
+  func dataTask(with url: Foundation.URL) -> Foundation.URLSessionDataTask
+  func uploadTask(with request: Foundation.URLRequest, fromFile fileURL: Foundation.URL) -> Foundation.URLSessionUploadTask
+  func uploadTask(with request: Foundation.URLRequest, from bodyData: Foundation.Data) -> Foundation.URLSessionUploadTask
+  @available(iOS 17, tvOS 17, macOS 14, watchOS 10, *)
+  func uploadTask(withResumeData resumeData: Foundation.Data) -> Foundation.URLSessionUploadTask
+  func uploadTask(withStreamedRequest request: Foundation.URLRequest) -> Foundation.URLSessionUploadTask
+  func downloadTask(with request: Foundation.URLRequest) -> Foundation.URLSessionDownloadTask
+  func downloadTask(with url: Foundation.URL) -> Foundation.URLSessionDownloadTask
+  func downloadTask(withResumeData resumeData: Foundation.Data) -> Foundation.URLSessionDownloadTask
+  func streamTask(withHostName hostname: Swift.String, port: Swift.Int) -> Foundation.URLSessionStreamTask
+  func webSocketTask(with url: Foundation.URL) -> Foundation.URLSessionWebSocketTask
+  func webSocketTask(with url: Foundation.URL, protocols: [Swift.String]) -> Foundation.URLSessionWebSocketTask
+  func webSocketTask(with request: Foundation.URLRequest) -> Foundation.URLSessionWebSocketTask
+  #if compiler(>=5.3) && $Sendable
+  func dataTask(with request: Foundation.URLRequest, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionDataTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  func dataTask(with url: Foundation.URL, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionDataTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  func uploadTask(with request: Foundation.URLRequest, fromFile fileURL: Foundation.URL, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionUploadTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  func uploadTask(with request: Foundation.URLRequest, from bodyData: Foundation.Data?, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionUploadTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  @available(iOS 17, tvOS 17, macOS 14, watchOS 10, *)
+  func uploadTask(withResumeData resumeData: Foundation.Data, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionUploadTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  func downloadTask(with request: Foundation.URLRequest, completionHandler: @escaping @Sendable (Foundation.URL?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionDownloadTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  func downloadTask(with url: Foundation.URL, completionHandler: @escaping @Sendable (Foundation.URL?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionDownloadTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  func downloadTask(withResumeData resumeData: Foundation.Data, completionHandler: @escaping @Sendable (Foundation.URL?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionDownloadTask
+  #endif
+  func dataTaskPublisher(for url: Foundation.URL) -> Foundation.URLSession.DataTaskPublisher
+  func dataTaskPublisher(for request: Foundation.URLRequest) -> Foundation.URLSession.DataTaskPublisher
+  #if compiler(>=5.3) && $AsyncAwait
+  func data(for request: Foundation.URLRequest, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func data(from url: Foundation.URL, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func upload(for request: Foundation.URLRequest, fromFile fileURL: Foundation.URL, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func upload(for request: Foundation.URLRequest, from bodyData: Foundation.Data, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func download(for request: Foundation.URLRequest, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.URL, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func download(from url: Foundation.URL, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.URL, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func download(resumeFrom resumeData: Foundation.Data, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.URL, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait && $RethrowsProtocol
+  func bytes(for request: Foundation.URLRequest, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.URLSession.AsyncBytes, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait && $RethrowsProtocol
+  func bytes(from url: Foundation.URL, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.URLSession.AsyncBytes, Foundation.URLResponse)
+  #endif
+}
+extension Pulse.URLSessionProtocol {
+  #if compiler(>=5.3) && $AsyncAwait
+  public func data(for request: Foundation.URLRequest) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func data(from url: Foundation.URL) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func upload(for request: Foundation.URLRequest, fromFile fileURL: Foundation.URL) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func upload(for request: Foundation.URLRequest, from bodyData: Foundation.Data) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait && $RethrowsProtocol
+  public func bytes(from url: Foundation.URL) async throws -> (Foundation.URLSession.AsyncBytes, Foundation.URLResponse)
+  #endif
+}
+extension Foundation.URLSession : Pulse.URLSessionProtocol {
+}
+@_hasMissingDesignatedInitializers @_Concurrency.MainActor final public class RemoteLogger : Foundation.ObservableObject {
+  @_Concurrency.MainActor final public var store: Pulse.LoggerStore? {
+    get
+  }
+  @Combine.Published @_projectedValueProperty($browserState) @_Concurrency.MainActor final public var browserState: Network.NWBrowser.State {
+    get
+  }
+  @_Concurrency.MainActor final public var $browserState: Combine.Published<Network.NWBrowser.State>.Publisher {
+    get
+  }
+  @Combine.Published @_projectedValueProperty($browserError) @_Concurrency.MainActor final public var browserError: Network.NWError? {
+    get
+  }
+  @_Concurrency.MainActor final public var $browserError: Combine.Published<Network.NWError?>.Publisher {
+    get
+  }
+  @Combine.Published @_projectedValueProperty($servers) @_Concurrency.MainActor final public var servers: Swift.Set<Network.NWBrowser.Result> {
+    get
+  }
+  @_Concurrency.MainActor final public var $servers: Combine.Published<Swift.Set<Network.NWBrowser.Result>>.Publisher {
+    get
+  }
+  @SwiftUI.AppStorage @_projectedValueProperty($isEnabled) @_Concurrency.MainActor final public var isEnabled: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor final public var $isEnabled: SwiftUI.Binding<Swift.Bool> {
+    get
+  }
+  @Combine.Published @_projectedValueProperty($knownServers) @_Concurrency.MainActor final public var knownServers: [Swift.String] {
+    get
+  }
+  @_Concurrency.MainActor final public var $knownServers: Combine.Published<[Swift.String]>.Publisher {
+    get
+  }
+  @Combine.Published @_projectedValueProperty($selectedServerName) @_Concurrency.MainActor final public var selectedServerName: Swift.String? {
+    get
+  }
+  @_Concurrency.MainActor final public var $selectedServerName: Combine.Published<Swift.String?>.Publisher {
+    get
+  }
+  @Combine.Published @_projectedValueProperty($connectionState) @_Concurrency.MainActor final public var connectionState: Pulse.RemoteLogger.ConnectionState {
+    get
+  }
+  @_Concurrency.MainActor final public var $connectionState: Combine.Published<Pulse.RemoteLogger.ConnectionState>.Publisher {
+    get
+  }
+  @frozen public enum ConnectionState {
+    case disconnected, connecting, connected
+    public static func == (a: Pulse.RemoteLogger.ConnectionState, b: Pulse.RemoteLogger.ConnectionState) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  @_Concurrency.MainActor final public var isOpenOnMacSupported: Swift.Bool {
+    get
+  }
+  public enum ConnectionError : Swift.Error, Foundation.LocalizedError {
+    case network(Network.NWError)
+    case unknown(isProtected: Swift.Bool)
+    public var errorDescription: Swift.String? {
+      get
+    }
+  }
+  @_Concurrency.MainActor final public var isAutomaticConnectionEnabled: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor public static let shared: Pulse.RemoteLogger
+  @_Concurrency.MainActor final public func initialize(store: Pulse.LoggerStore = .shared)
+  @_Concurrency.MainActor final public func enable()
+  @_Concurrency.MainActor final public func disable()
+  @_Concurrency.MainActor final public func isSelected(_ server: Network.NWBrowser.Result) -> Swift.Bool
+  @_Concurrency.MainActor final public func connect(to server: Network.NWBrowser.Result, passcode: Swift.String? = nil, _ completion: ((Swift.Result<Swift.Void, Pulse.RemoteLogger.ConnectionError>) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor final public func forgetServer(named name: Swift.String)
+  @_Concurrency.MainActor final public func getPasscode(forServerNamed name: Swift.String) -> Swift.String?
+  @_Concurrency.MainActor final public func setPasscode(_ passcode: Swift.String?, forServerNamed name: Swift.String)
+  @_Concurrency.MainActor final public func disconnect()
+  @_Concurrency.MainActor final public func showDetails(for message: Pulse.LoggerMessageEntity)
+  @_Concurrency.MainActor final public func showDetails(for task: Pulse.NetworkTaskEntity)
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+extension Pulse.LoggerStore {
+  public struct Version : Swift.Comparable, Swift.LosslessStringConvertible, Swift.Codable, Swift.Sendable {
+    public let major: Swift.Int
+    public let minor: Swift.Int
+    public let patch: Swift.Int
+    public init(_ major: Swift.Int, _ minor: Swift.Int, _ patch: Swift.Int)
+    public static func == (lhs: Pulse.LoggerStore.Version, rhs: Pulse.LoggerStore.Version) -> Swift.Bool
+    public static func < (lhs: Pulse.LoggerStore.Version, rhs: Pulse.LoggerStore.Version) -> Swift.Bool
+    public init(string: Swift.String) throws
+    public init?(_ string: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+    public func encode(to encoder: any Swift.Encoder) throws
+  }
+}
+extension Pulse.LoggerStore {
+  @frozen public enum MetadataValue {
+    case string(Swift.String)
+    case stringConvertible(any Swift.CustomStringConvertible)
+  }
+  public typealias Metadata = [Swift.String : Pulse.LoggerStore.MetadataValue]
+  @frozen public enum Level : Swift.Int16, Swift.CaseIterable, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.RawRepresentable, Swift.Comparable, Swift.CustomStringConvertible {
+    case trace
+    case debug
+    case info
+    case notice
+    case warning
+    case error
+    case critical
+    public var name: Swift.String {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+    public static func < (lhs: Pulse.LoggerStore.Level, rhs: Pulse.LoggerStore.Level) -> Swift.Bool
+    public init?(rawValue: Swift.Int16)
+    public typealias AllCases = [Pulse.LoggerStore.Level]
+    public typealias RawValue = Swift.Int16
+    public static var allCases: [Pulse.LoggerStore.Level] {
+      get
+    }
+    public var rawValue: Swift.Int16 {
+      get
+    }
+  }
+}
+@objc @_inheritsConvenienceInitializers final public class LoggerSessionEntity : CoreData.NSManagedObject {
+  @objc @NSManaged dynamic final public var createdAt: Foundation.Date {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var id: Foundation.UUID {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var version: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var build: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class LoggerMessageEntity : CoreData.NSManagedObject {
+  @objc @NSManaged dynamic final public var createdAt: Foundation.Date {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var isPinned: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var session: Foundation.UUID {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var level: Swift.Int16 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var text: Swift.String {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var file: Swift.String {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var function: Swift.String {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var line: Swift.Int32 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var label: Swift.String {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var rawMetadata: Swift.String {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var task: Pulse.NetworkTaskEntity? {
+    @objc get
+    @objc set
+  }
+  final public var metadata: [Swift.String : Swift.String] {
+    get
+    set
+  }
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class NetworkTaskEntity : CoreData.NSManagedObject {
+  @objc @NSManaged dynamic final public var createdAt: Foundation.Date {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var session: Foundation.UUID {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var taskId: Foundation.UUID {
+    @objc get
+    @objc set
+  }
+  final public var type: Pulse.NetworkLogger.TaskType? {
+    get
+  }
+  @objc @NSManaged dynamic final public var taskType: Swift.Int16 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var url: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var host: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var httpMethod: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var statusCode: Swift.Int32 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var responseContentType: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var isFromCache: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var isMocked: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var errorCode: Swift.Int32 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var errorDomain: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var errorDebugDescription: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var underlyingError: Foundation.Data? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var requestState: Swift.Int16 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var progress: Pulse.NetworkTaskProgressEntity? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var duration: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var startDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var redirectCount: Swift.Int16 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var originalRequest: Pulse.NetworkRequestEntity? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var currentRequest: Pulse.NetworkRequestEntity? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var response: Pulse.NetworkResponseEntity? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var transactions: Swift.Set<Pulse.NetworkTransactionMetricsEntity> {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var requestBody: Pulse.LoggerBlobHandleEntity? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var responseBody: Pulse.LoggerBlobHandleEntity? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var requestBodySize: Swift.Int64 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var responseBodySize: Swift.Int64 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var taskDescription: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var message: Pulse.LoggerMessageEntity? {
+    @objc get
+    @objc set
+  }
+  final public var metadata: [Swift.String : Swift.String]? {
+    get
+    set
+  }
+  final public var state: Pulse.NetworkTaskEntity.State {
+    get
+  }
+  @frozen public enum State : Swift.Int16 {
+    case pending, success, failure
+    public init?(rawValue: Swift.Int16)
+    public typealias RawValue = Swift.Int16
+    public var rawValue: Swift.Int16 {
+      get
+    }
+  }
+  final public var error: (any Swift.Error)? {
+    get
+    set
+  }
+  final public var orderedTransactions: [Pulse.NetworkTransactionMetricsEntity] {
+    get
+  }
+  final public var taskInterval: Foundation.DateInterval? {
+    get
+  }
+  final public var totalTransferSize: Pulse.NetworkLogger.TransferSizeInfo {
+    get
+  }
+  final public var hasMetrics: Swift.Bool {
+    get
+  }
+  final public var decodingError: Pulse.NetworkLogger.DecodingError? {
+    get
+  }
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class NetworkTaskProgressEntity : CoreData.NSManagedObject {
+  @objc @NSManaged dynamic final public var completedUnitCount: Swift.Int64 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var totalUnitCount: Swift.Int64 {
+    @objc get
+    @objc set
+  }
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class NetworkTransactionMetricsEntity : CoreData.NSManagedObject {
+  @objc @NSManaged dynamic final public var index: Swift.Int16 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var rawFetchType: Swift.Int16 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var request: Pulse.NetworkRequestEntity {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var response: Pulse.NetworkResponseEntity? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var networkProtocol: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var localAddress: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var remoteAddress: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var localPort: Swift.Int32 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var remotePort: Swift.Int32 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var isProxyConnection: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var isReusedConnection: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var isCellular: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var isExpensive: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var isConstrained: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var isMultipath: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var rawNegotiatedTLSProtocolVersion: Swift.Int32 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var rawNegotiatedTLSCipherSuite: Swift.Int32 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var fetchStartDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var domainLookupStartDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var domainLookupEndDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var connectStartDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var secureConnectionStartDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var secureConnectionEndDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var connectEndDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var requestStartDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var requestEndDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var responseStartDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var responseEndDate: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var requestHeaderBytesSent: Swift.Int64 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var requestBodyBytesBeforeEncoding: Swift.Int64 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var requestBodyBytesSent: Swift.Int64 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var responseHeaderBytesReceived: Swift.Int64 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var responseBodyBytesAfterDecoding: Swift.Int64 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var responseBodyBytesReceived: Swift.Int64 {
+    @objc get
+    @objc set
+  }
+  final public var fetchType: Foundation.URLSessionTaskMetrics.ResourceFetchType {
+    get
+  }
+  final public var negotiatedTLSProtocolVersion: Security.tls_protocol_version_t? {
+    get
+  }
+  final public var negotiatedTLSCipherSuite: Security.tls_ciphersuite_t? {
+    get
+  }
+  final public var transferSize: Pulse.NetworkLogger.TransferSizeInfo {
+    get
+  }
+  final public var timing: Pulse.NetworkLogger.TransactionTimingInfo {
+    get
+  }
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class NetworkRequestEntity : CoreData.NSManagedObject {
+  @objc @NSManaged dynamic final public var url: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var httpMethod: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var httpHeaders: Swift.String {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var allowsCellularAccess: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var allowsExpensiveNetworkAccess: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var allowsConstrainedNetworkAccess: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var httpShouldHandleCookies: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var httpShouldUsePipelining: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var timeoutInterval: Swift.Int32 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var rawCachePolicy: Swift.UInt16 {
+    @objc get
+    @objc set
+  }
+  final public var cachePolicy: Foundation.URLRequest.CachePolicy {
+    get
+  }
+  final public var contentType: Pulse.NetworkLogger.ContentType? {
+    get
+  }
+  final public var headers: [Swift.String : Swift.String] {
+    get
+    set
+  }
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class NetworkResponseEntity : CoreData.NSManagedObject {
+  @objc @NSManaged dynamic final public var statusCode: Swift.Int16 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var httpHeaders: Swift.String {
+    @objc get
+    @objc set
+  }
+  final public var contentType: Pulse.NetworkLogger.ContentType? {
+    get
+  }
+  final public var expectedContentLength: Swift.Int64? {
+    get
+  }
+  final public var headers: [Swift.String : Swift.String] {
+    get
+    set
+  }
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class LoggerBlobHandleEntity : CoreData.NSManagedObject {
+  @objc @NSManaged dynamic final public var key: Foundation.Data {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var size: Swift.Int32 {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic final public var decompressedSize: Swift.Int32 {
+    @objc get
+    @objc set
+  }
+  final public var contentType: Pulse.NetworkLogger.ContentType? {
+    get
+  }
+  @objc @NSManaged dynamic final public var inlineData: Foundation.Data? {
+    @objc get
+    @objc set
+  }
+  final public var data: Foundation.Data? {
+    get
+  }
+  public static func getData(for entity: Pulse.LoggerBlobHandleEntity, store: Pulse.LoggerStore) -> () -> Foundation.Data?
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+extension Pulse.LoggerMessageEntity : Swift.Identifiable {
+  final public var id: CoreData.NSManagedObjectID {
+    get
+  }
+  public typealias ID = CoreData.NSManagedObjectID
+}
+extension Pulse.NetworkTaskEntity : Swift.Identifiable {
+  final public var id: CoreData.NSManagedObjectID {
+    get
+  }
+  public typealias ID = CoreData.NSManagedObjectID
+}
+extension Pulse.LoggerStore {
+  @frozen public enum Event : Swift.Sendable {
+    case messageStored(Pulse.LoggerStore.Event.MessageCreated)
+    case networkTaskCreated(Pulse.LoggerStore.Event.NetworkTaskCreated)
+    case networkTaskProgressUpdated(Pulse.LoggerStore.Event.NetworkTaskProgressUpdated)
+    case networkTaskCompleted(Pulse.LoggerStore.Event.NetworkTaskCompleted)
+    public struct MessageCreated : Swift.Codable, Swift.Sendable {
+      public var createdAt: Foundation.Date
+      public var label: Swift.String
+      public var level: Pulse.LoggerStore.Level
+      public var message: Swift.String
+      public var metadata: [Swift.String : Swift.String]?
+      public var file: Swift.String
+      public var function: Swift.String
+      public var line: Swift.UInt
+      @available(*, deprecated, message: "Deprecated (added for backward compatibility)")
+      public var session: Foundation.UUID?
+      public init(createdAt: Foundation.Date, label: Swift.String, level: Pulse.LoggerStore.Level, message: Swift.String, metadata: [Swift.String : Swift.String]?, file: Swift.String, function: Swift.String, line: Swift.UInt)
+      public func encode(to encoder: any Swift.Encoder) throws
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public struct NetworkTaskCreated : Swift.Codable, Swift.Sendable {
+      public var taskId: Foundation.UUID
+      public var taskType: Pulse.NetworkLogger.TaskType
+      public var createdAt: Foundation.Date
+      public var originalRequest: Pulse.NetworkLogger.Request
+      public var currentRequest: Pulse.NetworkLogger.Request?
+      public var label: Swift.String?
+      public var taskDescription: Swift.String?
+      @available(*, deprecated, message: "Deprecated (added for backward compatibility)")
+      public var session: Foundation.UUID?
+      public init(taskId: Foundation.UUID, taskType: Pulse.NetworkLogger.TaskType, createdAt: Foundation.Date, originalRequest: Pulse.NetworkLogger.Request, currentRequest: Pulse.NetworkLogger.Request?, label: Swift.String?, taskDescription: Swift.String?)
+      public func encode(to encoder: any Swift.Encoder) throws
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public struct NetworkTaskProgressUpdated : Swift.Codable, Swift.Sendable {
+      public var taskId: Foundation.UUID
+      public var url: Foundation.URL?
+      public var completedUnitCount: Swift.Int64
+      public var totalUnitCount: Swift.Int64
+      public init(taskId: Foundation.UUID, url: Foundation.URL?, completedUnitCount: Swift.Int64, totalUnitCount: Swift.Int64)
+      public func encode(to encoder: any Swift.Encoder) throws
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public struct NetworkTaskCompleted : Swift.Codable, Swift.Sendable {
+      public var taskId: Foundation.UUID
+      public var taskType: Pulse.NetworkLogger.TaskType
+      public var createdAt: Foundation.Date
+      public var originalRequest: Pulse.NetworkLogger.Request
+      public var currentRequest: Pulse.NetworkLogger.Request?
+      public var response: Pulse.NetworkLogger.Response?
+      public var error: Pulse.NetworkLogger.ResponseError?
+      public var requestBody: Foundation.Data?
+      public var responseBody: Foundation.Data?
+      public var metrics: Pulse.NetworkLogger.Metrics?
+      public var label: Swift.String?
+      public var taskDescription: Swift.String?
+      @available(*, deprecated, message: "Deprecated (added for backward compatibility)")
+      public var session: Foundation.UUID?
+      public init(taskId: Foundation.UUID, taskType: Pulse.NetworkLogger.TaskType, createdAt: Foundation.Date, originalRequest: Pulse.NetworkLogger.Request, currentRequest: Pulse.NetworkLogger.Request?, response: Pulse.NetworkLogger.Response?, error: Pulse.NetworkLogger.ResponseError?, requestBody: Foundation.Data?, responseBody: Foundation.Data?, metrics: Pulse.NetworkLogger.Metrics?, label: Swift.String?, taskDescription: Swift.String?)
+      public func encode(to encoder: any Swift.Encoder) throws
+      public init(from decoder: any Swift.Decoder) throws
+    }
+  }
+}
+@_hasMissingDesignatedInitializers final public class LoggerStore : @unchecked Swift.Sendable, Swift.Identifiable {
+  final public var id: Swift.ObjectIdentifier {
+    get
+  }
+  final public let storeURL: Foundation.URL
+  final public let options: Pulse.LoggerStore.Options
+  final public var configuration: Pulse.LoggerStore.Configuration
+  final public var session: Pulse.LoggerStore.Session {
+    get
+  }
+  final public let container: CoreData.NSPersistentContainer
+  final public var viewContext: CoreData.NSManagedObjectContext {
+    get
+  }
+  final public let backgroundContext: CoreData.NSManagedObjectContext
+  final public let events: Combine.PassthroughSubject<Pulse.LoggerStore.Event, Swift.Never>
+  final public var version: Pulse.LoggerStore.Version {
+    get
+  }
+  public static var shared: Pulse.LoggerStore {
+    get
+    set
+  }
+  public init(storeURL: Foundation.URL, options: Pulse.LoggerStore.Options = [.create, .sweep], configuration: Pulse.LoggerStore.Configuration = .init()) throws
+  final public func newBackgroundContext() -> CoreData.NSManagedObjectContext
+  public typealias ID = Swift.ObjectIdentifier
+  @objc deinit
+}
+extension Pulse.LoggerStore {
+  final public func storeMessage(createdAt: Foundation.Date? = nil, label: Swift.String, level: Pulse.LoggerStore.Level, message: Swift.String, metadata: [Swift.String : Pulse.LoggerStore.MetadataValue]? = nil, file: Swift.String = #file, function: Swift.String = #function, line: Swift.UInt = #line)
+  final public func storeRequest(_ request: Foundation.URLRequest, response: Foundation.URLResponse?, error: (any Swift.Error)?, data: Foundation.Data?, metrics: Foundation.URLSessionTaskMetrics? = nil, label: Swift.String? = nil, taskDescription: Swift.String? = nil)
+  final public func getBlobData(forKey key: Swift.String) -> Foundation.Data?
+}
+extension Pulse.LoggerStore {
+  final public func allMessages() throws -> [Pulse.LoggerMessageEntity]
+  final public func allTasks() throws -> [Pulse.NetworkTaskEntity]
+  final public func removeSessions(withIDs sessionIDs: Swift.Set<Foundation.UUID>)
+  final public func removeAll()
+  final public func destroy() throws
+  final public func close() throws
+}
+extension Pulse.LoggerStore {
+  public struct ExportOptions : @unchecked Swift.Sendable {
+    public var predicate: Foundation.NSPredicate?
+    public var sessions: Swift.Set<Foundation.UUID>?
+    public init(predicate: Foundation.NSPredicate? = nil, sessions: Swift.Set<Foundation.UUID>? = nil)
+  }
+  #if compiler(>=5.3) && $AsyncAwait
+  final public func export(to targetURL: Foundation.URL, options: Pulse.LoggerStore.ExportOptions = .init()) async throws
+  #endif
+}
+extension Pulse.LoggerStore {
+  #if compiler(>=5.3) && $AsyncAwait
+  final public func info() async throws -> Pulse.LoggerStore.Info
+  #endif
+}
+extension Pulse.LoggerStore {
+  public enum Error : Swift.Error, Foundation.LocalizedError {
+    case fileDoesntExist
+    case storeInvalid
+    case unsupportedVersion(version: Swift.String, minimumSupportedVersion: Swift.String)
+    case fileAlreadyExists
+    case unknownError
+    public var errorDescription: Swift.String? {
+      get
+    }
+  }
+}
+extension Pulse.LoggerStore {
+  public struct Options : Swift.OptionSet, Swift.Sendable {
+    public let rawValue: Swift.Int
+    public init(rawValue: Swift.Int)
+    public static let create: Pulse.LoggerStore.Options
+    public static let sweep: Pulse.LoggerStore.Options
+    public static let synchronous: Pulse.LoggerStore.Options
+    public static let readonly: Pulse.LoggerStore.Options
+    public static let inMemory: Pulse.LoggerStore.Options
+    public typealias ArrayLiteralElement = Pulse.LoggerStore.Options
+    public typealias Element = Pulse.LoggerStore.Options
+    public typealias RawValue = Swift.Int
+  }
+  public struct Configuration : @unchecked Swift.Sendable {
+    public var sizeLimit: Swift.Int64
+    public var saveInterval: Dispatch.DispatchTimeInterval
+    public var isStoringOnlyImageThumbnails: Swift.Bool
+    public var responseBodySizeLimit: Swift.Int
+    public var maxAge: Swift.Double
+    public var willHandleEvent: @Sendable (Pulse.LoggerStore.Event) -> Pulse.LoggerStore.Event?
+    public init(sizeLimit: Swift.Int64 = 256 * 1_000_000)
+  }
+}
+final public class URLSessionProxy : Pulse.URLSessionProtocol, @unchecked Swift.Sendable {
+  public struct Options : Swift.Sendable {
+    public var isMockingEnabled: Swift.Bool
+    public init()
+  }
+  final public let session: Foundation.URLSession
+  convenience public init(configuration: Foundation.URLSessionConfiguration, logger: Pulse.NetworkLogger? = nil, options: Pulse.URLSessionProxy.Options = .init())
+  public init(configuration: Foundation.URLSessionConfiguration, delegate: (any Foundation.URLSessionDelegate)?, delegateQueue: Foundation.OperationQueue? = nil, logger: Pulse.NetworkLogger? = nil, options: Pulse.URLSessionProxy.Options = .init())
+  final public func dataTask(with request: Foundation.URLRequest) -> Foundation.URLSessionDataTask
+  final public func dataTask(with url: Foundation.URL) -> Foundation.URLSessionDataTask
+  final public func uploadTask(with request: Foundation.URLRequest, from bodyData: Foundation.Data) -> Foundation.URLSessionUploadTask
+  final public func uploadTask(with request: Foundation.URLRequest, fromFile fileURL: Foundation.URL) -> Foundation.URLSessionUploadTask
+  @available(iOS 17, tvOS 17, macOS 14, watchOS 10, *)
+  final public func uploadTask(withResumeData resumeData: Foundation.Data) -> Foundation.URLSessionUploadTask
+  final public func uploadTask(withStreamedRequest request: Foundation.URLRequest) -> Foundation.URLSessionUploadTask
+  final public func downloadTask(with request: Foundation.URLRequest) -> Foundation.URLSessionDownloadTask
+  final public func downloadTask(with url: Foundation.URL) -> Foundation.URLSessionDownloadTask
+  final public func downloadTask(withResumeData resumeData: Foundation.Data) -> Foundation.URLSessionDownloadTask
+  final public func streamTask(withHostName hostname: Swift.String, port: Swift.Int) -> Foundation.URLSessionStreamTask
+  final public func webSocketTask(with url: Foundation.URL) -> Foundation.URLSessionWebSocketTask
+  final public func webSocketTask(with url: Foundation.URL, protocols: [Swift.String]) -> Foundation.URLSessionWebSocketTask
+  final public func webSocketTask(with request: Foundation.URLRequest) -> Foundation.URLSessionWebSocketTask
+  #if compiler(>=5.3) && $Sendable
+  final public func dataTask(with request: Foundation.URLRequest, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionDataTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  final public func dataTask(with url: Foundation.URL, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionDataTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  final public func uploadTask(with request: Foundation.URLRequest, fromFile fileURL: Foundation.URL, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionUploadTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  final public func uploadTask(with request: Foundation.URLRequest, from bodyData: Foundation.Data?, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionUploadTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  @available(iOS 17, tvOS 17, macOS 14, watchOS 10, *)
+  final public func uploadTask(withResumeData resumeData: Foundation.Data, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionUploadTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  final public func downloadTask(with request: Foundation.URLRequest, completionHandler: @escaping @Sendable (Foundation.URL?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionDownloadTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  final public func downloadTask(with url: Foundation.URL, completionHandler: @escaping @Sendable (Foundation.URL?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionDownloadTask
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  final public func downloadTask(withResumeData resumeData: Foundation.Data, completionHandler: @escaping @Sendable (Foundation.URL?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionDownloadTask
+  #endif
+  final public func dataTaskPublisher(for url: Foundation.URL) -> Foundation.URLSession.DataTaskPublisher
+  final public func dataTaskPublisher(for request: Foundation.URLRequest) -> Foundation.URLSession.DataTaskPublisher
+  #if compiler(>=5.3) && $AsyncAwait
+  final public func data(for request: Foundation.URLRequest, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  final public func data(from url: Foundation.URL, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  final public func upload(for request: Foundation.URLRequest, fromFile fileURL: Foundation.URL, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  final public func upload(for request: Foundation.URLRequest, from bodyData: Foundation.Data, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.Data, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  final public func download(for request: Foundation.URLRequest, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.URL, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  final public func download(from url: Foundation.URL, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.URL, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  final public func download(resumeFrom resumeData: Foundation.Data, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.URL, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait && $RethrowsProtocol
+  final public func bytes(for request: Foundation.URLRequest, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.URLSession.AsyncBytes, Foundation.URLResponse)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait && $RethrowsProtocol
+  final public func bytes(from url: Foundation.URL, delegate: (any Foundation.URLSessionTaskDelegate)?) async throws -> (Foundation.URLSession.AsyncBytes, Foundation.URLResponse)
+  #endif
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class MockingURLProtocol : Foundation.URLProtocol, @unchecked Swift.Sendable {
+  @objc override final public func startLoading()
+  @objc override final public func stopLoading()
+  @objc override final public class func canonicalRequest(for request: Foundation.URLRequest) -> Foundation.URLRequest
+  @objc override final public class func canInit(with request: Foundation.URLRequest) -> Swift.Bool
+  @objc override dynamic public init(request: Foundation.URLRequest, cachedResponse: Foundation.CachedURLResponse?, client: (any Foundation.URLProtocolClient)?)
+  @objc deinit
+}
+extension Pulse.MockingURLProtocol {
+  @_Concurrency.MainActor public static func enableAutomaticRegistration()
+}
+extension Pulse.LoggerStore {
+  public struct Info : Swift.Codable, Swift.Sendable {
+    public var storeId: Foundation.UUID
+    public var storeVersion: Swift.String
+    public var creationDate: Foundation.Date
+    public var modifiedDate: Foundation.Date
+    public var messageCount: Swift.Int
+    public var taskCount: Swift.Int
+    public var blobCount: Swift.Int
+    public var totalStoreSize: Swift.Int64
+    public var blobsSize: Swift.Int64
+    public var blobsDecompressedSize: Swift.Int64
+    public var appInfo: Pulse.LoggerStore.Info.AppInfo
+    public var deviceInfo: Pulse.LoggerStore.Info.DeviceInfo
+    public struct AppInfo : Swift.Codable, Swift.Sendable {
+      public let bundleIdentifier: Swift.String?
+      public let name: Swift.String?
+      public let version: Swift.String?
+      public let build: Swift.String?
+      public let icon: Swift.String?
+      public func encode(to encoder: any Swift.Encoder) throws
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public struct DeviceInfo : Swift.Codable, Swift.Sendable {
+      public let name: Swift.String
+      public let model: Swift.String
+      public let localizedModel: Swift.String
+      public let systemName: Swift.String
+      public let systemVersion: Swift.String
+      public func encode(to encoder: any Swift.Encoder) throws
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension Pulse.NetworkLogger.Request {
+  public func redactingSensitiveHeaders(_ redactedHeaders: Swift.Set<Swift.String>) -> Pulse.NetworkLogger.Request
+}
+extension Pulse.NetworkLogger.Response {
+  public func redactingSensitiveHeaders(_ redactedHeaders: Swift.Set<Swift.String>) -> Pulse.NetworkLogger.Response
+}
+extension Pulse.URLSessionProxyDelegate {
+  public static func enableAutomaticRegistration(logger: Pulse.NetworkLogger? = nil)
+}
+@available(*, deprecated, message: "Experimental.URLSessionProxy is replaced with NetworkLogger.enableProxy() from the PulseProxy target")
+public enum Experimental {
+}
+@available(*, deprecated, message: "Experimental.URLSessionProxy is replaced with NetworkLogger.enableProxy() from the PulseProxy target")
+extension Pulse.Experimental {
+  @_hasMissingDesignatedInitializers @_Concurrency.MainActor final public class URLSessionProxy {
+    @_Concurrency.MainActor public static let shared: Pulse.Experimental.URLSessionProxy
+    @_Concurrency.MainActor final public var logger: Pulse.NetworkLogger
+    @_Concurrency.MainActor final public var configuration: Foundation.URLSessionConfiguration
+    @_Concurrency.MainActor final public var ignoredHosts: Swift.Set<Swift.String>
+    @_Concurrency.MainActor final public var isEnabled: Swift.Bool {
+      get
+      set
+    }
+    @objc deinit
+  }
+}
+extension Pulse.NetworkLogger {
+  public struct Request : Swift.Hashable, Swift.Codable, Swift.Sendable {
+    public var url: Foundation.URL?
+    public var httpMethod: Swift.String?
+    public var headers: [Swift.String : Swift.String]?
+    public var cachePolicy: Foundation.URLRequest.CachePolicy {
+      get
+    }
+    public var timeout: Foundation.TimeInterval
+    public var options: Pulse.NetworkLogger.Request.Options
+    public var contentType: Pulse.NetworkLogger.ContentType? {
+      get
+    }
+    public struct Options : Swift.OptionSet, Swift.Hashable, Swift.Codable, Swift.Sendable {
+      public let rawValue: Swift.Int8
+      public init(rawValue: Swift.Int8)
+      public static let allowsCellularAccess: Pulse.NetworkLogger.Request.Options
+      public static let allowsExpensiveNetworkAccess: Pulse.NetworkLogger.Request.Options
+      public static let allowsConstrainedNetworkAccess: Pulse.NetworkLogger.Request.Options
+      public static let httpShouldHandleCookies: Pulse.NetworkLogger.Request.Options
+      public static let httpShouldUsePipelining: Pulse.NetworkLogger.Request.Options
+      public typealias ArrayLiteralElement = Pulse.NetworkLogger.Request.Options
+      public typealias Element = Pulse.NetworkLogger.Request.Options
+      public typealias RawValue = Swift.Int8
+    }
+    public init(_ urlRequest: Foundation.URLRequest)
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: Pulse.NetworkLogger.Request, b: Pulse.NetworkLogger.Request) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Response : Swift.Hashable, Swift.Codable, Swift.Sendable {
+    public var statusCode: Swift.Int?
+    public var headers: [Swift.String : Swift.String]?
+    public var contentType: Pulse.NetworkLogger.ContentType? {
+      get
+    }
+    public init(_ urlResponse: Foundation.URLResponse)
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: Pulse.NetworkLogger.Response, b: Pulse.NetworkLogger.Response) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct ResponseError : Swift.Codable, Swift.Sendable {
+    public var code: Swift.Int
+    public var domain: Swift.String
+    public var debugDescription: Swift.String
+    public var error: (any Swift.Error)? {
+      get
+    }
+    public init(_ error: any Swift.Error)
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Metrics : Swift.Codable, Swift.Sendable {
+    public var taskInterval: Foundation.DateInterval
+    public var redirectCount: Swift.Int
+    public var transactions: [Pulse.NetworkLogger.TransactionMetrics]
+    public var totalTransferSize: Pulse.NetworkLogger.TransferSizeInfo {
+      get
+    }
+    public init(metrics: Foundation.URLSessionTaskMetrics)
+    public init(taskInterval: Foundation.DateInterval, redirectCount: Swift.Int, transactions: [Pulse.NetworkLogger.TransactionMetrics])
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct TransferSizeInfo : Swift.Codable, Swift.Sendable {
+    public var totalBytesSent: Swift.Int64 {
+      get
+    }
+    public var requestHeaderBytesSent: Swift.Int64
+    public var requestBodyBytesBeforeEncoding: Swift.Int64
+    public var requestBodyBytesSent: Swift.Int64
+    public var totalBytesReceived: Swift.Int64 {
+      get
+    }
+    public var responseHeaderBytesReceived: Swift.Int64
+    public var responseBodyBytesAfterDecoding: Swift.Int64
+    public var responseBodyBytesReceived: Swift.Int64
+    public init()
+    public init(metrics: Pulse.NetworkLogger.Metrics)
+    public func merging(_ size: Pulse.NetworkLogger.TransferSizeInfo) -> Pulse.NetworkLogger.TransferSizeInfo
+    public init(from decoder: any Swift.Decoder) throws
+    public func encode(to encoder: any Swift.Encoder) throws
+  }
+  public struct TransactionMetrics : Swift.Codable, Swift.Sendable {
+    public var fetchType: Foundation.URLSessionTaskMetrics.ResourceFetchType {
+      get
+    }
+    public var request: Pulse.NetworkLogger.Request
+    public var response: Pulse.NetworkLogger.Response?
+    public var timing: Pulse.NetworkLogger.TransactionTimingInfo
+    public var networkProtocol: Swift.String?
+    public var transferSize: Pulse.NetworkLogger.TransferSizeInfo
+    public var conditions: Pulse.NetworkLogger.TransactionMetrics.Conditions
+    public var localAddress: Swift.String?
+    public var remoteAddress: Swift.String?
+    public var localPort: Swift.Int?
+    public var remotePort: Swift.Int?
+    public var negotiatedTLSProtocolVersion: Security.tls_protocol_version_t? {
+      get
+    }
+    public var negotiatedTLSCipherSuite: Security.tls_ciphersuite_t? {
+      get
+    }
+    public init(metrics: Foundation.URLSessionTaskTransactionMetrics)
+    public init(request: Pulse.NetworkLogger.Request, response: Pulse.NetworkLogger.Response? = nil, resourceFetchType: Foundation.URLSessionTaskMetrics.ResourceFetchType)
+    public struct Conditions : Swift.OptionSet, Swift.Codable, Swift.Sendable {
+      public let rawValue: Swift.Int8
+      public init(rawValue: Swift.Int8)
+      public static let isProxyConnection: Pulse.NetworkLogger.TransactionMetrics.Conditions
+      public static let isReusedConnection: Pulse.NetworkLogger.TransactionMetrics.Conditions
+      public static let isCellular: Pulse.NetworkLogger.TransactionMetrics.Conditions
+      public static let isExpensive: Pulse.NetworkLogger.TransactionMetrics.Conditions
+      public static let isConstrained: Pulse.NetworkLogger.TransactionMetrics.Conditions
+      public static let isMultipath: Pulse.NetworkLogger.TransactionMetrics.Conditions
+      public typealias ArrayLiteralElement = Pulse.NetworkLogger.TransactionMetrics.Conditions
+      public typealias Element = Pulse.NetworkLogger.TransactionMetrics.Conditions
+      public typealias RawValue = Swift.Int8
+    }
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct TransactionTimingInfo : Swift.Codable, Swift.Sendable {
+    public var fetchStartDate: Foundation.Date?
+    public var domainLookupStartDate: Foundation.Date?
+    public var domainLookupEndDate: Foundation.Date?
+    public var connectStartDate: Foundation.Date?
+    public var secureConnectionStartDate: Foundation.Date?
+    public var secureConnectionEndDate: Foundation.Date?
+    public var connectEndDate: Foundation.Date?
+    public var requestStartDate: Foundation.Date?
+    public var requestEndDate: Foundation.Date?
+    public var responseStartDate: Foundation.Date?
+    public var responseEndDate: Foundation.Date?
+    public var duration: Foundation.TimeInterval? {
+      get
+    }
+    public init(metrics: Foundation.URLSessionTaskTransactionMetrics)
+    public init()
+    public init(from decoder: any Swift.Decoder) throws
+    public func encode(to encoder: any Swift.Encoder) throws
+  }
+  @frozen public enum TaskType : Swift.Int16, Swift.Codable, Swift.CaseIterable, Swift.Sendable {
+    case dataTask
+    case downloadTask
+    case uploadTask
+    case streamTask
+    case webSocketTask
+    public init(task: Foundation.URLSessionTask)
+    public var urlSessionTaskClassName: Swift.String {
+      get
+    }
+    public init?(rawValue: Swift.Int16)
+    public typealias AllCases = [Pulse.NetworkLogger.TaskType]
+    public typealias RawValue = Swift.Int16
+    public static var allCases: [Pulse.NetworkLogger.TaskType] {
+      get
+    }
+    public var rawValue: Swift.Int16 {
+      get
+    }
+  }
+  public enum DecodingError : Swift.Error, Swift.Codable, Swift.CustomDebugStringConvertible, Swift.Sendable {
+    case typeMismatch(type: Swift.String, context: Pulse.NetworkLogger.DecodingError.Context)
+    case valueNotFound(type: Swift.String, context: Pulse.NetworkLogger.DecodingError.Context)
+    case keyNotFound(codingKey: Pulse.NetworkLogger.DecodingError.CodingKey, context: Pulse.NetworkLogger.DecodingError.Context)
+    case dataCorrupted(context: Pulse.NetworkLogger.DecodingError.Context)
+    case unknown
+    public static let domain: Swift.String
+    public struct Context : Swift.Codable, Swift.CustomDebugStringConvertible, Swift.Sendable {
+      public var codingPath: [Pulse.NetworkLogger.DecodingError.CodingKey]
+      public var debugDescription: Swift.String
+      public init(_ context: Swift.DecodingError.Context)
+      public init(codingPath: [Pulse.NetworkLogger.DecodingError.CodingKey], debugDescription: Swift.String)
+      public func encode(to encoder: any Swift.Encoder) throws
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public enum CodingKey : Swift.Codable, Swift.Hashable, Swift.CustomDebugStringConvertible, Swift.Sendable {
+      case string(Swift.String)
+      case int(Swift.Int)
+      public init(_ key: any Swift.CodingKey)
+      public var debugDescription: Swift.String {
+        get
+      }
+      public func hash(into hasher: inout Swift.Hasher)
+      public static func == (a: Pulse.NetworkLogger.DecodingError.CodingKey, b: Pulse.NetworkLogger.DecodingError.CodingKey) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public var hashValue: Swift.Int {
+        get
+      }
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public init(_ error: Swift.DecodingError)
+    public var context: Pulse.NetworkLogger.DecodingError.Context? {
+      get
+    }
+    public var debugDescription: Swift.String {
+      get
+    }
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct ContentType : Swift.Hashable, Swift.ExpressibleByStringLiteral {
+    public var type: Swift.String
+    public var parameters: [Swift.String : Swift.String]
+    public var rawValue: Swift.String
+    public init?(rawValue: Swift.String)
+    public static var any: Pulse.NetworkLogger.ContentType {
+      get
+    }
+    public init(stringLiteral value: Swift.String)
+    public var isJSON: Swift.Bool {
+      get
+    }
+    public var isPDF: Swift.Bool {
+      get
+    }
+    public var isImage: Swift.Bool {
+      get
+    }
+    public var isHTML: Swift.Bool {
+      get
+    }
+    public var isEncodedForm: Swift.Bool {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: Pulse.NetworkLogger.ContentType, b: Pulse.NetworkLogger.ContentType) -> Swift.Bool
+    public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+    public typealias StringLiteralType = Swift.String
+    public typealias UnicodeScalarLiteralType = Swift.String
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+@objc final public class URLSessionProxyDelegate : ObjectiveC.NSObject, Foundation.URLSessionTaskDelegate, Foundation.URLSessionDataDelegate, Foundation.URLSessionDownloadDelegate {
+  public init(logger: Pulse.NetworkLogger? = nil, delegate: (any Foundation.URLSessionDelegate)? = nil)
+  @objc final public func urlSession(_ session: Foundation.URLSession, didCreateTask task: Foundation.URLSessionTask)
+  @objc final public func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didCompleteWithError error: (any Swift.Error)?)
+  @objc final public func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didFinishCollecting metrics: Foundation.URLSessionTaskMetrics)
+  @objc final public func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didSendBodyData bytesSent: Swift.Int64, totalBytesSent: Swift.Int64, totalBytesExpectedToSend: Swift.Int64)
+  @objc final public func urlSession(_ session: Foundation.URLSession, dataTask: Foundation.URLSessionDataTask, didReceive data: Foundation.Data)
+  @objc final public func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didFinishDownloadingTo location: Foundation.URL)
+  @objc final public func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didWriteData bytesWritten: Swift.Int64, totalBytesWritten: Swift.Int64, totalBytesExpectedToWrite: Swift.Int64)
+  @objc override final public func responds(to aSelector: ObjectiveC.Selector!) -> Swift.Bool
+  @objc override final public func forwardingTarget(for selector: ObjectiveC.Selector!) -> Any?
+  @objc deinit
+}
+extension Pulse.LoggerStore {
+  public struct Session : Swift.Codable, Swift.Sendable {
+    public let id: Foundation.UUID
+    public let startDate: Foundation.Date
+    public init(id: Foundation.UUID = UUID(), startDate: Foundation.Date = Date())
+    public static let current: Pulse.LoggerStore.Session
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension Pulse.RemoteLogger : Swift.Sendable {}
+extension Pulse.RemoteLogger.ConnectionState : Swift.Equatable {}
+extension Pulse.RemoteLogger.ConnectionState : Swift.Hashable {}
+extension Pulse.RemoteLogger.ConnectionState : Swift.Sendable {}
+extension Pulse.NetworkTaskEntity.State : Swift.Equatable {}
+extension Pulse.NetworkTaskEntity.State : Swift.Hashable {}
+extension Pulse.NetworkTaskEntity.State : Swift.RawRepresentable {}
+extension Pulse.NetworkTaskEntity.State : Swift.Sendable {}
+@available(*, deprecated, message: "Experimental.URLSessionProxy is replaced with NetworkLogger.enableProxy() from the PulseProxy target")
+extension Pulse.Experimental.URLSessionProxy : Swift.Sendable {}
+extension Pulse.NetworkLogger.TaskType : Swift.Equatable {}
+extension Pulse.NetworkLogger.TaskType : Swift.Hashable {}
+extension Pulse.NetworkLogger.TaskType : Swift.RawRepresentable {}

@@ -1,0 +1,64 @@
+//
+//  Copyright © 2024 reers.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+
+import Foundation
+
+extension String {
+    var maybeNested: Bool {
+        contains(".")
+    }
+    
+    /// "head.middle.tail" -> ("head.middle", "tail")
+    var containerAndKey: (String, String)? {
+        guard let lastDotIndex = self.lastIndex(of: ".") else {
+            return nil
+        }
+        
+        let container = String(self[..<lastDotIndex])
+        let key = String(self[self.index(after: lastDotIndex)...])
+        
+        return (container, key)
+    }
+    
+    public var re_base64DecodedData: Data {
+        get throws {
+            if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters) {
+                return data
+            }
+            let remainder = self.count % 4
+            var padding = ""
+            if remainder > 0 {
+                padding = String(repeating: "=", count: 4 - remainder)
+            }
+            if let data = Data(base64Encoded: self + padding, options: .ignoreUnknownCharacters) {
+                return data
+            } else {
+                throw ReerCodableError(text: "Base64 decoded failed with string: \(self)")
+            }
+        }
+    }
+}
+
+extension Data {
+    public var re_bytes: [UInt8] {
+        return [UInt8](self)
+    }
+}

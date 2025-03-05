@@ -5,11 +5,17 @@
 //  Created by GIKI
 //
 
-import UIKit
 
+import UIKit
+import AppDomain
+import AppInfra
+import AppServices
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    
+        AppDomain.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         return true
     }
 
