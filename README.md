@@ -27,9 +27,7 @@ This project uses [Tuist](https://tuist.io/) for project generation. Follow thes
 
 Here are some screenshots of the application:
 
-![Screen 1](Screenshot/screen-1.png)
-![Screen 2](Screenshot/screen-2.png)
-![Screen 3](Screenshot/screen-3.png)
+<p align="center"> <img src="Screenshot/screen-1.png" alt="Screen 1" width="200"/> <img src="Screenshot/screen-2.png" alt="Screen 2" width="200"/> <img src="Screenshot/screen-3.png" alt="Screen 3" width="200"/> </p>
 
 ## Requirements
 
