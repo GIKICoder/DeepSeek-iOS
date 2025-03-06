@@ -57,7 +57,23 @@ public class ChatInputToolView: UIView {
     private lazy var floatPhotoView = ChatInputFloatPhotoView()
     
     private let sendButton = UIButton(type: .custom)
-    private let uploadButton = UIButton(type: .custom)
+    private let moreButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "chat_add_more_ic"), for: .normal)
+        button.setImage(UIImage(named: "chat_add_close_ic"), for: .selected)
+        return button
+    }()
+    private let thinkingButton: ChatInputButton = {
+        let button = ChatInputButton()
+        button.configure(icon: UIImage(named: "chat_thinking_ic"), title: "深度思考(R1)")
+        return button
+    }()
+    private let searchButton: ChatInputButton = {
+        let button = ChatInputButton()
+        button.configure(icon: UIImage(named: "chat_search_ic"), title: "联网搜索")
+        return button
+    }()
+    
     
     // MARK: - Private Properties
     
@@ -87,6 +103,7 @@ public class ChatInputToolView: UIView {
         super.init(frame: frame)
         setupUI()
         setupKeyboardObservers()
+        setupInputBarConfigs()
     }
     
     required init?(coder: NSCoder) {
@@ -282,6 +299,39 @@ public extension ChatInputToolView {
 
 extension ChatInputToolView {
     
+    func setupInputBarConfigs() {
+        moreButton.snp.makeConstraints { make in
+            make.size.equalTo(28)
+        }
+        inputToolBar.addRightItemView(moreButton)
+        // 配置右侧按钮
+        sendButton.setImage(UIImage(named: "chat_send_icon"), for: .normal)
+        sendButton.setImage(UIImage(named: "chat_stop_icon"), for: .selected)
+        sendButton.setImage(UIImage(named: "chat_send_icon"), for: .disabled)
+        sendButton.backgroundColor = UIColor(hex: "#5991df")
+        sendButton.layer.cornerRadius = 14
+        sendButton.layer.masksToBounds = true
+        sendButton.snp.makeConstraints { make in
+            make.size.equalTo(28)
+        }
+        inputToolBar.addRightItemView(sendButton)
+        
+        searchButton.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: 90, height: 28))
+        }
+        thinkingButton.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: 118, height: 28))
+        }
+        inputToolBar.addLeftItemView(thinkingButton)
+        inputToolBar.addLeftItemView(searchButton)
+        
+        sendButton.addTarget(self, action: #selector(didTapSendButton), for: .touchUpInside)
+        moreButton.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
+        thinkingButton.addTarget(self, action: #selector(didTapThinkingButton), for: .touchUpInside)
+        searchButton.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
+       
+    }
+    
     @objc func didTapSendButton() {
         if sendButton.isSelected {
             delegate?.chatInputToolViewDidRequestStop(self)
@@ -299,6 +349,18 @@ extension ChatInputToolView {
             guard let self else { return }
             self.configurePhotoImage(image)
         }
+    }
+    
+    @objc func didTapMoreButton() {
+        
+    }
+    
+    @objc func didTapThinkingButton() {
+        thinkingButton.isSelected = !thinkingButton.isSelected
+    }
+    
+    @objc func didTapSearchButton() {
+        searchButton.isSelected = !searchButton.isSelected
     }
     
     /// 配置上传图片
