@@ -42,6 +42,7 @@ public class HistoryViewController: AppViewController {
         super.viewDidLoad()
         view.addSubview(bottomLine)
         view.addSubview(avatarButton)
+        avatarButton.addTarget(self, action: #selector(didTapAvatarAction), for: .touchUpInside)
         avatarButton.snp.makeConstraints { make in
             make.size.equalTo(60)
             make.leading.equalTo(12)
@@ -90,6 +91,11 @@ extension HistoryViewController {
     
     @objc func refreshData() {
         loadDatas()
+    }
+    
+    @objc func didTapAvatarAction() {
+        let setting = SettingViewController()
+        self.present(setting, animated: true)
     }
 }
 
