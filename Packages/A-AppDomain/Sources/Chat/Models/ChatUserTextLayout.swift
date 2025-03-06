@@ -20,7 +20,7 @@ public final class ChatUserTextLayout: ChatMessageLayout {
     }
     
     override public  var cellType: ChatContentCell.Type {
-        get { return  ChatMDTextCell.self }
+        get { return  ChatUserTextCell.self }
         set { super.cellType = newValue }
     }
     
