@@ -192,6 +192,7 @@ public class ChatAssembly {
         style.colors = ChatColorStyle()
         style.listStyle = ChatListStyle()
         style.useMPTextKit = true
+        style.codeBlockStyle.padding = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         return style
     }
     
