@@ -51,6 +51,9 @@ extension MainViewController {
         setupNavigationBar()
         setupSideMenu()
         
+        var channel = ChatChannel.default
+        channel.channelId = "2222213412134213"
+        let entrance = ChatEntrance(channel: channel)
         chatvc = createChat()
         addChild(chatvc!)
         view.addSubview(chatvc!.view)
