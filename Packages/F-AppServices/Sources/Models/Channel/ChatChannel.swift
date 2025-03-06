@@ -9,6 +9,7 @@ import Foundation
 import ReerCodable
 
 @Codable
+@DefaultInstance
 public struct ChatChannel: Codable, Sendable {
     public var  channelId: String = ""
     public var  channelName: String = ""

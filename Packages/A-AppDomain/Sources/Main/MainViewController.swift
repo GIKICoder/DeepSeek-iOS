@@ -10,6 +10,7 @@ import AppComponents
 import AppInfra
 import SideMenu
 import AppFoundation
+import AppServices
 
 public class MainViewController: AppViewController {
 
@@ -54,7 +55,7 @@ extension MainViewController {
         var channel = ChatChannel.default
         channel.channelId = "2222213412134213"
         let entrance = ChatEntrance(channel: channel)
-        chatvc = createChat()
+        chatvc = createChat(entrance: entrance)
         addChild(chatvc!)
         view.addSubview(chatvc!.view)
         chatvc!.view.frame = contentFrame

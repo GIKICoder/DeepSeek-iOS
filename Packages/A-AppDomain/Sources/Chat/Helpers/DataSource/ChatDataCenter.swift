@@ -327,6 +327,14 @@ extension ChatDataCenter {
     
     private func fetchMessages(with params: MessagesParams,isInitial: Bool) -> AnyPublisher<ChatSectionsState, Never> {
         Future { [weak self] promise in
+            
+            if let channelHistory = self?.loadJSON(filename: "channelhistory") as ChatChannelWrap? {
+                self?.appendMessages(channelHistory.message, isInitial: isInitial)
+                let loadedState = ChatSectionsState(state: .loaded(initial: isInitial),
+                                                  sections: self?.sectionsPublisher.value.sections ?? [])
+                promise(.success(loadedState))
+            }
+            /*
             self?.chatAPI.request(.messages(params), type: ChatChannelWrap.self) { result in
                 self?.isLoading = false
                 switch result {
@@ -346,20 +354,12 @@ extension ChatDataCenter {
                     promise(.success(loadedState))
                     
                 case .failure(let error):
-                    
-                    if let channelHistory = self?.loadJSON(filename: "channelhistory") as ChatChannelWrap? {
-                        self?.appendMessages(channelHistory.message, isInitial: isInitial)
-                        let loadedState = ChatSectionsState(state: .loaded(initial: isInitial),
-                                                          sections: self?.sectionsPublisher.value.sections ?? [])
-                        promise(.success(loadedState))
-                    }
-                    
-                    /*
+                
                     let errorState = ChatSectionsState(state: .error(ChatDataError.networkError(error)), sections: self?.sectionsPublisher.value.sections ?? [])
                     promise(.success(errorState))
-                     */
                 }
             }
+             */
         }
         .eraseToAnyPublisher()
     }

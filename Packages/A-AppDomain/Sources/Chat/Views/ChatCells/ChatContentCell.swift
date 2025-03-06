@@ -100,7 +100,6 @@ public class ChatContentCell: UICollectionViewCell,
             make.bottom.equalToSuperview().inset(0)
         }
         
-        messageView.backgroundColor = .random
     }
     
     func _setupGuesture() {
