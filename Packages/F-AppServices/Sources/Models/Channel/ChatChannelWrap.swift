@@ -11,16 +11,16 @@ import ReerCodable
 
 @Codable
 public struct ChatChannelWrap: Codable, Sendable {
-    public var channel:ChatChannel = ChatChannel()
-    public var message:[ChatMessage] = []
+    public var chat_session:ChatChannel = ChatChannel()
+    public var chat_messages:[ChatMessage] = []
 }
 
 extension ChatChannelWrap: Hashable {
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(channel.channelId)
+        hasher.combine(chat_session.channelId)
     }
     public static func == (lhs: ChatChannelWrap, rhs: ChatChannelWrap) -> Bool {
-        lhs.channel.channelId == rhs.channel.channelId
+        lhs.chat_session.channelId == rhs.chat_session.channelId
     }
 }

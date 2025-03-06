@@ -11,9 +11,9 @@ import AppInfra
 import IQListKit
 import AppServices
 
-class HistoryTableViewCell: UITableViewCell,IQModelableCell {
+class HistoryTableViewCell: UICollectionViewCell,IQModelableCell {
     
-    typealias Model = ChatChannelHistory
+    typealias Model = ChatSessionHistory
     
     
     // MARK: - Properties
@@ -34,9 +34,17 @@ class HistoryTableViewCell: UITableViewCell,IQModelableCell {
     }()
     
     // MARK: - Initialization
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+//        super.init(style: style, reuseIdentifier: reuseIdentifier)
+//        
+//        setupUI()
+//        setupConstraints()
+//        setupContextMenu()
+//    }
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUI()
         setupConstraints()
         setupContextMenu()
@@ -48,7 +56,6 @@ class HistoryTableViewCell: UITableViewCell,IQModelableCell {
     
     // MARK: - Setup
     private func setupUI() {
-        selectionStyle = .none
         contentView.backgroundColor = .white
         contentView.addSubview(container)
         container.addSubview(descLabel)
@@ -69,30 +76,21 @@ class HistoryTableViewCell: UITableViewCell,IQModelableCell {
         // 添加交互
         let interaction = UIContextMenuInteraction(delegate: self)
         container.addInteraction(interaction)
-        // 确保view可以交互
         container.isUserInteractionEnabled = true
     }
     
     var model: Model? {
         didSet{
             guard let model = model else { return }
-            
             descLabel.text = model.title
-            
         }
     }
-    
-    
-    @objc func didTapContainer() {
-        guard let model = model else {
-            return
-        }
-    }
+
 }
 
 extension HistoryTableViewCell {
     static func privateSize(for model: AnyHashable, listView: IQListView) -> CGSize? {
-        return CGSize(width: AppF.screenWidth, height: 48)
+        return CGSize(width: AppF.screenWidth*0.7, height: 48)
     }
 }
 

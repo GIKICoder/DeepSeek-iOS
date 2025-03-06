@@ -10,10 +10,10 @@ import Moya
 import AppInfra
 
 public struct MessagesParams {
-    let channelId: String
-    let id: Int64
-    let beforeMessageId: String?
-    var pageSize: Int
+    public let channelId: String
+    public let id: Int64
+    public let beforeMessageId: String?
+    public var pageSize: Int
     
     public init(channelId: String, id: Int64, beforeMessageId: String? = nil, pageSize: Int = 20) {
         self.channelId = channelId

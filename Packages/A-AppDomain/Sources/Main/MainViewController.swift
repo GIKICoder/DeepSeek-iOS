@@ -52,9 +52,8 @@ extension MainViewController {
         setupNavigationBar()
         setupSideMenu()
         
-        var channel = ChatChannel.default
-        channel.channelId = "2222213412134213"
-        let entrance = ChatEntrance(channel: channel)
+
+        let entrance = ChatEntrance(channel: nil)
         chatvc = createChat(entrance: entrance)
         addChild(chatvc!)
         view.addSubview(chatvc!.view)
@@ -64,6 +63,11 @@ extension MainViewController {
         view.addSubview(maskContainer)
         maskContainer.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        historyVC.didSelectModelCallback = {[weak self] selectedModel in
+            guard let self else { return }
+            self.updateNewChat(with:selectedModel)
         }
     }
     
@@ -79,13 +83,59 @@ extension MainViewController {
         SideMenuManager.default.leftMenuNavigationController?.settings = sideMenuSetting
         SideMenuManager.default.addPanGestureToPresent(toView: view)
     }
+    
+    private func bringSubviewToFront() {
+        view.bringSubviewToFront(navigationBar)
+        view.bringSubviewToFront(maskContainer)
+    }
 }
 
 // MARK: - Chat DataSource
 extension MainViewController {
     
+    private func addNewChat() {
+        let entrance = ChatEntrance(channel: nil)
+        chatvc = createChat(entrance: entrance)
+        addChild(chatvc!)
+        view.addSubview(chatvc!.view)
+        chatvc!.view.frame = contentFrame
+        chatvc!.view.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+        bringSubviewToFront()
+    }
+    
+    private func replaceChat(with model:ChatSessionHistory) {
+        
+        removeCurrentChat()
+        
+        var channel = ChatChannel.default
+        channel.id  = model.id
+        let entrance = ChatEntrance(channel: channel)
+        chatvc = createChat(entrance: entrance)
+        addChild(chatvc!)
+        view.addSubview(chatvc!.view)
+        chatvc!.view.frame = contentFrame
+        chatvc!.view.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+        bringSubviewToFront()
+    }
+
+    private func removeCurrentChat() {
+        
+        guard let chatViewController = chatvc else { return }
+        
+        chatViewController.willMove(toParent: nil)
+        chatViewController.view.removeFromSuperview()
+        chatViewController.removeFromParent()
+    
+        chatvc = nil
+    }
+    
     private func createChat(entrance:ChatEntrance = ChatEntrance()) -> ChatViewController {
         return ChatViewController(entrance: entrance)
+    }
+    
+    private func updateNewChat(with model:ChatSessionHistory) {
+        leftSideMenu.dismiss(animated: true)
+        replaceChat(with: model)
     }
 }
 

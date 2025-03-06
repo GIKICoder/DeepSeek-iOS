@@ -1,0 +1,77 @@
+{
+  "code": 0,
+  "msg": "",
+  "data": {
+    "biz_code": 0,
+    "biz_msg": "",
+    "biz_data": {
+      "chat_session": {
+        "id": "e5125103-2e4b-4431-865b-7173a010b63c",
+        "seq_id": 1000031,
+        "agent": "chat",
+        "character": null,
+        "title": "IMG_1702.jpeg",
+        "title_type": "SYSTEM",
+        "version": 3,
+        "current_message_id": 2,
+        "inserted_at": 1738944035.453352,
+        "updated_at": 1738944045.022473
+      },
+      "chat_messages": [
+        {
+          "message_id": 1,
+          "parent_id": null,
+          "model": "",
+          "role": "USER",
+          "content": "",
+          "thinking_enabled": false,
+          "thinking_content": null,
+          "thinking_elapsed_secs": null,
+          "ban_edit": false,
+          "ban_regenerate": false,
+          "status": "FINISHED",
+          "accumulated_token_usage": 188,
+          "files": [
+            {
+              "id": "file-987a959a-5a51-4c61-9319-cf6611c27381",
+              "status": "SUCCESS",
+              "file_name": "IMG_1702.jpeg",
+              "file_size": 400949,
+              "token_usage": 12,
+              "error_code": null,
+              "inserted_at": 1738944019.644261,
+              "updated_at": 1738944035.816718
+            }
+          ],
+          "tips": [],
+          "inserted_at": 1738944035.962423,
+          "search_enabled": false,
+          "search_status": null,
+          "search_results": null
+        },
+        {
+          "message_id": 2,
+          "parent_id": 1,
+          "model": "",
+          "role": "ASSISTANT",
+          "content": "The image appears to be a menu or promotional material for a restaurant, possibly a Subway outlet, given the mention of \"赛百味\" (Sai Bai Wei), which is the Chinese name for Subway. The text includes the word \"暖\" (warm) and \"朋友\" (friend), suggesting a friendly and welcoming atmosphere. The content seems to be promoting a warm and inviting dining experience. If you need further analysis or translation, feel free to ask!",
+          "thinking_enabled": false,
+          "thinking_content": null,
+          "thinking_elapsed_secs": null,
+          "ban_edit": false,
+          "ban_regenerate": false,
+          "status": "FINISHED",
+          "accumulated_token_usage": 284,
+          "files": [],
+          "tips": [],
+          "inserted_at": 1738944035.962423,
+          "search_enabled": false,
+          "search_status": null,
+          "search_results": null
+        }
+      ],
+      "cache_valid": false,
+      "route_id": null
+    }
+  }
+}

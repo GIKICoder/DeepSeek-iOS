@@ -1,0 +1,328 @@
+{
+  "code": 0,
+  "msg": "",
+  "data": {
+    "biz_code": 0,
+    "biz_msg": "",
+    "biz_data": {
+      "chat_session": {
+        "id": "ecd8b192-89da-4623-9b58-46400c77b4ae",
+        "seq_id": 1000033,
+        "agent": "chat",
+        "character": null,
+        "title": "帮我搜索github上的 MagazineLayout \r帮我解",
+        "title_type": "SYSTEM",
+        "version": 3,
+        "current_message_id": 2,
+        "inserted_at": 1738946551.577416,
+        "updated_at": 1738946652.116553
+      },
+      "chat_messages": [
+        {
+          "message_id": 1,
+          "parent_id": null,
+          "model": "",
+          "role": "USER",
+          "content": "帮我搜索github上的 MagazineLayout \r帮我解释一下他的实现原理",
+          "thinking_enabled": true,
+          "thinking_content": null,
+          "thinking_elapsed_secs": null,
+          "ban_edit": false,
+          "ban_regenerate": false,
+          "status": "FINISHED",
+          "accumulated_token_usage": 1281,
+          "files": [],
+          "tips": [],
+          "inserted_at": 1738946551.924692,
+          "search_enabled": true,
+          "search_status": null,
+          "search_results": null
+        },
+        {
+          "message_id": 2,
+          "parent_id": 1,
+          "model": "",
+          "role": "ASSISTANT",
+          "content": "MagazineLayout 是 Airbnb 开源的一个 **UICollectionViewLayout 子类**，专注于实现垂直滚动的网格和列表混合布局，其核心设计目标是提供高度灵活的布局能力和动态内容适配。以下是其实现原理的关键分析：\n\n---\n\n### 1. **动态尺寸计算**\nMagazineLayout 的核心特性之一是支持**动态宽度和高度**的布局配置：\n- **宽度模式**：每个项目的宽度可以基于总可用宽度的分数（如全宽、半宽、三分之一宽等），通过 `MagazineLayoutItemWidthMode` 定义[citation:1][citation:2]。例如，半宽项目会在同一行排列两个，类似网格布局。\n- **高度模式**：支持静态高度（固定值）或动态高度（基于内容自适应）。动态高度通过 `preferredLayoutAttributesFitting(_:)` 方法实现，该方法利用 Auto Layout 或手动计算内容高度，返回适合的布局属性[citation:2][citation:5]。\n- **自适应扩展**：页眉、页脚和背景视图同样支持动态高度，但背景视图不支持自适应[citation:2][citation:3]。\n\n---\n\n### 2. **布局算法与结构**\nMagazineLayout 的布局过程通过以下步骤实现：\n- **分块管理**：将每个 section 的 items 按行排列，根据宽度模式决定每行的项目数量和位置。例如，全宽项目独占一行，半宽项目每行放置两个[citation:2][citation:4]。\n- **间距与边距控制**：支持按 section 配置水平间距（`horizontalSpacing`）、垂直行间距（`verticalSpacing`）以及项目内边距（`insets`），通过代理方法动态获取[citation:2][citation:4]。\n- **粘性页眉/页脚**：通过监听滚动偏移量，动态调整页眉或页脚的布局属性（如 `zIndex` 和 `frame`），使其固定在屏幕顶部或底部[citation:1][citation:3]。\n\n---\n\n### 3. **代理协议与配置**\nMagazineLayout 通过 **UICollectionViewDelegateMagazineLayout** 协议实现高度可定制化：\n- **尺寸模式配置**：通过 `sizeModeForItemAt` 方法定义每个项目的宽度和高度模式[citation:2][citation:5]。\n- **可见性控制**：页眉、页脚和背景的显示或隐藏通过 `visibilityModeForHeader` 等方法配置[citation:2][citation:4]。\n- **动画支持**：插入和删除动画通过 `UICollectionView` 的默认动画机制实现，并支持自定义调整动画参数[citation:1][citation:3]。\n\n---\n\n### 4. **性能优化**\n- **布局属性缓存**：MagazineLayout 预计算并缓存所有项目的布局属性（如 `UICollectionViewLayoutAttributes`），避免频繁重复计算[citation:4]。\n- **增量更新**：仅对变化的布局部分（如新增或删除的项目）重新计算，减少性能开销[citation:4]。\n- **异步计算**：复杂的布局计算可能通过后台线程处理，确保主线程流畅[citation:4]。\n\n---\n\n### 5. **与 UIKit 的集成限制**\n由于 UIKit 的限制，MagazineLayout 要求自定义的 `UICollectionViewCell` 和 `UICollectionReusableView` 必须继承自其提供的基类（如 `MagazineLayoutCollectionViewCell`），或手动实现 `preferredLayoutAttributesFitting(_:)` 方法以确保正确的自适应行为[citation:2][citation:5]。\n\n---\n\n### 应用场景与优势\nMagazineLayout 特别适合需要复杂混合布局的场景，例如：\n- **电商应用**：商品列表与详情页的混合网格布局[citation:1][citation:3]。\n- **新闻/杂志应用**：多栏图文混排的动态内容展示[citation:3][citation:4]。\n- **社交平台**：用户动态流中的多样化卡片布局[citation:5]。\n\n通过灵活的组合模式和高性能实现，MagazineLayout 在 Airbnb 等高流量应用中已验证其稳定性和扩展性[citation:2][citation:4]。开发者可通过其提供的[示例项目](https://github.com/Nopakorn/MagazineLayout)进一步探索具体实现细节。",
+          "thinking_enabled": true,
+          "thinking_content": "好的，我需要帮用户搜索GitHub上的MagazineLayout并解释它的实现原理。首先，看看用户提供的搜索结果，里面有几个网页提到了MagazineLayout，特别是网页2是GitHub项目的主页，应该是最权威的来源。其他几个网页是CSDN博客和GitCode博客，可能提供了教程和实现细节。\n\n首先，我需要确定MagazineLayout的基本信息。根据网页2，MagazineLayout是UICollectionViewLayout的子类，支持垂直滚动的网格和列表布局。相比UICollectionViewFlowLayout，它有很多额外的功能，比如动态宽度、自适应高度、粘性页眉页脚等。这些都是实现原理的重要部分。\n\n接下来，分析实现原理。网页1、2、3、4都提到了MagazineLayout的核心功能，比如动态宽度基于可用宽度的比例，比如全宽、半宽等。动态高度方面，它支持垂直维度的自适应，允许每个项目根据内容调整高度，这可能需要计算每个单元格的合适高度，并处理布局属性。\n\n网页2提到MagazineLayout需要自定义的UICollectionViewCell和UICollectionReusableView子类，以确保正确自适配。这说明在布局过程中，MagazineLayout可能重写了UICollectionViewLayout的方法来管理这些自定义视图的布局属性。\n\n另外，网页2还提到布局的配置通过UICollectionViewDelegateMagazineLayout协议，类似于UICollectionViewDelegateFlowLayout。这意味着布局的计算可能是在代理方法中获取每个项目的尺寸模式，然后在布局过程中应用这些设置。\n\n关于布局算法，可能需要考虑如何将项目按行排列，处理不同宽度和间距。例如，半宽的项目会在同一行放置两个，而全宽的项目单独占据一行。同时，每个部分的水平间距、垂直间距和边距都可以单独配置，这可能涉及到对每个section的布局参数进行单独处理。\n\n粘性页眉和页脚的实现可能需要重写layoutAttributesForElements(in:)方法，调整页眉的位置，使其在滚动时保持固定。网页1和3都提到了粘性页眉的功能，说明这部分是通过计算滚动偏移并更新页眉的frame来实现的。\n\n自适应高度方面，MagazineLayout可能使用自动布局或者手动计算内容高度。网页2提到需要实现preferredLayoutAttributesFitting(_:)方法，这通常用于动态调整单元格的大小，系统会根据内容计算合适的高度，并更新布局属性。\n\n性能优化方面，网页4提到MagazineLayout在最近更新中优化了布局计算和渲染，处理大量数据时更高效。这可能涉及缓存布局属性，减少重复计算，或者使用更高效的布局算法。\n\n综合各个网页的信息，MagazineLayout的实现原理主要包括自定义布局属性计算、动态尺寸处理、代理协议配置、粘性页眉实现以及性能优化措施。需要将这些点组织起来，用用户能理解的语言解释，并引用对应的网页作为支持。",
+          "thinking_elapsed_secs": 34.0,
+          "ban_edit": false,
+          "ban_regenerate": false,
+          "status": "FINISHED",
+          "accumulated_token_usage": 2091,
+          "files": [],
+          "tips": [],
+          "inserted_at": 1738946551.924692,
+          "search_enabled": true,
+          "search_status": "FINISHED",
+          "search_results": [
+            {
+              "url": "https://github.com/airbnb/MagazineLayout",
+              "title": "GitHub - airbnb/MagazineLayout: A collection view layout capable of ...",
+              "snippet": "MagazineLayout is a UICollectionViewLayout subclass for laying out vertically scrolling grids and lists of items. Compared to UICollectionViewFlowLayout, MagazineLayout supports many additional features: Item widths based on a fraction of the total available width Full width for a list layout (similar to UITableView)",
+              "cite_index": null,
+              "published_at": 1545181990.0,
+              "site_name": "Github",
+              "site_icon": "https://file2.deepseek.com/site-icons/github.com"
+            },
+            {
+              "url": "https://www.freelancer.com/job-search/allintextillustrator-magazine-layout-template/2/",
+              "title": "Allintextillustrator magazine layout template Jobs, Employment  Freelancer",
+              "snippet": "6 days left ...primary goal is to redesign our platform and also create a storytelling-driven, minim...",
+              "cite_index": null,
+              "published_at": 1725544534.0,
+              "site_name": "www.freelancer.com",
+              "site_icon": "https://file2.deepseek.com/site-icons/freelancer.com"
+            },
+            {
+              "url": "https://blog.csdn.net/gitblog_00013/article/details/139542628",
+              "title": "MagazineLayout 开源项目教程 - CSDN博客",
+              "snippet": "MagazineLayout 是一个 UICollectionViewLayout 的子类，专门用于在垂直滚动的网格和列表中布局视图。 与 UICollectionViewFlowLayout 相比，MagazineLayout 支持许多额外的功能，包括： 基于总可用宽度的一部分来设置项目宽度。 支持列表布局的全宽（类似于 UITableView）。 支持网格布局的半宽、三分之一宽等。 仅在垂直维度上进行自适应大小。 每个项目的自适应大小偏好（可以在集合视图中自适应大小和静态大小的项目）。 自适应大小的页眉和页脚。 按部分隐藏或显示页眉和页脚。 固定（粘性）页眉和页脚。 按部分隐藏/显示的背景。 自定义插入和删除动画。 按部分指定水平项目间距。 按部分指定垂直行间距。 按部分指定部分内边距。",
+              "cite_index": 1,
+              "published_at": 1717804800.0,
+              "site_name": "CSDN博客",
+              "site_icon": "https://file2.deepseek.com/site-icons/csdn.net"
+            },
+            {
+              "url": "https://github.com/Nopakorn/MagazineLayout",
+              "title": "GitHub - Nopakorn/MagazineLayout: A collection view layout capable of laying out views in vertically scrolling grids and lists.",
+              "snippet": "Name Name Last commit message Last commit date Latest commit   History 9 Commits Docs/ Images Docs/ ...",
+              "cite_index": 2,
+              "published_at": 1735653333.0,
+              "site_name": "github.com",
+              "site_icon": "https://file2.deepseek.com/site-icons/github.com"
+            },
+            {
+              "url": "https://blog.csdn.net/gitblog_00421/article/details/141853952",
+              "title": "探索MagazineLayout：为您的iOS应用带来杂志般的布局体验 ...",
+              "snippet": "今天，我们将深入探讨一个强大的开源项目—— MagazineLayout，这是一个为iOS和tvOS应用设计的集合视图布局，能够实现垂直滚动的网格和列表视图。 MagazineLayout 是一个 UICollectionViewLayout 的子类，专为垂直滚动的网格和列表视图设计。 与传统的 UICollectionViewFlowLayout 相比， MagazineLayout 提供了更多的布局灵活性和功能，包括： 这些功能使得 MagazineLayout 能够支持多种复杂的布局需求，从简单的列表到复杂的杂志风格布局。 MagazineLayout 的核心优势在于其高度可定制的布局选项和自适应尺寸的能力。",
+              "cite_index": 3,
+              "published_at": 1725321600.0,
+              "site_name": "CSDN博客",
+              "site_icon": "https://file2.deepseek.com/site-icons/csdn.net"
+            },
+            {
+              "url": "https://www.freelancer.com/job-search/beautiful-layout-epub/3",
+              "title": "Beautiful layout epub Jobs, Employment  Freelancer",
+              "snippet": "５　ｄａｙｓ　ｌｅｆｔ　．．．１－４，　ｂｏｌｄ，　ｉｔａｌｉｃｓ，　．．．，　ｌｉｓｔｓ），　ｆｌｏｗ，　ａｎｄ　ｓｔｒｕｃｔｕｒｅ，　ｉｎｃｌｕｄｉｎｇ　ｔｈｅ　ｐｒｅｓｅｒｖａｔｉｏｎ　ｏｆ　ｉ...",
+              "cite_index": null,
+              "published_at": 1725544534.0,
+              "site_name": "www.freelancer.com",
+              "site_icon": "https://file2.deepseek.com/site-icons/freelancer.com"
+            },
+            {
+              "url": "https://blog.csdn.net/gitblog_01002/article/details/144098406",
+              "title": "MagazineLayout：打造个性化滚动网格布局-CSDN博客",
+              "snippet": "MagazineLayout 是一个开源项目，由 Airbnb 公司贡献，旨在为 iOS 开发者提供一个功能强大的 UICollectionView 布局子类，支持垂直滚动的网格和列表布局。 该项目主要使用 Swift 编程语言编写。",
+              "cite_index": 4,
+              "published_at": 1732752000.0,
+              "site_name": "CSDN博客",
+              "site_icon": "https://file2.deepseek.com/site-icons/csdn.net"
+            },
+            {
+              "url": "https://www.freelancer.com/job-search/magazine-layout-indesign/38",
+              "title": "Magazine layout indesign Jobs, Employment  Freelancer",
+              "snippet": "Ｅｘｃｅｌ　Ｓｐｒｅａｄｓｈｅｅｔ　ｆｏｒ　Ｃｌｉｅｎｔ　Ｄａｔａ　＆　Ｐｒｅｓｅｎｔａｔｉｏｎ　Ｐｒｅｐ　Ｅｎｄｅｄ　Ｉ　ａｍ　ｌｏｏｋｉｎｇ　ｆｏｒ　ａｎ　ｅｘｐｅｒｉｅｎｃｅｄ　Ｅｘｃｅｌ　ｅｘ...",
+              "cite_index": null,
+              "published_at": 1725544534.0,
+              "site_name": "www.freelancer.com",
+              "site_icon": "https://file2.deepseek.com/site-icons/freelancer.com"
+            },
+            {
+              "url": "https://blog.gitcode.com/ed50b4303fc980163273fd644e028d05.html",
+              "title": "MagazineLayout 开源项目教程 - GitCode博客",
+              "snippet": "MagazineLayout 是一个由 Airbnb 开发的开源项目，它提供了一种能够以垂直滚动的方式布局视图的集合视图布局。 这种布局可以用于创建类似于杂志排版的界面，支持网格和列表布局。",
+              "cite_index": 5,
+              "published_at": 1725321600.0,
+              "site_name": null,
+              "site_icon": "https://file2.deepseek.com/site-icons/gitcode.com"
+            },
+            {
+              "url": "https://github.com/redbubble/MagazineLayout/tree/8cb3e72038b056317c8402d9ad52fb1c7dbd68db",
+              "title": "GitHub - redbubble/MagazineLayout at 8cb3e72038b056317c8402d9ad52fb1c7dbd68db",
+              "snippet": "Ｎａｍｅ　Ｎａｍｅ　Ｌａｓｔ　ｃｏｍｍｉｔ　ｍｅｓｓａｇｅ　Ｌａｓｔ　ｃｏｍｍｉｔ　ｄａｔｅ　．ｇｉｔｈｕｂ　．ｇｉｔｈｕｂ　 　 　Ｄｏｃｓ　Ｄｏｃｓ　 　 　Ｅｘａｍｐｌｅ　Ｅｘａｍｐｌｅ　 　 ...",
+              "cite_index": null,
+              "published_at": 1723402931.0,
+              "site_name": "github.com",
+              "site_icon": "https://file2.deepseek.com/site-icons/github.com"
+            },
+            {
+              "url": "https://github.com/airbnb/MagazineLayout/blob/master/README.md",
+              "title": "MagazineLayout/README.md at master · airbnb/MagazineLayout - GitHub",
+              "snippet": "A collection view layout capable of laying out views in vertically scrolling grids and lists. - airbnb/MagazineLayout",
+              "cite_index": null,
+              "published_at": null,
+              "site_name": "Github",
+              "site_icon": "https://file2.deepseek.com/site-icons/github.com"
+            },
+            {
+              "url": "https://www.freelancer.com/job-search/contradiction-examples-in-life/10/",
+              "title": "Contradiction examples in life Jobs, Employment  Freelancer",
+              "snippet": "４　ｄａｙｓ　ｌｅｆｔ　Ｉ　ａｍ　ｌｏｏｋｉｎｇ　ｆｏｒ　ａ　ｐｒｏｆｅｓｓｉｏｎａｌ　ｄｅｓｉｇｎｅｒ　ｔｏ　ｃｒｅａｔｅ　ａ　ｐｒｉｎｔ－ｒｅａｄｙ　ａｎｎｕａｌ　ｒｅｐｏｒｔ．　Ｔｈｅ　ｄｅｓｉ...",
+              "cite_index": null,
+              "published_at": 1737867006.0,
+              "site_name": "www.freelancer.com",
+              "site_icon": "https://file2.deepseek.com/site-icons/freelancer.com"
+            },
+            {
+              "url": "https://airbnb.io/projects/magazine-layout/",
+              "title": "Airbnb Engineering & Data Science",
+              "snippet": "MagazineLayout is a UICollectionViewLayout subclass for laying out vertically scrolling grids and lists of items. Compared to UICollectionViewFlowLayout, MagazineLayout supports many additional features: Item widths based on a fraction of the total available width. Full width for a list layout (similar to UITableView)",
+              "cite_index": null,
+              "published_at": 1729468800.0,
+              "site_name": "Airbnb Engineering & Data Science",
+              "site_icon": "https://file2.deepseek.com/site-icons/airbnb.io"
+            },
+            {
+              "url": "https://www.freelancer.com/job-search/bad-grammar-examples-funny/2/",
+              "title": "Bad grammar examples funny Jobs, Employment  Freelancer",
+              "snippet": "Ｐｒｉｎｔ－Ｒｅａｄｙ　Ａｎｎｕａｌ　Ｒｅｐｏｒｔ　Ｄｅｓｉｇｎ　６　ｄａｙｓ　ｌｅｆｔ　Ｉ　ａｍ　ｌｏｏｋｉｎｇ　ｆｏｒ　ａ　ｐｒｏｆｅｓｓｉｏｎａｌ　ｄｅｓｉｇｎｅｒ　ｔｏ　ｃｒｅａｔｅ　ａ　ｐｒ...",
+              "cite_index": null,
+              "published_at": 1737713202.0,
+              "site_name": "www.freelancer.com",
+              "site_icon": "https://file2.deepseek.com/site-icons/freelancer.com"
+            },
+            {
+              "url": "https://github.com/alexandriaroberts/Expgrid-MagazineLayout",
+              "title": "GitHub - alexandriaroberts/Expgrid-MagazineLayout: Magazine Layout by ...",
+              "snippet": "Magazine Layout by using CSS Grid Only. Contribute to alexandriaroberts/Expgrid-MagazineLayout development by creating an account on GitHub.",
+              "cite_index": null,
+              "published_at": null,
+              "site_name": "Github",
+              "site_icon": "https://file2.deepseek.com/site-icons/github.com"
+            },
+            {
+              "url": "https://github.com/redbubble/MagazineLayout/tree/62042677e0fbd8a012544dd22bab9a4035977770",
+              "title": "GitHub - redbubble/MagazineLayout at 62042677e0fbd8a012544dd22bab9a4035977770",
+              "snippet": "Ｎａｍｅ　Ｎａｍｅ　Ｌａｓｔ　ｃｏｍｍｉｔ　ｍｅｓｓａｇｅ　Ｌａｓｔ　ｃｏｍｍｉｔ　ｄａｔｅ　．ｇｉｔｈｕｂ／　ＩＳＳＵＥ＿ＴＥＭＰＬＡＴＥ　．ｇｉｔｈｕｂ／　ＩＳＳＵＥ＿ＴＥＭＰＬＡＴＥ　 　 　Ｄ...",
+              "cite_index": null,
+              "published_at": 1723429427.0,
+              "site_name": "github.com",
+              "site_icon": "https://file2.deepseek.com/site-icons/github.com"
+            },
+            {
+              "url": "https://gitcode.com/airbnb/MagazineLayout/overview",
+              "title": "MagazineLayout:A collection view layout capable of laying ...",
+              "snippet": "GitHub 加速计划 / ma / MagazineLayout Apache_License_v2.0 Swift 3.26 K Stars 10 分支 38 Tags 219 Forks 0 Star 0 Fork 0 GitHub 数据： 66 3.26 K 219 0 Star 0 Fork 0 GitHub 数据： ...",
+              "cite_index": null,
+              "published_at": null,
+              "site_name": null,
+              "site_icon": "https://file2.deepseek.com/site-icons/gitcode.com"
+            },
+            {
+              "url": "https://github.com/redbubble/MagazineLayout/tree/01ea9cd0bd75ab09db599920f177efb3aa234a8f",
+              "title": "GitHub - redbubble/MagazineLayout at 01ea9cd0bd75ab09db599920f177efb3aa234a8f",
+              "snippet": "Ｎａｍｅ　Ｎａｍｅ　Ｌａｓｔ　ｃｏｍｍｉｔ　ｍｅｓｓａｇｅ　Ｌａｓｔ　ｃｏｍｍｉｔ　ｄａｔｅ　．ｇｉｔｈｕｂ／　ＩＳＳＵＥ＿ＴＥＭＰＬＡＴＥ　．ｇｉｔｈｕｂ／　ＩＳＳＵＥ＿ＴＥＭＰＬＡＴＥ　 　 　Ｄ...",
+              "cite_index": null,
+              "published_at": 1723951008.0,
+              "site_name": "github.com",
+              "site_icon": "https://file2.deepseek.com/site-icons/github.com"
+            },
+            {
+              "url": "https://devsnap.me/css-magazine-layouts",
+              "title": "65+ CSS Magazine Layouts - Free Code + Demos",
+              "snippet": "Collection of 65+ CSS Magazine Layouts. All items are 100% free and open-source. 1. Local Histories. Print brochure remade with CSS Grid. Not yet responsive, but soon to be. 2. Article Development // Modular CSS Grid Layout Sections. This shows how you can use modular code snippets to rapidly create an art-directed article page. 3.",
+              "cite_index": null,
+              "published_at": 1560643200.0,
+              "site_name": "Devsnap",
+              "site_icon": "https://file2.deepseek.com/site-icons/devsnap.me"
+            },
+            {
+              "url": "https://github.com/redbubble/MagazineLayout/tree/479f0bb5caee5f068acb0cb5912bcd5d8c800735",
+              "title": "GitHub - redbubble/MagazineLayout at 479f0bb5caee5f068acb0cb5912bcd5d8c800735",
+              "snippet": "Ｎａｍｅ　Ｎａｍｅ　Ｌａｓｔ　ｃｏｍｍｉｔ　ｍｅｓｓａｇｅ　Ｌａｓｔ　ｃｏｍｍｉｔ　ｄａｔｅ　．ｇｉｔｈｕｂ／　ＩＳＳＵＥ＿ＴＥＭＰＬＡＴＥ　．ｇｉｔｈｕｂ／　ＩＳＳＵＥ＿ＴＥＭＰＬＡＴＥ　 　 　Ｄ...",
+              "cite_index": null,
+              "published_at": 1724261687.0,
+              "site_name": "github.com",
+              "site_icon": "https://file2.deepseek.com/site-icons/github.com"
+            },
+            {
+              "url": "https://freefrontend.com/css-magazine-layouts/",
+              "title": "70+ CSS Magazine Layouts - Free Frontend",
+              "snippet": "Welcome to our updated collection of hand-picked free HTML and CSS magazine layout code examples. This collection, updated in July 2023, has added 5 new items, all sourced from CodePen, GitHub, and other resources. Magazine layouts are a crucial aspect of print and digital publishing.",
+              "cite_index": null,
+              "published_at": 1684454400.0,
+              "site_name": "Free Frontend",
+              "site_icon": "https://file2.deepseek.com/site-icons/freefrontend.com"
+            },
+            {
+              "url": "http://chuquan.me/2022/05/21/understand-principle-of-git/",
+              "title": "深入理解 Git 底层实现原理 - 楚权的世界",
+              "snippet": "本文主要介绍了 Git 的底层实现原理，首先是其架构，大概分为三层，分别是：上层命令、底层命令、对象数据库（内容寻址文件系统）。 我们重点介绍了对象数据库，使用 Linux Ext 文件系统跟它进行了对比，两者在设计理念上基本是一致的。",
+              "cite_index": null,
+              "published_at": 1653091200.0,
+              "site_name": null,
+              "site_icon": "https://file2.deepseek.com/site-icons/chuquan.me"
+            },
+            {
+              "url": "https://cloud.tencent.com/developer/article/1771872",
+              "title": "git底层原理，从常见操作解释git的底层原理，再也不怯 - 腾讯云",
+              "snippet": "当执行 git rm --cached <file> 命令时，会直接从暂存区删除文件，工作区则不做出改变。当执行 git checkout 或者git checkout -- <file>命令时，会用暂存区全部或指定的文件替换工作区的文件。",
+              "cite_index": null,
+              "published_at": 1610409600.0,
+              "site_name": "腾讯云",
+              "site_icon": "https://file2.deepseek.com/site-icons/tencent.com"
+            },
+            {
+              "url": "https://github.com/airbnb/MagazineLayout/actions",
+              "title": "Workflow runs · airbnb/MagazineLayout - GitHub",
+              "snippet": "A collection view layout capable of laying out views in vertically scrolling grids and lists. - Workflow runs · airbnb/MagazineLayout",
+              "cite_index": null,
+              "published_at": null,
+              "site_name": "Github",
+              "site_icon": "https://file2.deepseek.com/site-icons/github.com"
+            },
+            {
+              "url": "http://geocld.github.io/2019/12/09/learn-git-by-code/",
+              "title": "从零开发一个微型Git - 李佳浩的博客 | LiJiaHao' Blog",
+              "snippet": "用文本将抽象的概念实体化而不失效率，实际上Git的工作原理要复杂的多，本文只是对基本原理进行了简单的实现，如对本文的实现具体源码感兴趣，可以直接查看我的GitHub项目gito，该项目实现了Git大部分常用功能，如深入解读，相信读者对Git的工作 ...",
+              "cite_index": null,
+              "published_at": 1575849600.0,
+              "site_name": null,
+              "site_icon": "https://file2.deepseek.com/site-icons/github.io"
+            },
+            {
+              "url": "https://www.cnblogs.com/potatso/p/18644042",
+              "title": "深入理解Git：从原理到实践的全面指南 - potatso - 博客园",
+              "snippet": "首先使用git rev-parse HEAD获取当前commit的引用，然后通过git rev-parse HEAD^1获取父commit的hash值，最后使用git update-ref refs/heads/master HEAD^1来更新分支指针。 这样就实现了只移动HEAD指针而保持暂存区不变的效果。",
+              "cite_index": null,
+              "published_at": 1735603200.0,
+              "site_name": "博客园",
+              "site_icon": "https://file2.deepseek.com/site-icons/cnblogs.com"
+            },
+            {
+              "url": "https://github.com/Sweet-KK/css-layout",
+              "title": "GitHub - Sweet-KK/css-layout: 各种常见布局CSS实现,知名 ...",
+              "snippet": "原理：父元素flex并设置换行，子元素不设置伸缩，转而定宽设置宽三分之一，高度自定义，计算好宽度即能实现九宫格布局（也可以多列等宽布局） 优缺点",
+              "cite_index": null,
+              "published_at": null,
+              "site_name": "Github",
+              "site_icon": "https://file2.deepseek.com/site-icons/github.com"
+            },
+            {
+              "url": "https://www.jiqizhixin.com/articles/2019-12-20",
+              "title": "这才是真正的Git——Git内部原理揭秘！ - 机器之心",
+              "snippet": "如果将文件名保存在blob里面，那么Git只能多复制一份原始内容形成一个新的blob object。而Git的实现方法只需要创建一个新的tree object将对应的文件名更改成新的即可，原本的blob object可以复用，节约了空间。",
+              "cite_index": null,
+              "published_at": 1576800000.0,
+              "site_name": "机器之心",
+              "site_icon": "https://file2.deepseek.com/site-icons/jiqizhixin.com"
+            },
+            {
+              "url": "https://www.cnblogs.com/mamingqian/p/9711975.html",
+              "title": "深入理解Git的实现原理 - 马鸣谦 - 博客园",
+              "snippet": "每次我们运行 git add 和 git commit 命令时， Git 所做的实质工作是将被改写的文件保存为数据对象，更新暂存区，记录树对象，最后创建一个指明了顶层树对象和父提交的提交对象。",
+              "cite_index": null,
+              "published_at": 1538006400.0,
+              "site_name": "博客园",
+              "site_icon": "https://file2.deepseek.com/site-icons/cnblogs.com"
+            }
+          ]
+        }
+      ],
+      "cache_valid": false,
+      "route_id": null
+    }
+  }
+}

@@ -317,7 +317,7 @@ extension ChatDataCenter {
         let beforeMessage = isInitial ? nil : messagesPublisher.value.first
         let params = MessagesParams(
             channelId: channelId,
-            id: Int64(beforeMessage?.id ?? -1),
+            id: Int64(beforeMessage?.message_id ?? -1),
             beforeMessageId: beforeMessage?.messageId,
             pageSize: 10
         )
@@ -328,8 +328,8 @@ extension ChatDataCenter {
     private func fetchMessages(with params: MessagesParams,isInitial: Bool) -> AnyPublisher<ChatSectionsState, Never> {
         Future { [weak self] promise in
             
-            if let channelHistory = self?.loadJSON(filename: "channelhistory") as ChatChannelWrap? {
-                self?.appendMessages(channelHistory.message, isInitial: isInitial)
+            if let channelHistory = self?.loadJSON(filename: params.channelId) as ChatChannelWrap? {
+                self?.appendMessages(channelHistory.chat_messages, isInitial: isInitial)
                 let loadedState = ChatSectionsState(state: .loaded(initial: isInitial),
                                                   sections: self?.sectionsPublisher.value.sections ?? [])
                 promise(.success(loadedState))
@@ -428,8 +428,8 @@ extension ChatDataCenter {
         isCancelled = false
         currentTask = Task {
             do {
-                let localMessageId: String = UUID().uuidString
-                let loadingMessageId: String = UUID().uuidString
+                let localMessageId: String = String(Int.random(in: 50000...100000))
+                let loadingMessageId: String = String(Int.random(in: 50000...100000))
                 // 1. 创建本地消息（优先执行）
                 let localMessage = createLocalMessage(text: text,imageUrl: imageUrl, messageId:localMessageId)
                 appendMessages([localMessage], isInitial: false)
@@ -558,8 +558,8 @@ extension ChatDataCenter {
             if updatedMessage.qaMsg.count > 0 {
                 currentMessages[index].qaMsg = updatedMessage.qaMsg
             }
-            if updatedMessage.finalContent.isNotEmpty {
-                currentMessages[index].finalContent = updatedMessage.finalContent
+            if updatedMessage.content.isNotEmpty {
+                currentMessages[index].content = updatedMessage.content
             }
             messagesPublisher.send(currentMessages)
             
@@ -621,8 +621,8 @@ extension ChatDataCenter {
 private extension ChatDataCenter {
     func createLocalMessage(text: String?, imageUrl:String?, messageId:String) -> ChatMessage {
         var localMessage = ChatMessage.default
-        localMessage.messageId = messageId
-        localMessage.roleEnum = "LOCAL_USER"
+        localMessage.message_id = Int(messageId) ?? 0
+        localMessage.role = "LOCAL_USER"
         localMessage.content = text ?? ""
         if let imageUrl {
             localMessage.imageUrls = [imageUrl]
@@ -632,8 +632,8 @@ private extension ChatDataCenter {
     
     func createLoadingMessage(channel: ChatChannel, messageId:String) -> ChatMessage {
         var loadingMessage = ChatMessage.default
-        loadingMessage.messageId = messageId
-        loadingMessage.roleEnum = "LOCAL_AI"
+        loadingMessage.message_id = Int(messageId) ?? 0
+        loadingMessage.role = "LOCAL_AI"
         loadingMessage.content = "Loading..."
         loadingMessage.model = channel.model
         loadingMessage.channelId = channel.channelId
@@ -736,8 +736,8 @@ public extension ChatDataCenter {
         do {
             let data = try Data(contentsOf: URL(fileURLWithPath: path))
             let decoder = JSONDecoder()
-            let result = try decoder.decode(APIResponse<T>.self, from: data)
-            return result.data
+            let result = try decoder.decode(DPResponse<T>.self, from: data)
+            return result.data?.biz_data
         } catch {
             print("解码失败: \(error)")
             return nil

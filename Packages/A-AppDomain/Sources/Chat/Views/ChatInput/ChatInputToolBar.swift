@@ -55,6 +55,8 @@ public class ChatInputToolBar: UIView {
     
     private let stackContainerView = UIView()
     
+    private let expandContainerView = UIView()
+    
     // MARK: - Private Properties
     
     private let defaultStackViewWidth: CGFloat = 42
@@ -107,6 +109,8 @@ public class ChatInputToolBar: UIView {
             make.top.equalTo(containerView.snp.bottom).offset(8)
         }
         setupStackViews()
+        
+        
     }
     
     

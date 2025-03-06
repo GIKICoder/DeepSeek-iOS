@@ -1,5 +1,5 @@
 //
-//  ChatChannelHistory.swift
+//  ChatSessionHistory.swift
 //  AppServices
 //
 //  Created by GIKI on 2025/1/22.
@@ -11,7 +11,7 @@ import ReerCodable
 
 @Codable
 @DefaultInstance
-public struct ChatChannelHistory: Codable, Sendable {
+public struct ChatSessionHistory: Codable, Sendable {
     public var id: String = ""
     public var seqId: Int = 0
     public var agent: String = ""
@@ -26,18 +26,18 @@ public struct ChatChannelHistory: Codable, Sendable {
 }
 
 
-extension ChatChannelHistory: Hashable {
+extension ChatSessionHistory: Hashable {
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
     
-    public static func == (lhs: ChatChannelHistory, rhs: ChatChannelHistory) -> Bool {
+    public static func == (lhs: ChatSessionHistory, rhs: ChatSessionHistory) -> Bool {
         lhs.id == rhs.id
     }
 }
 
 @Codable
 public struct ChatHistoryWarp: Codable, Sendable {
-    public var chat_sessions: [ChatChannelHistory] = []
+    public var chat_sessions: [ChatSessionHistory] = []
 }
