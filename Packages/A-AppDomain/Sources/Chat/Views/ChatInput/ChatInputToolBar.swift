@@ -21,7 +21,7 @@ public class ChatInputToolBar: UIView {
         var maxLines: Int = 5
         var minLines: Int = 1
         var maxCount: Int = 200
-        var placeholder: String = NSLocalizedString("Send a Message...", comment: "")
+        var placeholder: String = NSLocalizedString("给DeepSeek发送消息", comment: "")
         var placeholderColor: UIColor = .lightGray
     }
     
@@ -57,7 +57,7 @@ public class ChatInputToolBar: UIView {
     
     private let defaultStackViewWidth: CGFloat = 48
     
-    private let defaultContainerViewWidth: CGFloat = 48
+    private let defaultContainerViewHeight: CGFloat = 48
     
     private var textViewHeight: CGFloat = 32
     
@@ -93,7 +93,7 @@ public class ChatInputToolBar: UIView {
         
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(contentEdgeInsets)
-            make.height.greaterThanOrEqualTo(defaultContainerViewWidth) // 初始高度为 48
+            make.height.greaterThanOrEqualTo(defaultContainerViewHeight) // 初始高度为 48
         }
         
         setupStackViews()
@@ -148,7 +148,7 @@ public class ChatInputToolBar: UIView {
         let textViewHeight = self.textViewHeight
         logUI("inputoolbar textViewHeight: \(textViewHeight)")
         // 计算 containerView 的高度（顶部和底部内边距各 12，加上 textView 的高度）
-        let containerHeight = max(defaultContainerViewWidth, textViewHeight + 16) // 16 为上下各8的间距
+        let containerHeight = max(defaultContainerViewHeight, textViewHeight + 16) // 16 为上下各8的间距
         logUI("inputoolbar containerHeight: \(containerHeight)")
         // 总高度为 containerView 的高度 + contentEdgeInsets 上下
         let totalHeight = contentEdgeInsets.top + containerHeight + contentEdgeInsets.bottom
