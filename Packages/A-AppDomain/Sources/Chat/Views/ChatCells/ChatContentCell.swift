@@ -30,7 +30,10 @@ public class ChatContentCell: UICollectionViewCell,
         let imageView = UIButton()
         imageView.layer.cornerRadius = 12
         imageView.layer.masksToBounds = true
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
+        imageView.layer.borderWidth = 0.5
         imageView.clipsToBounds = true
+        imageView.setImage(UIImage(named: "dp_icon"), for: .normal)
         return imageView
     }()
     
@@ -125,14 +128,19 @@ public class ChatContentCell: UICollectionViewCell,
         self.index = index
         self.model = layout
         editButton.isHidden = true
-        avatarView.isHidden = (index > 0)
         
+        if section.message.aiMessage || section.message.loadingMessage {
+            avatarView.isHidden = (index > 0)
+        } else {
+            avatarView.isHidden = true
+        }
         messageView.snp.updateConstraints { make in
             make.leading.equalToSuperview().inset(layout.edgeInsets.left)
             make.trailing.equalToSuperview().inset(layout.edgeInsets.right)
             make.top.equalToSuperview().inset(layout.edgeInsets.top)
             make.bottom.equalToSuperview().inset(layout.edgeInsets.bottom)
         }
+        
        
     }
 

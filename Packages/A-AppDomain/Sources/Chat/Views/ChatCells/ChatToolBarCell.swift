@@ -16,21 +16,28 @@ public class ChatToolBarCell: ChatContentCell {
     
     private let dislikeButton: UIButton = {
         let button = TouchExpandedButton(type: .custom)
-        button.setImage(UIImage(named: "pop_message_dislike_ic"), for: .normal)
-        button.setImage(UIImage(named: "pop_message_dislike_ic_hl"), for: .selected)
+        button.setImage(UIImage(named: "message_dislike_ic"), for: .normal)
+        button.setImage(UIImage(named: "message_dislike_ic_hl"), for: .selected)
+        return button
+    }()
+    
+    private let likeButton: UIButton = {
+        let button = TouchExpandedButton(type: .custom)
+        button.setImage(UIImage(named: "message_like_ic"), for: .normal)
+        button.setImage(UIImage(named: "message_like_ic_hl"), for: .selected)
         return button
     }()
     
     private let regenButton: UIButton = {
         let button = TouchExpandedButton(type: .custom)
-        button.setImage(UIImage(named: "pop_message_regen_ic"), for: .normal)
+        button.setImage(UIImage(named: "message_regen_ic"), for: .normal)
         button.isHidden = false
         return button
     }()
     
     private let moreButton: UIButton = {
         let button = TouchExpandedButton(type: .custom)
-        button.setImage(UIImage(named: "pop_message_copy_ic"), for: .normal)
+        button.setImage(UIImage(named: "message_copy_ic"), for: .normal)
         return button
     }()
     
@@ -55,6 +62,7 @@ public class ChatToolBarCell: ChatContentCell {
     
     private func setupViews() {
         messageView.addSubview(dislikeButton)
+        messageView.addSubview(likeButton)
         messageView.addSubview(regenButton)
         messageView.addSubview(moreButton)
         setupConstraints()
@@ -63,22 +71,26 @@ public class ChatToolBarCell: ChatContentCell {
     
     private func setupConstraints() {
         
-        dislikeButton.snp.makeConstraints { make in
-            make.leading.equalTo(0)
-            make.size.equalTo(20)
-            make.centerY.equalToSuperview()
-        }
         moreButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(0)
+            make.leading.equalToSuperview().inset(0)
             make.size.equalTo(20)
             make.centerY.equalToSuperview()
         }
         regenButton.snp.makeConstraints { make in
-            make.trailing.equalTo(moreButton.snp.leading).offset(-16)
+            make.leading.equalTo(moreButton.snp.trailing).offset(12)
             make.size.equalTo(20)
             make.centerY.equalToSuperview()
         }
-        
+        likeButton.snp.makeConstraints { make in
+            make.leading.equalTo(regenButton.snp.trailing).offset(12)
+            make.size.equalTo(20)
+            make.centerY.equalToSuperview()
+        }
+        dislikeButton.snp.makeConstraints { make in
+            make.leading.equalTo(likeButton.snp.trailing).offset(12)
+            make.size.equalTo(20)
+            make.centerY.equalToSuperview()
+        }
     }
     
     private func setupActions() {

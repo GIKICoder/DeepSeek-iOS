@@ -178,11 +178,11 @@ public class ChatAssembly {
     }
     
     static var aiMessageBubble: UIImage {
-        return UIImage.image(withColor: UIColor(hex: "#F2F4F7"), size: CGSize(width: 25, height: 48), cornerRadius: 8)
+        return UIImage.image(withColor: .clear, size: CGSize(width: 25, height: 48), cornerRadius: 8)
     }
     
     static var userMessageBubble: UIImage {
-        return UIImage.image(withColor: UIColor(hex: "#E8E7FF"), size: CGSize(width: 25, height: 48), cornerRadius: 8)
+        return UIImage.image(withColor: UIColor(hex: "#eaf2ff"), size: CGSize(width: 25, height: 48), cornerRadius: 8)
     }
     
     static var style: MarkdownStyle {
