@@ -11,6 +11,7 @@
 		20D8A4653BCB16E3CA71F7E3 /* AppDomain in Frameworks */ = {isa = PBXBuildFile; productRef = B6DEFA4FF3B366091AA63306 /* AppDomain */; };
 		2B7E85DF2D788DB300251D33 /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7E85DE2D788DB300251D33 /* App.xcassets */; };
 		2B7E85E12D78A94B00251D33 /* channelhistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B7E85E02D78A94B00251D33 /* channelhistory.json */; };
+		2BFDDD9A2D798D8B006F85CD /* chat_session.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFDDD992D798D8B006F85CD /* chat_session.json */; };
 		33552D49E79BFF0781EB6430 /* AppInfra in Frameworks */ = {isa = PBXBuildFile; productRef = 0188379B0F2E48747A57D89C /* AppInfra */; };
 		3B4FE93A2336696DA3B5E542 /* TuistAssets+DeepSeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0FFD2844BCFCF22B668A90 /* TuistAssets+DeepSeek.swift */; };
 		4FA361AB60253840BA02DFC9 /* TuistBundle+DeepSeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03066203EE53ED325B70CC5 /* TuistBundle+DeepSeek.swift */; };
@@ -39,6 +40,7 @@
 		07484FC803679E386287C543 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		2B7E85DE2D788DB300251D33 /* App.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = App.xcassets; sourceTree = "<group>"; };
 		2B7E85E02D78A94B00251D33 /* channelhistory.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = channelhistory.json; sourceTree = "<group>"; };
+		2BFDDD992D798D8B006F85CD /* chat_session.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chat_session.json; sourceTree = "<group>"; };
 		2E0B0306A25304C9FAE97512 /* A-AppDomain */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "A-AppDomain"; path = "Packages/A-AppDomain"; sourceTree = "<group>"; };
 		33EDA0B0E7AFBFF559F406C6 /* R-AppInfra */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "R-AppInfra"; path = "Packages/R-AppInfra"; sourceTree = "<group>"; };
 		5D0FFD2844BCFCF22B668A90 /* TuistAssets+DeepSeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+DeepSeek.swift"; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		370CC19854E8BDC0D5261F9E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2BFDDD992D798D8B006F85CD /* chat_session.json */,
 				2B7E85E02D78A94B00251D33 /* channelhistory.json */,
 				FE503AF4DC126C6F5B0BDC24 /* Assets.xcassets */,
 				EDB24E39DD54B2219AAB478B /* LaunchScreen.storyboard */,
@@ -218,6 +221,7 @@
 				6C7454D7692C278F0073F4C2 /* Assets.xcassets in Resources */,
 				2B7E85E12D78A94B00251D33 /* channelhistory.json in Resources */,
 				DA6128A7539700F6D27BB251 /* LaunchScreen.storyboard in Resources */,
+				2BFDDD9A2D798D8B006F85CD /* chat_session.json in Resources */,
 				2B7E85DF2D788DB300251D33 /* App.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

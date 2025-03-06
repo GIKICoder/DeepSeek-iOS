@@ -1,0 +1,204 @@
+{
+  "code": 0,
+  "msg": "",
+  "data": {
+    "biz_code": 0,
+    "biz_msg": "",
+    "biz_data": {
+      "chat_sessions": [
+        {
+          "id": "23b8ea23-2a35-4d81-8bcd-69bf0f54272c",
+          "seq_id": 1000048,
+          "agent": "chat",
+          "title": "水激石鸣，人激志宏",
+          "title_type": "SYSTEM",
+          "version": 6,
+          "current_message_id": 5,
+          "inserted_at": 1741187678.58871,
+          "updated_at": 1741188796.089897,
+          "character": null
+        },
+        {
+          "id": "16d959b7-c905-48a9-ac46-325a2e849cf2",
+          "seq_id": 1000043,
+          "agent": "chat",
+          "title": "Ai 教育app起名字",
+          "title_type": "SYSTEM",
+          "version": 13,
+          "current_message_id": 12,
+          "inserted_at": 1739361769.867955,
+          "updated_at": 1739362095.717594,
+          "character": null
+        },
+        {
+          "id": "44f47bb6-ae46-4b99-bdc0-beffb88e4641",
+          "seq_id": 1000035,
+          "agent": "chat",
+          "title": "请给我设计一份swiftui的教程。 用来学习swiftui. ",
+          "title_type": "SYSTEM",
+          "version": 15,
+          "current_message_id": 14,
+          "inserted_at": 1738823309.322797,
+          "updated_at": 1739191908.674773,
+          "character": null
+        },
+        {
+          "id": "1d09bf8b-646f-4843-83b9-a0a7599cf15d",
+          "seq_id": 1000034,
+          "agent": "chat",
+          "title": "但是deepseek没做kv缓存，是做了kv压缩，也就说咱们的k",
+          "title_type": "SYSTEM",
+          "version": 6,
+          "current_message_id": 5,
+          "inserted_at": 1738924449.310355,
+          "updated_at": 1738980499.792007,
+          "character": null
+        },
+        {
+          "id": "ecd8b192-89da-4623-9b58-46400c77b4ae",
+          "seq_id": 1000033,
+          "agent": "chat",
+          "title": "帮我搜索github上的 MagazineLayout \r帮我解",
+          "title_type": "SYSTEM",
+          "version": 3,
+          "current_message_id": 2,
+          "inserted_at": 1738946551.577416,
+          "updated_at": 1738946652.116553,
+          "character": null
+        },
+        {
+          "id": "e5125103-2e4b-4431-865b-7173a010b63c",
+          "seq_id": 1000031,
+          "agent": "chat",
+          "title": "IMG_1702.jpeg",
+          "title_type": "SYSTEM",
+          "version": 3,
+          "current_message_id": 2,
+          "inserted_at": 1738944035.453352,
+          "updated_at": 1738944045.022473,
+          "character": null
+        },
+        {
+          "id": "d4590831-cd0e-495f-bb90-a92b140dd9c8",
+          "seq_id": 1000013,
+          "agent": "chat",
+          "title": "No reason for existing native ap",
+          "title_type": "SYSTEM",
+          "version": 3,
+          "current_message_id": 2,
+          "inserted_at": 1738763754.963393,
+          "updated_at": 1738763754.963393,
+          "character": null
+        },
+        {
+          "id": "4c0c9620-8173-4c22-a0d1-35fbd97b7cf1",
+          "seq_id": 1000009,
+          "agent": "chat",
+          "title": "帮我介绍swift中的Combine框架。 并且详细给我教学。 ",
+          "title_type": "SYSTEM",
+          "version": 6,
+          "current_message_id": 5,
+          "inserted_at": 1738505713.062491,
+          "updated_at": 1738505713.062491,
+          "character": null
+        },
+        {
+          "id": "38bce2d9-3813-492d-a3bd-9f7c6ef0d4c4",
+          "seq_id": 1000002,
+          "agent": "chat",
+          "title": "Cuda介绍",
+          "title_type": "SYSTEM",
+          "version": 3,
+          "current_message_id": 2,
+          "inserted_at": 1738343132.565911,
+          "updated_at": 1738343132.565911,
+          "character": null
+        },
+        {
+          "id": "b69ecf56-42c5-491f-bd4e-442e6364ba0c",
+          "seq_id": 8,
+          "agent": "chat",
+          "title": "Tuist 新发布的 registry",
+          "title_type": "SYSTEM",
+          "version": 16,
+          "current_message_id": 14,
+          "inserted_at": 1738038089.411384,
+          "updated_at": 1738039996.533639,
+          "character": null
+        },
+        {
+          "id": "725f0031-01b3-4faa-9fa4-903fabef6819",
+          "seq_id": 7,
+          "agent": "chat",
+          "title": "资深iOS开发者安卓开发学习计划",
+          "title_type": "SYSTEM",
+          "version": 24,
+          "current_message_id": 23,
+          "inserted_at": 1737783000.534462,
+          "updated_at": 1737785628.363973,
+          "character": null
+        },
+        {
+          "id": "4e2a4f69-c264-481d-8ee9-cd221a84a671",
+          "seq_id": 6,
+          "agent": "chat",
+          "title": "iOS开发者快速入门前端学习路线",
+          "title_type": "SYSTEM",
+          "version": 3,
+          "current_message_id": 2,
+          "inserted_at": 1737785385.352122,
+          "updated_at": 1737785430.820247,
+          "character": null
+        },
+        {
+          "id": "ae1bfdf3-9666-4cbe-96dc-42e48ab08ff1",
+          "seq_id": 3,
+          "agent": "chat",
+          "title": "Swift Combine框架教程简介",
+          "title_type": "SYSTEM",
+          "version": 9,
+          "current_message_id": 8,
+          "inserted_at": 1737118589.967265,
+          "updated_at": 1737121172.287893,
+          "character": null
+        },
+        {
+          "id": "3c360407-95d6-45d8-aebc-8265ab5492f7",
+          "seq_id": 2,
+          "agent": "chat",
+          "title": "为AI助手app起英文名建议",
+          "title_type": "SYSTEM",
+          "version": 3,
+          "current_message_id": 2,
+          "inserted_at": 1736685590.703519,
+          "updated_at": 1736685608.514945,
+          "character": null
+        },
+        {
+          "id": "8e4a74a7-825b-4e93-9896-136ccff8f1c0",
+          "seq_id": 1,
+          "agent": "chat",
+          "title": "Swift导航与组件管理框架设计",
+          "title_type": "SYSTEM",
+          "version": 7,
+          "current_message_id": 6,
+          "inserted_at": 1736675446.92401,
+          "updated_at": 1736684621.933544,
+          "character": null
+        },
+        {
+          "id": "6d7f1c70-5430-4608-8e2f-66f268f5d285",
+          "seq_id": 0,
+          "agent": "chat",
+          "title": "人一生脱落表皮超227公斤",
+          "title_type": "SYSTEM",
+          "version": 3,
+          "current_message_id": 2,
+          "inserted_at": 1736675411.999184,
+          "updated_at": 1736675417.369328,
+          "character": null
+        }
+      ]
+    }
+  }
+}

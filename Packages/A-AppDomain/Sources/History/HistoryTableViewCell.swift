@@ -77,7 +77,7 @@ class HistoryTableViewCell: UITableViewCell,IQModelableCell {
         didSet{
             guard let model = model else { return }
             
-            descLabel.text = model.channel.channelName
+            descLabel.text = model.title
             
         }
     }
