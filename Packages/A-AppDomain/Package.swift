@@ -19,7 +19,6 @@ let package = Package(
         .package(path: "../ZVendors/IQListKit"),
         .package(path: "../ZVendors/AESCryptOC"),
         .package(url: "https://github.com/GIKICoder/GMarkdown.git", branch: "main"),
-        
         .package(url: "https://github.com/QMUI/LookinServer", from: "1.2.8"),
     ],
     targets: [
