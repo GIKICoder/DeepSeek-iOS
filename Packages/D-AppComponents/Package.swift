@@ -29,7 +29,7 @@ let package = Package(
               .product(name: "AppServices", package: "F-AppServices"),
               .product(name: "SideMenu", package: "SideMenu"),
               .product(name: "RouteComposer", package: "route-composer"),
-              .product(name: "RouterService", package: "RouterService")
+              .product(name: "RouterService", package: "RouterService"),
             ],
             path: "Sources"
         ),
