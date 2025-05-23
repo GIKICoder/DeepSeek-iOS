@@ -34,35 +34,61 @@ public struct SendMessageParam {
     
     fileprivate func toDictionary() -> [String: Any] {
         var params: [String: Any] = [
-            "channelId": channelId,
-            "message": content,
-            "model": model,
-            "isNewChat": isNewChat,
-            "searchSwitch": searchSwitch
+            "model": "deepseek-chat",
+            "stream" : true
         ]
-        
-        if upload == 1 && !content.isEmpty {
-            params["roleEnum"] = "SUMMARYPROMPT"
-        }
-        
-        if let imageUrls = imageUrls, !imageUrls.isEmpty {
-            params["imageUrls"] = imageUrls
-        }
-        
-        if let promptTemplateId = promptTemplateId, promptTemplateId == "20000" {
-            if content == NSLocalizedString("Create Presentation", comment: "") {
-                params["isGeneratePpt"] = true
-            }
-        }
-        
-        if let messageId, let reMessageId {
-            params["messageIds"] = [messageId, reMessageId]
-        }
-        
+        var messages: [[String: Any]] = []
+        messages = [
+                  [ "role" : "system",
+                    "content" : "You are a helpful assistant."],
+                  ["role" : "user",
+                    "content": content]
+                ]
+        params["messages"] = messages
         return params
+    }
+    
+}
+
+@Codable
+public struct StreamChunk: Codable {
+    // This struct would need properties to match the JSON structure:
+    var id: String = ""
+    var object: String = ""
+    var created: Int = 0
+    var model: String = ""
+    var system_fingerprint: String = ""
+    var choices: [Choice] = []
+}
+
+public extension StreamChunk {
+    
+    var first: Bool {
+        return choices.first?.delta.role == "assistant"
+    }
+    
+    var last: Bool {
+        return choices.last?.finish_reason == "stop"
+    }
+    
+    var content:String {
+        return choices.first?.delta.content ?? ""
     }
 }
 
+@Codable
+public struct Choice: Codable {
+    var index: Int = 0
+    var delta: Delta = Delta(content: "")
+    var logprobs: String?
+    var finish_reason: String?
+}
+
+@Codable
+public struct Delta: Codable {
+    var content: String = ""
+    var role: String = ""
+}
 
 // MARK: - ChatSendCenter
 
@@ -75,10 +101,10 @@ public actor ChatSendCenter {
     private var activeSendTasks: [String: (source: GEventSource, handler: SendEventHandler)] = [:]
     
     // Send message via GEventSource using AsyncThrowingStream
-    public func sendMessage(_ message: SendMessageParam) -> AsyncThrowingStream<[ChatMessage], Error> {
+    public func sendMessage(_ message: SendMessageParam) -> AsyncThrowingStream<[StreamChunk], Error> {
         let channelId = message.channelId
         
-        let baseUrl = AppEnvironment.urlWithPath("api/v1/chat/send")
+        let baseUrl = AppEnvironment.urlWithPath("/v1/chat/completions")
         guard let sendURL = URL(string: baseUrl) else {
             return AsyncThrowingStream { continuation in
                 continuation.finish(throwing: SendError.invalidURL)
@@ -194,9 +220,9 @@ public actor ChatSendCenter {
     
     /// `SendEventHandler` 处理发送消息的回调。
     class SendEventHandler: GEventSource.EventHandler {
-        let onReceive: (Result<[ChatMessage], Error>) -> Void
+        let onReceive: (Result<[StreamChunk], Error>) -> Void
         
-        init(onReceive: @escaping (Result<[ChatMessage], Error>) -> Void) {
+        init(onReceive: @escaping (Result<[StreamChunk], Error>) -> Void) {
             self.onReceive = onReceive
         }
         
@@ -211,9 +237,9 @@ public actor ChatSendCenter {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
                 let data = Data(event.data.utf8)
-                let chatMessages = try decoder.decode([ChatMessage].self, from: data)
-                onReceive(.success(chatMessages))
-                logNetwork("接收到消息并回调：\(chatMessages)")
+                let chatMessage = try decoder.decode(StreamChunk.self, from: data)
+                onReceive(.success([chatMessage]))
+                logNetwork("接收到消息并回调：\(chatMessage)")
             } catch {
                 onReceive(.failure(error))
                 logNetwork("接收到消息decode失败：\(error)")

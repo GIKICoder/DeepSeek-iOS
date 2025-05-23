@@ -27,7 +27,7 @@ extension ChatViewController: UICollectionViewDelegateMagazineLayout {
             return layout
         }
         guard let messageLayout = section.messageLayouts[safe: indexPath.item] else {
-            logUI("Empty layout 2222")
+            logUI("Empty layout")
             return layout
         }
         return MagazineLayoutItemSizeMode(widthMode: .fullWidth(respectsHorizontalInsets: true), heightMode: .static(height: messageLayout.itemSize.height))

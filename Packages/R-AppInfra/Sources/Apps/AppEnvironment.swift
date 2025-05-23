@@ -8,13 +8,6 @@
 import Foundation
 
 
-enum Environment: Int {
-    case production = 1
-    case boe
-    case gray
-    case doc
-}
-
 enum Constants {
     static let serverKey = "app.server.environment"
 }
@@ -131,40 +124,27 @@ public enum AppEnvironment {
 
 public enum ServerEnvironment: String, CaseIterable {
     case boe
-    case gray
-    case doc
     case production
     
     // 从 Info.plist 获取 URL，如果获取失败则使用默认值
     var baseURL: String {
         let bundle = Bundle.main
-        let defaultBaseURL = "https://www.example.com"
-        
+        let defaultBaseURL = "https://api.deepseek.com"
+        return defaultBaseURL
+        /*
         switch self {
         case .boe:
             if let url = bundle.infoDictionary?["API_BASE_URL_BOE"] as? String {
                 return "https://" + url
             }
             return defaultBaseURL + "/boe"
-            
-        case .gray:
-            if let url = bundle.infoDictionary?["API_BASE_URL_GRAY"] as? String {
-                return "https://" + url
-            }
-            return defaultBaseURL + "/gray"
-            
-        case .doc:
-            if let url = bundle.infoDictionary?["API_BASE_URL_DOC"] as? String {
-                return "https://" + url
-            }
-            return defaultBaseURL + "/doc"
-            
         case .production:
             if let url = bundle.infoDictionary?["API_BASE_URL_PRODUCTION"] as? String {
                 return "https://" + url
             }
             return defaultBaseURL + "/production"
         }
+         */
     }
     
     // 显示名称
@@ -174,10 +154,6 @@ public enum ServerEnvironment: String, CaseIterable {
             return "测试环境: " + self.baseURL
         case .production:
             return "线上环境: " + self.baseURL
-        case .gray:
-            return "灰度环境: " + self.baseURL
-        case .doc:
-            return "文档测试环境: " + self.baseURL
         }
     }
 }

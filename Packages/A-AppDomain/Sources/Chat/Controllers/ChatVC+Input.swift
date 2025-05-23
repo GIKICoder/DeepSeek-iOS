@@ -32,10 +32,8 @@ extension ChatViewController: ChatInputToolViewDelegate {
     
     // MARK: - Delegate Method
     public func chatInputToolView(_ inputToolView: ChatInputToolView, didChangeInputBarTopOffset offset: CGFloat, state: ChatInputToolViewState) {
-        
-        //        logUI("didChangeInputBarTopOffset: \(offset)")
+    
         let newBottomInset = collectionView.frame.minY + collectionView.frame.size.height - offset - view.safeAreaInsets.bottom
-        //        logUI("didChangeInputBarTopOffset After: \(newBottomInset)")
         adjustCollectionViewForKeyboard(newBottomInset: newBottomInset, shouldScrollToBottom: true)
     }
     

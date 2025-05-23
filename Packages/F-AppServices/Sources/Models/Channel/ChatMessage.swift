@@ -14,6 +14,7 @@ import ReerCodable
 @frozen public struct ChatMessage: Codable, Sendable {
     public var message_id: Int = 0
     public var parent_id: Int? = nil
+    public var id : String = ""
     public var model: String = ""
     public var role: String = ""
     public var content: String = ""
@@ -36,6 +37,8 @@ import ReerCodable
     public var qaMsg: [String] = []
 }
 
+
+
 public extension ChatMessage {
     
     var aiMessage: Bool  {
@@ -51,7 +54,11 @@ public extension ChatMessage {
     }
     
     var messageId: String {
-        "\(message_id)"
+        if message_id == 0 {
+            return id
+        } else {
+            return "\(message_id)"
+        }
     }
     
     var last: Bool {

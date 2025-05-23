@@ -334,32 +334,6 @@ extension ChatDataCenter {
                                                   sections: self?.sectionsPublisher.value.sections ?? [])
                 promise(.success(loadedState))
             }
-            /*
-            self?.chatAPI.request(.messages(params), type: ChatChannelWrap.self) { result in
-                self?.isLoading = false
-                switch result {
-                case .success(let channelWrap):
-                    let channel = channelWrap.channel
-                    
-                    self?.channel = channel
-                    let newMessages = self?.processMessages(channelWrap.message, channel: channel) ?? []
-                    self?.hasMoreData = !newMessages.isEmpty
-                    if isInitial {
-                        self?.appendMessages(newMessages,isInitial: isInitial)
-                    } else {
-                        self?.prependMessages(newMessages)
-                    }
-                    
-                    let loadedState = ChatSectionsState(state: .loaded(initial: isInitial), sections: self?.sectionsPublisher.value.sections ?? [])
-                    promise(.success(loadedState))
-                    
-                case .failure(let error):
-                
-                    let errorState = ChatSectionsState(state: .error(ChatDataError.networkError(error)), sections: self?.sectionsPublisher.value.sections ?? [])
-                    promise(.success(errorState))
-                }
-            }
-             */
         }
         .eraseToAnyPublisher()
     }
@@ -435,29 +409,12 @@ extension ChatDataCenter {
                 appendMessages([localMessage], isInitial: false)
                 
                 // 2. 检查 channel 状态并处理
-                let currentChannel: ChatChannel
-                if channel == nil {
-                    // 需要先创建 channel
-                    let createParams = CreateChannelParams(
-                        model: entrance.model,
-                        message: text ?? "",
-                        channelId: nil,
-                        templateId: entrance.templateId,
-                        extra: [:]
-                    )
-                    // 创建 channel
-                    currentChannel = try await createChannel(params: createParams)
-                    self.channel = currentChannel // 保存 channel
-                    
-                    // 创建加载中消息
-                    let loadingMessage = createLoadingMessage(channel: currentChannel,messageId:loadingMessageId)
-                    appendMessages([loadingMessage], isInitial: false)
-                } else {
-                    currentChannel = channel!
-                    // 创建加载中消息
-                    let loadingMessage = createLoadingMessage(channel:currentChannel,messageId:loadingMessageId)
-                    appendMessages([loadingMessage], isInitial: false)
-                }
+                var currentChannel: ChatChannel = ChatChannel.default
+                
+                // 创建加载中消息
+                let loadingMessage = createLoadingMessage(channel:currentChannel,messageId:loadingMessageId)
+                appendMessages([loadingMessage], isInitial: false)
+
                 
                 // 3. 构建发送参数
                 var sendParam = SendMessageParam(
@@ -476,18 +433,16 @@ extension ChatDataCenter {
                 let messageStream = await ChatSendCenter.shared.sendMessage(sendParam)
                 
                 // 5. 处理消息流
-                for try await chatMessages in messageStream {
+                for try await streamChunks in messageStream {
                     if Task.isCancelled || isCancelled { return }
-                    guard !chatMessages.isEmpty else { continue }
-                    
-                    if chatMessages.count > 1 {
-                        await replaceMessages(
-                            localMessageId: localMessageId,
-                            loadingMessageId: loadingMessageId,
-                            with: chatMessages
-                        )
-                    } else if let updatedMessage = chatMessages.first {
-                        logUI("Received messages: \(updatedMessage.content)")
+                    guard !streamChunks.isEmpty else { continue }
+                    guard let streamChunk = streamChunks.first else { continue }
+                    let updatedMessage = ChatMessage.convertToMessage(streamChunk)
+                    if streamChunk.first {
+                        // 替换本地消息和加载中消息
+                        await replaceMessages(localMessageId: localMessageId, loadingMessageId: loadingMessageId, with: [localMessage, updatedMessage])
+                    } else {
+                        // 更新单个消息
                         await updateSingleMessage(updatedMessage)
                     }
                 }
@@ -558,9 +513,7 @@ extension ChatDataCenter {
             if updatedMessage.qaMsg.count > 0 {
                 currentMessages[index].qaMsg = updatedMessage.qaMsg
             }
-            if updatedMessage.content.isNotEmpty {
-                currentMessages[index].content = updatedMessage.content
-            }
+
             messagesPublisher.send(currentMessages)
             
             var currentSections = sectionsPublisher.value.sections
@@ -641,24 +594,6 @@ private extension ChatDataCenter {
     }
 }
 
-// MARK: - ChatData + Channel
-public extension ChatDataCenter {
-    /// 创建channel
-    func createChannel(params: CreateChannelParams) async throws -> ChatChannel {
-        // 创建请求
-        let target = ChatApi.createChannel(params)
-        let channel: ChatChannel = try await chatAPI.requestAsync(target)
-        return channel
-    }
-    
-    /// 创建channel
-    func createFileChannel(params: CreateFileChannelParams) async throws -> ChatChannel {
-        // 创建请求
-        let target = ChatApi.createFileChannel(params)
-        let channel: ChatChannel = try await chatAPI.requestAsync(target)
-        return channel
-    }
-}
 
 // MARK: - ChatData + Regen
 public extension ChatDataCenter {
@@ -699,19 +634,12 @@ public extension ChatDataCenter {
                 let messageStream = await ChatSendCenter.shared.sendMessage(sendParam)
                 
                 // 5. 处理消息流
-                for try await chatMessages in messageStream {
-                    guard !chatMessages.isEmpty else { continue }
-                    
-                    if chatMessages.count > 1 {
-                        await replaceMessages(
-                            localMessageId: userMessage.messageId,
-                            loadingMessageId: loadingMessageId,
-                            with: chatMessages
-                        )
-                    } else if let updatedMessage = chatMessages.first {
-                        logUI("Received messages: \(updatedMessage.content)")
-                        await updateSingleMessage(updatedMessage)
-                    }
+                for try await streamChunks in messageStream {
+                    if Task.isCancelled || isCancelled { return }
+                    guard !streamChunks.isEmpty else { continue }
+                    guard let streamChunk = streamChunks.first else { continue }
+                    let updatedMessage = ChatMessage.convertToMessage(streamChunk)
+                    await updateSingleMessage(updatedMessage)
                 }
                 logUI("消息接收完成")
                 sendMessageStatePublisher.send(.finished)
@@ -742,5 +670,17 @@ public extension ChatDataCenter {
             print("解码失败: \(error)")
             return nil
         }
+    }
+}
+
+
+public extension ChatMessage {
+    
+    static func convertToMessage(_ chunk:StreamChunk) -> ChatMessage {
+        var message = ChatMessage.default
+        message.id = chunk.id
+        message.content = chunk.content
+        message.role = "ASSISTANT"
+        return message
     }
 }
