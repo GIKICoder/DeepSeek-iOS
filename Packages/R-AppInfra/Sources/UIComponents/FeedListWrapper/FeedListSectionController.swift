@@ -71,7 +71,7 @@ extension FeedListSectionController: ListDisplayDelegate {
         guard let cell = cell as? (any FeedListBaseCellProtocol) else {
             return
         }
-        if let sectionBean = sectionBean, let layout = sectionBean.cellLayouts[index] as? FeedListBaseCellLayout {
+        if let sectionBean = sectionBean, let layout = sectionBean.cellLayouts[index] {
             cell.willDisplay(sectionBean: sectionBean, layout: layout, index: index)
         }
     }

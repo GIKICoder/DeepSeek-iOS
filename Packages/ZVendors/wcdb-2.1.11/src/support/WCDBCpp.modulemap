@@ -1,0 +1,9 @@
+framework module WCDBCpp {
+    requires objc
+
+	module All {
+		header "WCDBCpp.h"
+        export *
+        requires cplusplus17
+    }
+}

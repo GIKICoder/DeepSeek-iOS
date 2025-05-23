@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "sqlcipher",
+        "repositoryURL": "https://github.com/Tencent/sqlcipher",
+        "state": {
+          "branch": null,
+          "revision": "5d8825c22feedb421ad6f9ecfc1399460e10d299",
+          "version": "1.4.7"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

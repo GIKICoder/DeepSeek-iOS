@@ -1,0 +1,6 @@
+#include "WCDBWithoutCompression.xcconfig"
+
+OTHER_LDFLAGS = $(inherited) -framework zstd
+
+WCDB_USE_ZSTD = 1
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) WCDB_ZSTD=$(WCDB_USE_ZSTD)

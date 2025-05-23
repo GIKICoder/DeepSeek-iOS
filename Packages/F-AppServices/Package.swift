@@ -15,6 +15,7 @@ let package = Package(
     dependencies: [
         .package(path: "../R-AppInfra"),
         .package(path: "../ZVendors/Moya"),
+        .package(path: "../ZVendors/wcdb-2.1.11"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -24,6 +25,7 @@ let package = Package(
             dependencies: [
                 .product(name: "AppInfra", package: "R-AppInfra"),
                 .product(name: "Moya", package: "Moya"),
+                .product(name: "WCDBSwift", package: "wcdb-2.1.11"),
             ]
         ),
         .testTarget(

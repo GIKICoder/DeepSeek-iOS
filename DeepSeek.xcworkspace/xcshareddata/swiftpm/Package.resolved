@@ -1,5 +1,5 @@
 {
-  "originHash" : "e8b90206cdb087202d81acabc576d13a6ed6955e43bd9b438df7d1f0b1f6fa6a",
+  "originHash" : "a63cb6ca296a1e8186b68a07aba18ab6eb51efccda2d4526f28bcbc8860465af",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -152,6 +152,15 @@
       "state" : {
         "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
         "version" : "5.7.1"
+      }
+    },
+    {
+      "identity" : "sqlcipher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tencent/sqlcipher",
+      "state" : {
+        "revision" : "5d8825c22feedb421ad6f9ecfc1399460e10d299",
+        "version" : "1.4.7"
       }
     },
     {
