@@ -104,7 +104,9 @@ open class GNavigationBar: UIView {
         return line
     }()
     
-    private var ignoreStatusbar = false
+    
+    
+    public private(set) var ignoreStatusbar: Bool = false
     
     // MARK: - Initialization
     
@@ -119,7 +121,7 @@ open class GNavigationBar: UIView {
         customHeight = height
         self.leftPadding = leftPadding
         self.rightPadding = rightPadding
-        
+        self.ignoreStatusbar = ignoreStatusbar
         self.itemSpacing = itemSpacing
         var totalHeight = statusBarHeight + customHeight
         if ignoreStatusbar {
@@ -139,6 +141,17 @@ open class GNavigationBar: UIView {
         super.safeAreaInsetsDidChange()
         updateLayout() // 更新布局
     }
+    
+    
+    
+    // 设置 ignoreStatusbar
+    public func setIgnoreStatusBar(_ ignore: Bool) {
+        guard ignoreStatusbar != ignore else { return }
+        ignoreStatusbar = ignore
+        statusBarView.isHidden = ignore
+        updateLayout()
+    }
+    
     
     // MARK: - Setup
     
@@ -211,7 +224,7 @@ open class GNavigationBar: UIView {
     }
     
     private func updateLayout() {
-    
+        
         var totalHeight = statusBarHeight + customHeight
         if ignoreStatusbar {
             totalHeight = customHeight

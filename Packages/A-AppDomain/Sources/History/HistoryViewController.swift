@@ -112,7 +112,8 @@ extension HistoryViewController {
     
     @objc func didTapAvatarAction() {
         let setting = SettingViewController()
-        self.present(setting, animated: true)
+        let nav = UINavigationController(rootViewController: setting)
+        self.present(nav, animated: true)
     }
 }
 

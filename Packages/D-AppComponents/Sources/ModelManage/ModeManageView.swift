@@ -1,21 +1,28 @@
 import SwiftUI
 
 public struct ModelProvider: Identifiable, Hashable {
-    let id = UUID()
-    let name: String
-    let models: [String]
+    public let id = UUID()
+    public let name: String
+    public let models: [String]
 }
 
 public struct ModeManageView: View {
     @State private var selectedProvider: ModelProvider = providers[0]
     @State private var apiKey: String = ""
     @State private var selectedModel: String = providers[0].models[0]
-    @State private var contextSize: Int = 2048
     @State private var temperature: Double = 0.7
+    @State private var topP: Double = 1.0
+    @State private var contextMessageLimit: Double = 20
+    @State private var showAdvancedSettings: Bool = false
+    @State private var showProviderPicker: Bool = false
+    @State private var showModelPicker: Bool = false
+    
+    @Namespace private var providerPickerNamespace
+    @Namespace private var modelPickerNamespace
     
     static let providers: [ModelProvider] = [
-        ModelProvider(name: "OpenAI", models: ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo"]),
         ModelProvider(name: "DeepSeek", models: ["deepseek-chat", "deepseek-coder"]),
+        ModelProvider(name: "OpenAI", models: ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo"]),
         ModelProvider(name: "Azure", models: ["azure-gpt-4", "azure-gpt-35"]),
         ModelProvider(name: "Google", models: ["gemini-pro", "gemini-ultra"])
     ]
@@ -23,53 +30,322 @@ public struct ModeManageView: View {
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                Text("模型管理")
-                    .font(.largeTitle).bold()
-                    .padding(.top, 32)
-                
                 // 供应商选择
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("模型供应商").font(.headline)
-                    Picker("选择模型供应商", selection: $selectedProvider) {
-                        ForEach(Self.providers) { provider in
-                            Text(provider.name).tag(provider)
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("模型供应商")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    
+                    VStack(spacing: 0) {
+                        Button(action: {
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                                showProviderPicker.toggle()
+                                if showProviderPicker {
+                                    showModelPicker = false
+                                }
+                            }
+                        }) {
+                            HStack {
+                                Text(selectedProvider.name)
+                                    .foregroundColor(.primary)
+                                    .font(.body)
+                                Spacer()
+                                Image(systemName: "chevron.down")
+                                    .foregroundColor(.secondary)
+                                    .font(.system(size: 14, weight: .medium))
+                                    .rotationEffect(.degrees(showProviderPicker ? 180 : 0))
+                                    .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showProviderPicker)
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 14)
+                            .background(Color(.systemBackground))
+                            .cornerRadius(showProviderPicker ? 12 : 12, corners: showProviderPicker ? [.topLeft, .topRight] : .allCorners)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: showProviderPicker ? 12 : 12)
+                                    .stroke(Color(.systemGray4), lineWidth: 1)
+                                    .cornerRadius(showProviderPicker ? 12 : 12, corners: showProviderPicker ? [.topLeft, .topRight] : .allCorners)
+                            )
+                        }
+                        .matchedGeometryEffect(id: "providerButton", in: providerPickerNamespace)
+                        
+                        if showProviderPicker {
+                            VStack(spacing: 0) {
+                                ForEach(Array(Self.providers.enumerated()), id: \.element.id) { index, provider in
+                                    Button(action: {
+                                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
+                                            selectedProvider = provider
+                                            selectedModel = provider.models[0]
+                                            showProviderPicker = false
+                                        }
+                                    }) {
+                                        HStack {
+                                            Text(provider.name)
+                                                .foregroundColor(.primary)
+                                                .font(.body)
+                                            Spacer()
+                                            if selectedProvider.id == provider.id {
+                                                Image(systemName: "checkmark.circle.fill")
+                                                    .foregroundColor(.green)
+                                                    .font(.system(size: 16))
+                                                    .transition(.scale.combined(with: .opacity))
+                                            }
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .background(
+                                            Color(.systemBackground)
+                                                .opacity(selectedProvider.id == provider.id ? 0.1 : 1)
+                                        )
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    
+                                    if index < Self.providers.count - 1 {
+                                        Divider()
+                                            .padding(.horizontal, 16)
+                                    }
+                                }
+                            }
+                            .background(Color(.systemBackground))
+                            .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color(.systemGray4), lineWidth: 1)
+                                    .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
+                            )
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .top).combined(with: .opacity).combined(with: .scale(scale: 1.0, anchor: .top)),
+                                removal: .move(edge: .top).combined(with: .opacity).combined(with: .scale(scale: 0.98, anchor: .top))
+                            ))
+                            .matchedGeometryEffect(id: "providerOptions", in: providerPickerNamespace)
                         }
                     }
-                    .pickerStyle(.menu)
+                    .zIndex(showProviderPicker ? 1 : 0)
+                }
+                
+                // 添加间距，当供应商选择器展开时
+                if showProviderPicker {
+                    Spacer()
+                        .frame(height: 16)
+                        .transition(.opacity)
                 }
                 
                 // API Key
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("API Key").font(.headline)
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("API Key")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    
                     SecureField("请输入API Key", text: $apiKey)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 14)
+                        .background(Color(.systemBackground))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color(.systemGray4), lineWidth: 1)
+                        )
                 }
                 
                 // 模型选择
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("模型").font(.headline)
-                    Picker("选择模型", selection: $selectedModel) {
-                        ForEach(selectedProvider.models, id: \.self) { model in
-                            Text(model).tag(model)
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("模型")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    
+                    VStack(spacing: 0) {
+                        Button(action: {
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                                showModelPicker.toggle()
+                                if showModelPicker {
+                                    showProviderPicker = false
+                                }
+                            }
+                        }) {
+                            HStack {
+                                Text(selectedModel)
+                                    .foregroundColor(.primary)
+                                    .font(.body)
+                                Spacer()
+                                Image(systemName: "chevron.down")
+                                    .foregroundColor(.secondary)
+                                    .font(.system(size: 14, weight: .medium))
+                                    .rotationEffect(.degrees(showModelPicker ? 180 : 0))
+                                    .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showModelPicker)
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 14)
+                            .background(Color(.systemBackground))
+                            .cornerRadius(showModelPicker ? 12 : 12, corners: showModelPicker ? [.topLeft, .topRight] : .allCorners)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: showModelPicker ? 12 : 12)
+                                    .stroke(Color(.systemGray4), lineWidth: 1)
+                                    .cornerRadius(showModelPicker ? 12 : 12, corners: showModelPicker ? [.topLeft, .topRight] : .allCorners)
+                            )
+                        }
+                        .matchedGeometryEffect(id: "modelButton", in: modelPickerNamespace)
+                        
+                        if showModelPicker {
+                            VStack(spacing: 0) {
+                                ForEach(Array(selectedProvider.models.enumerated()), id: \.element) { index, model in
+                                    Button(action: {
+                                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
+                                            selectedModel = model
+                                            showModelPicker = false
+                                        }
+                                    }) {
+                                        HStack {
+                                            Text(model)
+                                                .foregroundColor(.primary)
+                                                .font(.body)
+                                            Spacer()
+                                            if selectedModel == model {
+                                                Image(systemName: "checkmark.circle.fill")
+                                                    .foregroundColor(.green)
+                                                    .font(.system(size: 16))
+                                                    .transition(.scale.combined(with: .opacity))
+                                            }
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .background(
+                                            Color(.systemBackground)
+                                                .opacity(selectedModel == model ? 0.1 : 1)
+                                        )
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    
+                                    if index < selectedProvider.models.count - 1 {
+                                        Divider()
+                                            .padding(.horizontal, 16)
+                                    }
+                                }
+                            }
+                            .background(Color(.systemBackground))
+                            .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color(.systemGray4), lineWidth: 1)
+                                    .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
+                            )
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .top).combined(with: .opacity).combined(with: .scale(scale: 1.0, anchor: .top)),
+                                removal: .move(edge: .top).combined(with: .opacity).combined(with: .scale(scale: 0.98, anchor: .top))
+                            ))
+                            .matchedGeometryEffect(id: "modelOptions", in: modelPickerNamespace)
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .zIndex(showModelPicker ? 1 : 0)
+                }
+                
+                // 添加间距，当模型选择器展开时
+                if showModelPicker {
+                    Spacer()
+                        .frame(height: 16)
+                        .transition(.opacity)
                 }
                 
                 // 高级设置
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("高级设置").font(.headline)
-                    HStack {
-                        Text("上下文数量: ")
-                        Stepper(value: $contextSize, in: 512...32768, step: 512) {
-                            Text("\(contextSize)")
+                VStack(alignment: .leading, spacing: 16) {
+                    Button(action: {
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                            showAdvancedSettings.toggle()
                         }
+                    }) {
+                        HStack {
+                            Text("高级设置")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.down")
+                                .foregroundColor(.secondary)
+                                .font(.system(size: 14, weight: .medium))
+                                .rotationEffect(.degrees(showAdvancedSettings ? 180 : 0))
+                                .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showAdvancedSettings)
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 14)
+                        .background(Color(.systemBackground))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color(.systemGray4), lineWidth: 1)
+                        )
                     }
-                    HStack {
-                        Text("Temperature: ")
-                        Slider(value: $temperature, in: 0...2, step: 0.01)
-                        Text(String(format: "%.2f", temperature))
-                            .frame(width: 48, alignment: .trailing)
+                    
+                    if showAdvancedSettings {
+                        VStack(spacing: 24) {
+                            // Temperature
+                            VStack(alignment: .leading, spacing: 10) {
+                                HStack {
+                                    Text("Temperature")
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.primary)
+                                    Spacer()
+                                    Text(String(format: "%.2f", temperature))
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.secondary)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                        .background(Color(.systemGray5))
+                                        .cornerRadius(6)
+                                }
+                                Slider(value: $temperature, in: 0...2, step: 0.01)
+                                    .accentColor(.orange)
+                            }
+                            
+                            // Top P
+                            VStack(alignment: .leading, spacing: 10) {
+                                HStack {
+                                    Text("Top P")
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.primary)
+                                    Spacer()
+                                    Text(String(format: "%.2f", topP))
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.secondary)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                        .background(Color(.systemGray5))
+                                        .cornerRadius(6)
+                                }
+                                Slider(value: $topP, in: 0...1, step: 0.01)
+                                    .accentColor(.blue)
+                            }
+                            
+                            // 上下文消息数量上限
+                            VStack(alignment: .leading, spacing: 10) {
+                                HStack {
+                                    Text("上下文的消息数量上限")
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.primary)
+                                    Spacer()
+                                    Text(contextMessageLimit > 500 ? "无限制" : "\(Int(contextMessageLimit))")
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.secondary)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                        .background(Color(.systemGray5))
+                                        .cornerRadius(6)
+                                }
+                                Slider(value: $contextMessageLimit, in: 0...510, step: 1)
+                                    .accentColor(.green)
+                            }
+                        }                        .padding(20)
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(Color(.systemGray6))
+                                    .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+                            )
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .top).combined(with: .opacity).combined(with: .scale(scale: 0.98, anchor: .top)),
+                                removal: .move(edge: .top).combined(with: .opacity).combined(with: .scale(scale: 0.98, anchor: .top))
+                            ))
                     }
                 }
                 
@@ -77,127 +353,79 @@ public struct ModeManageView: View {
                 Button(action: {
                     // 保存逻辑
                 }) {
-                    Text("保存设置")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.accentColor)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
+                    HStack {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 16, weight: .medium))
+                        Text("保存设置")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color.blue, Color.blue.opacity(0.8)]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .shadow(color: .blue.opacity(0.3), radius: 8, x: 0, y: 4)
+                    )
+                    .foregroundColor(.white)
+                    .scaleEffect(1.0)
+                    .animation(.spring(response: 0.3, dampingFraction: 0.6), value: false)
                 }
-                .padding(.top, 16)
+                .buttonStyle(ScaleButtonStyle())
+                .padding(.top, 8)
             }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 32)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 20)
         }
-        .background(Color(UIColor.systemGroupedBackground))
-    }
-}
-
-
-import UIKit
-
-// MARK: - UIKit 包装器
-public class ModelManageViewController: UIViewController {
-    
-    // 可选的回调闭包
-    var onSave: ((ModelProvider, String, String, Int, Double) -> Void)?
-    var onDismiss: (() -> Void)?
-    
-    private var hostingController: UIHostingController<ModeManageView>!
-    
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        setupSwiftUIView()
-        setupNavigationBar()
-    }
-    
-    private func setupSwiftUIView() {
-        let swiftUIView = ModeManageView()
-        hostingController = UIHostingController(rootView: swiftUIView)
-        
-        // 添加为子视图控制器
-        addChild(hostingController)
-        view.addSubview(hostingController.view)
-        hostingController.didMove(toParent: self)
-        
-        // 设置约束
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            hostingController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
-    
-    private func setupNavigationBar() {
-        title = "模型管理"
-        
-        // 如果是模态展示，添加关闭按钮
-        if presentingViewController != nil {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(
-                barButtonSystemItem: .cancel,
-                target: self,
-                action: #selector(dismissTapped)
-            )
+        .background(Color(.systemGroupedBackground))
+        .onTapGesture {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                showProviderPicker = false
+                showModelPicker = false
+            }
         }
     }
-    
-    @objc private func dismissTapped() {
-        onDismiss?()
-        dismiss(animated: true)
+}
+
+// 自定义按钮样式，添加按压效果
+struct ScaleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.96 : 1.0)
+            .opacity(configuration.isPressed ? 0.9 : 1.0)
+            .animation(.spring(response: 0.2, dampingFraction: 0.8), value: configuration.isPressed)
     }
 }
 
-// MARK: - 便利的工厂方法
-public extension ModelManageViewController {
-    
-    /// 创建一个包装在导航控制器中的模型管理视图控制器
-    static func wrappedInNavigationController() -> UINavigationController {
-        let modelVC = ModelManageViewController()
-        let navController = UINavigationController(rootViewController: modelVC)
-        return navController
-    }
-    
-    /// 创建一个带有回调的模型管理视图控制器
-    static func create(
-        onSave: ((ModelProvider, String, String, Int, Double) -> Void)? = nil,
-        onDismiss: (() -> Void)? = nil
-    ) -> ModelManageViewController {
-        let controller = ModelManageViewController()
-        controller.onSave = onSave
-        controller.onDismiss = onDismiss
-        return controller
+// 扩展View以支持特定角的圆角
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
     }
 }
 
-// MARK: - 使用示例
-/*
-// 在UIKit视图控制器中使用示例：
-
-class MainViewController: UIViewController {
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
     
-    @IBAction func showModelManage(_ sender: UIButton) {
-        // 方式1: 直接推送到导航栈
-        let modelVC = ModelManageViewController()
-        navigationController?.pushViewController(modelVC, animated: true)
-        
-        // 方式2: 模态展示
-        let modelVC2 = ModelManageViewController.create(
-            onSave: { provider, apiKey, model, contextSize, temperature in
-                print("保存设置: \(provider.name), \(model)")
-                // 处理保存逻辑
-            },
-            onDismiss: {
-                print("用户取消了设置")
-            }
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(
+            roundedRect: rect,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius)
         )
-        let navController = UINavigationController(rootViewController: modelVC2)
-        present(navController, animated: true)
-        
-        // 方式3: 使用便利方法
-        let wrappedVC = ModelManageViewController.wrappedInNavigationController()
-        present(wrappedVC, animated: true)
+        return Path(path.cgPath)
     }
 }
-*/
+
+#Preview {
+    ModeManageView()
+}
+
+
