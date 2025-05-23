@@ -12,6 +12,7 @@ import AppFoundation
 import AppServices
 
 enum SettingType: String {
+    case modelManage = "模型管理"
     case termsofService = "用户协议"
     case privacyPolicy = "隐私政策"
     case thirdpart = "第三方信息共享清单"
@@ -29,7 +30,7 @@ enum SettingType: String {
 class SettingViewController: AppViewController {
     
     private let nestedScrollView = DNestedScrollView(nestedContainers: [])
-    
+    private let modelManageView = SettingSectionView()
     private let aboutSettingView = SettingSectionView()
     private let appSettingView = SettingSectionView()
     private let feedbackSettingView = SettingSectionView()
@@ -57,6 +58,8 @@ class SettingViewController: AppViewController {
     private func setupContainers() {
         nestedScrollView.removeAllContainers()
         nestedScrollView.addContainer(createPadding(40))
+        nestedScrollView.addContainer(modelManageView)
+        nestedScrollView.addContainer(createPadding(24))
         nestedScrollView.addContainer(aboutSettingView)
         nestedScrollView.addContainer(createPadding(24))
         nestedScrollView.addContainer(appSettingView)
@@ -67,12 +70,34 @@ class SettingViewController: AppViewController {
         nestedScrollView.addContainer(createPadding(24))
         nestedScrollView.addContainer(deleteSettingView)
         
+        configModelManageSettings()
         configAboutSettings()
         configAppSettings()
         configFeedbackSettings()
         configLogoutSettings()
         configDeleteSettings()
         
+    }
+    
+    private func configModelManageSettings() {
+        let items = [
+            SettingItem(type: SettingType.modelManage.rawValue,
+                        title: SettingType.modelManage.rawValue,
+                        subtitle: nil,
+                        icon: UIImage(named: "profile_setting_arrow")),
+        ]
+
+        modelManageView.configure(with: items)
+
+        modelManageView.itemTapped = { [weak self] type in
+            guard let self else { return }
+            guard let settingType = SettingType(rawValue: type) else { return }
+            switch settingType {
+            case .modelManage:
+                self.gotoModelManage()
+            default: break
+            }
+        }
     }
     
     private func configAboutSettings() {
@@ -251,3 +276,11 @@ class SettingViewController: AppViewController {
         
     }
 }
+
+extension SettingViewController {
+    
+    func gotoModelManage() {
+        
+    }
+}
+
