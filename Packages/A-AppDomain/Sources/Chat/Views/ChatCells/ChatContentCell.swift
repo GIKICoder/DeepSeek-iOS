@@ -131,9 +131,12 @@ public class ChatContentCell: UICollectionViewCell,
         
         if section.message.aiMessage || section.message.loadingMessage {
             avatarView.isHidden = (index > 0)
+            avatarView.setImage(UIImage(named: "dp_icon"), for: .normal)
         } else {
-            avatarView.isHidden = true
+            avatarView.isHidden = false
+            avatarView.setImage(UIImage(named: "profile_default_icon"), for: .normal)
         }
+        
         messageView.snp.updateConstraints { make in
             make.leading.equalToSuperview().inset(layout.edgeInsets.left)
             make.trailing.equalToSuperview().inset(layout.edgeInsets.right)

@@ -178,7 +178,7 @@ public class ChatAssembly {
     }
     
     static var aiMessageBubble: UIImage {
-        return UIImage.image(withColor: .clear, size: CGSize(width: 25, height: 48), cornerRadius: 8)
+        return UIImage.image(withColor: UIColor(hex: "#f2f2f2"), size: CGSize(width: 25, height: 48), cornerRadius: 8)
     }
     
     static var userMessageBubble: UIImage {

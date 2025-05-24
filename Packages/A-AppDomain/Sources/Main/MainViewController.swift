@@ -147,7 +147,7 @@ extension MainViewController {
     }
     
     @objc private func didTapNewChat() {
-        
+        addNewChat()
     }
 }
 
