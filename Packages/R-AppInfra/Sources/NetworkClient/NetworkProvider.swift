@@ -17,7 +17,7 @@ public class NetworkProvider<T: TargetType> {
     private let jsonDecoder: JSONDecoder
     private var cancellable: Cancellable?
     
-    public init(provider: MoyaProvider<T> = MoyaProvider<T>(), jsonDecoder: JSONDecoder = JSONDecoder()) {
+    public init(provider: MoyaProvider<T> = MoyaProvider<T>(plugins: [NetworkMonitorPlugin()]), jsonDecoder: JSONDecoder = JSONDecoder()) {
         self.provider = provider
         self.jsonDecoder = jsonDecoder
     }
@@ -48,7 +48,7 @@ public class NetworkProvider<T: TargetType> {
                         } else {
                             // 如果 Model 是 VoidData，返回 ()
                             if Model.self == VoidData.self {
-                                completion(.success(() as! Model))
+                                completion(.success(VoidData() as! Model))
                             } else {
                                 completion(.failure(.noData))
                             }

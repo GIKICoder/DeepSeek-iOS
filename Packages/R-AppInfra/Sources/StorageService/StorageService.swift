@@ -14,6 +14,7 @@ import AppFoundation
 public typealias AppCache = StorageService
 
 
+
 public class StorageService {
     
     public static let shared = StorageService()

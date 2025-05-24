@@ -62,6 +62,7 @@ public final class NetworkClient {
         // 添加基础 headers
         headers["Content-Type"] = "application/json"
         headers["Accept"] = "application/json"
+    
         // 获取所有动态 header 提供器的 headers
         headerProviders.forEach { provider in
             let dynamicHeaders = provider.provideHeaders()

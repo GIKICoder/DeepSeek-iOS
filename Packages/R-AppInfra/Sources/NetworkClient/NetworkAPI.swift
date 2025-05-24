@@ -59,7 +59,11 @@ public extension NetworkAPI {
     
     // 添加便利方法处理编码方式
     func encodeParameters(_ parameters: [String: Any]) -> Task {
-        let encoding: ParameterEncoding = method == .get ? URLEncoding.queryString : JSONEncoding.default
+        if method == .post {
+            let encoding: ParameterEncoding = JSONEncoding.default
+            return .requestParameters(parameters: parameters, encoding: encoding)
+        }
+        let encoding: ParameterEncoding = URLEncoding.queryString
         return .requestParameters(parameters: parameters, encoding: encoding)
     }
 }

@@ -58,6 +58,8 @@ public enum DeepSeekAsset: Sendable {
     public static let messageLikeIc = DeepSeekImages(name: "message_like_ic")
     public static let messageLikeIcHl = DeepSeekImages(name: "message_like_ic_hl")
     public static let messageRegenIc = DeepSeekImages(name: "message_regen_ic")
+    public static let appBackIc = DeepSeekImages(name: "App_back_ic")
+    public static let appCloseIc = DeepSeekImages(name: "App_close_ic")
     public static let profileDefaultIcon = DeepSeekImages(name: "profile_default_icon")
     public static let profileSettingArrow = DeepSeekImages(name: "profile_setting_arrow")
   }

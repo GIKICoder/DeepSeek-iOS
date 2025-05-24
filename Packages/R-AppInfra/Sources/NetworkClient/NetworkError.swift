@@ -16,7 +16,7 @@ public enum NetworkError: Error {
     case invalidResponse
     // other add
     
-    var code: Int {
+    public var code: Int {
         switch self {
         case .apiError(let code, _):
             return code
@@ -31,18 +31,25 @@ public enum NetworkError: Error {
         }
     }
     
-    var message: String {
+    public var message: String {
         switch self {
         case .apiError(_, let message):
             return message
         case .decodingError:
-            return "数据解析错误，请稍后重试。"
+            return "Data analysis error, please try again later."
         case .underlying(let error):
             return error.localizedDescription
         case .noData:
-            return "暂无数据，请稍后重试。"
+            return "No data available at the moment, please try again later."
         case .invalidResponse:
-            return "无效的响应。"
+            return "Invalid response."
         }
+    }
+    
+}
+
+extension NetworkError: LocalizedError {
+    public var errorDescription: String? {
+        return message
     }
 }

@@ -7,6 +7,7 @@ import AppFoundation
 import UIKit
 import SDWebImage
 import SDWebImageWebPCoder
+import AppServices
 
 public class AppDomain {
     
@@ -192,17 +193,12 @@ extension AppDomain {
     }
 }
 
-extension AppDomain {
-    
-    private func setupNetworkConfiguration() {
-        
-    }
-}
 
 extension AppDomain {
     
     private func setupUserConfiguration() {
         // 配置用户相关
+
     }
    
 }
