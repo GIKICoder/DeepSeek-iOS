@@ -280,8 +280,9 @@ class SettingViewController: AppViewController {
 extension SettingViewController {
     
     func gotoModelManage() {
-        let wrappedVC = ModelManageViewController.wrappedInNavigationController()
-        present(wrappedVC, animated: true)
+//        let wrappedVC = ModelManageViewController.wrappedInNavigationController()
+        let vc = ModelAddViewController()
+        present(vc, animated: true)
     }
 }
 
