@@ -670,17 +670,6 @@ public class ModelAddViewController: AppViewController {
         }
         
         let navController = UINavigationController(rootViewController: apiKeyVC)
-        navController.modalPresentationStyle = .pageSheet
-        
-        if #available(iOS 15.0, *) {
-            if let sheet = navController.sheetPresentationController {
-                sheet.detents = [.medium(), .large()]
-                sheet.prefersGrabberVisible = true
-            }
-        } else {
-            // Fallback on earlier versions
-        }
-        
         present(navController, animated: true)
     }
 
@@ -706,17 +695,6 @@ public class ModelAddViewController: AppViewController {
             }
             
             let navController = UINavigationController(rootViewController: apiKeyVC)
-            navController.modalPresentationStyle = .pageSheet
-            
-            if #available(iOS 15.0, *) {
-                if let sheet = navController.sheetPresentationController {
-                    sheet.detents = [.medium(), .large()]
-                    sheet.prefersGrabberVisible = true
-                }
-            } else {
-                // Fallback on earlier versions
-            }
-            
             present(navController, animated: true)
         }
     }

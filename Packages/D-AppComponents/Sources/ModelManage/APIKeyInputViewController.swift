@@ -117,7 +117,7 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
             
             // Update title for editing mode
             titleLabel.text = "编辑 \(provider.displayName)"
-            saveButton.setTitle("保存更改", for: .normal)
+            saveButton.setTitle("保存", for: .normal)
         } else {
             // Set default baseURL for new configuration
             baseURLTextField.text = provider.baseURL
@@ -134,8 +134,8 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
         // Form
         setupForm()
         
-        // Buttons
-        setupButtons()
+        // Navigation Bar
+        setupNavigationBar()
         
         // Add subviews
         view.addSubview(scrollView)
@@ -143,8 +143,6 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
         
         contentView.addSubview(headerView)
         contentView.addSubview(formStackView)
-        contentView.addSubview(saveButton)
-        contentView.addSubview(cancelButton)
     }
     
     private func setupHeader() {
@@ -365,17 +363,23 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
         contextLimitSection.addSubview(contextLimitSlider)
     }
     
-    private func setupButtons() {
-        saveButton.setTitle("保存配置", for: .normal)
-        saveButton.backgroundColor = .systemBlue
-        saveButton.setTitleColor(.white, for: .normal)
-        saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        saveButton.layer.cornerRadius = 12
+    private func setupNavigationBar() {
+        // Configure save button for navigation bar
+        saveButton.setTitle("保存", for: .normal)
+        saveButton.setTitleColor(.systemBlue, for: .normal)
+        saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         
-        cancelButton.setTitle("取消", for: .normal)
+        // Configure cancel button for navigation bar
+        cancelButton.setImage(UIImage(named: "App_close_ic"), for: .normal)
         cancelButton.backgroundColor = .clear
-        cancelButton.setTitleColor(.systemBlue, for: .normal)
-        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        cancelButton.tintColor = .systemGray
+        
+        // Add buttons to navigation bar
+        let saveBarButtonItem = UIBarButtonItem(customView: saveButton)
+        let cancelBarButtonItem = UIBarButtonItem(customView: cancelButton)
+        
+        navigationItem.rightBarButtonItem = saveBarButtonItem
+        navigationItem.leftBarButtonItem = cancelBarButtonItem
     }
     
     private func setupConstraints() {
@@ -562,18 +566,8 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
             contextLimitSlider.bottomAnchor.constraint(equalTo: contextLimitSection.bottomAnchor),
             contextLimitSlider.heightAnchor.constraint(equalToConstant: 30),
             
-            // Save Button
-            saveButton.topAnchor.constraint(equalTo: formStackView.bottomAnchor, constant: 32),
-            saveButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            saveButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            saveButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            // Cancel Button
-            cancelButton.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 16),
-            cancelButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            cancelButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            cancelButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
-            cancelButton.heightAnchor.constraint(equalToConstant: 44),
+            // Set contentView bottom to formStackView + padding
+            formStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
         ])
     }
     
@@ -737,7 +731,8 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
     private func updateSaveButtonState() {
         let hasApiKey = !(apiKeyTextField.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true)
         saveButton.isEnabled = hasApiKey
-        saveButton.alpha = hasApiKey ? 1.0 : 0.5
+        // Update navigation bar item enabled state
+        navigationItem.rightBarButtonItem?.isEnabled = hasApiKey
     }
     
     private func updateContextLimitValueLabel() {
