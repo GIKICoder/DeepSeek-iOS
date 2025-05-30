@@ -17,7 +17,7 @@ public struct ModelProvider: Codable, Equatable {
             id: "openai",
             name: "OpenAI",
             displayName: "OpenAI",
-            iconName: "brain",
+            iconName: "openai_ic",
             iconColor: "systemGreen",
             website: "https://openai.com",
             baseURL: "https://api.openai.com/v1",
@@ -28,7 +28,7 @@ public struct ModelProvider: Codable, Equatable {
             id: "anthropic",
             name: "Anthropic",
             displayName: "Claude",
-            iconName: "robot",
+            iconName: "claude_ic",
             iconColor: "systemBlue",
             website: "https://anthropic.com",
             baseURL: "https://api.anthropic.com/v1",
@@ -39,7 +39,7 @@ public struct ModelProvider: Codable, Equatable {
             id: "deepseek",
             name: "DeepSeek",
             displayName: "DeepSeek",
-            iconName: "magnifyingglass",
+            iconName: "deepseek_ic",
             iconColor: "systemPurple",
             website: "https://deepseek.com",
             baseURL: "https://api.deepseek.com/v1",
@@ -50,7 +50,7 @@ public struct ModelProvider: Codable, Equatable {
             id: "google",
             name: "Google",
             displayName: "Gemini",
-            iconName: "gem",
+            iconName: "geminiai_ic",
             iconColor: "systemRed",
             website: "https://ai.google.dev",
             baseURL: "https://generativelanguage.googleapis.com/v1",
@@ -78,7 +78,7 @@ public struct ModelConfiguration: Codable, Equatable {
     let apiKey: String
     let baseURL: String
     let selectedModel: String
-    let isActive: Bool
+    var isActive: Bool
     let createdAt: Date
     let lastUsed: Date
     

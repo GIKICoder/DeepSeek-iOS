@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import SnapKit
+import AppInfra
 
-public class ModelAddViewController: UIViewController {
+public class ModelAddViewController: AppViewController {
     
     // MARK: - Properties
     private let storageManager = ModelStorageManager.shared
@@ -28,10 +29,6 @@ public class ModelAddViewController: UIViewController {
     
     // Header
     private let headerView = UIView()
-    private let backButton = UIButton(type: .system)
-    private let titleLabel = UILabel()
-    private let subtitleLabel = UILabel()
-    private let addButton = UIButton(type: .system)
     
     // Sections
     private let activeModelsStackView = UIStackView()
@@ -67,7 +64,6 @@ public class ModelAddViewController: UIViewController {
         setupStackViews()
         
         // Add subviews
-        view.addSubview(headerView)
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
@@ -77,38 +73,11 @@ public class ModelAddViewController: UIViewController {
     }
     
     private func setupHeader() {
-        headerView.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 1.0, alpha: 1.0)
         
-        // Back button
-        backButton.setImage(UIImage(systemName: "arrow.left"), for: .normal)
-        backButton.tintColor = .darkGray
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        
-        // Title
-        titleLabel.text = "模型管理"
-        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        titleLabel.textColor = .black
-        
-        // Subtitle
-        subtitleLabel.text = "配置AI模型和API密钥"
-        subtitleLabel.font = UIFont.systemFont(ofSize: 14)
-        subtitleLabel.textColor = .gray
-        
-        // Add button
-        addButton.backgroundColor = .white
-        addButton.layer.cornerRadius = 16
-        addButton.layer.shadowColor = UIColor.black.cgColor
-        addButton.layer.shadowOffset = CGSize(width: 0, height: 1)
-        addButton.layer.shadowOpacity = 0.1
-        addButton.layer.shadowRadius = 2
-        addButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        addButton.tintColor = UIColor.systemBlue
-        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-        
-        headerView.addSubview(backButton)
-        headerView.addSubview(titleLabel)
-        headerView.addSubview(subtitleLabel)
-        headerView.addSubview(addButton)
+        addCloseNavigationBar(title: "模型管理")
+        navigationBar.setIgnoreStatusBar(true)
+        navigationBar.backgroundColor = UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.0)
+
     }
     
     private func setupStackViews() {
@@ -120,38 +89,10 @@ public class ModelAddViewController: UIViewController {
     }
     
     private func setupConstraints() {
-        // Header constraints
-        headerView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(80)
-        }
-        
-        backButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(24)
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(32)
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(backButton.snp.trailing).offset(12)
-            make.top.equalToSuperview().offset(12)
-        }
-        
-        subtitleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(titleLabel)
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
-        }
-        
-        addButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-24)
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(32)
-        }
         
         // Scroll view constraints
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom)
+            make.top.equalTo(navigationBar.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -540,8 +481,7 @@ public class ModelAddViewController: UIViewController {
         iconContainer.layer.cornerRadius = 12
         
         let iconImageView = UIImageView()
-        iconImageView.image = UIImage(systemName: provider.iconName)
-        iconImageView.tintColor = .gray
+        iconImageView.image = UIImage(named: provider.iconName) ?? UIImage(systemName: provider.iconName)
         iconImageView.contentMode = .scaleAspectFit
         
         iconContainer.addSubview(iconImageView)
@@ -745,33 +685,6 @@ public class ModelAddViewController: UIViewController {
     }
 
     // MARK: - Actions
-    @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @objc private func addButtonTapped() {
-        // Show alert to choose which provider to add
-        let alertController = UIAlertController(title: "添加模型", message: "选择要添加的AI模型厂商", preferredStyle: .actionSheet)
-        
-        let configuredProviderIds = Set(configurations.map { $0.providerId })
-        let availableProviders = ModelProvider.allProviders.filter { !configuredProviderIds.contains($0.id) }
-        
-        for provider in availableProviders {
-            let action = UIAlertAction(title: provider.displayName, style: .default) { [weak self] _ in
-                self?.presentAPIKeyInput(for: provider)
-            }
-            alertController.addAction(action)
-        }
-        
-        alertController.addAction(UIAlertAction(title: "取消", style: .cancel))
-        
-        if let popover = alertController.popoverPresentationController {
-            popover.sourceView = addButton
-            popover.sourceRect = addButton.bounds
-        }
-        
-        present(alertController, animated: true)
-    }
     
     @objc private func addModelButtonTapped(_ sender: UIButton) {
         let providerHashValue = sender.tag

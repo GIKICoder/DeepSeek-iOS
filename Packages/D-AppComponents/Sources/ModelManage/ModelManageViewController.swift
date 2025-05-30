@@ -78,34 +78,3 @@ public extension ModelManageViewController {
         return controller
     }
 }
-
-// MARK: - 使用示例
-/*
-// 在UIKit视图控制器中使用示例：
-
-class MainViewController: UIViewController {
-    
-    @IBAction func showModelManage(_ sender: UIButton) {
-        // 方式1: 直接推送到导航栈
-        let modelVC = ModelManageViewController()
-        navigationController?.pushViewController(modelVC, animated: true)
-        
-        // 方式2: 模态展示
-        let modelVC2 = ModelManageViewController.create(
-            onSave: { provider, apiKey, model, contextSize, temperature in
-                print("保存设置: \(provider.name), \(model)")
-                // 处理保存逻辑
-            },
-            onDismiss: {
-                print("用户取消了设置")
-            }
-        )
-        let navController = UINavigationController(rootViewController: modelVC2)
-        present(navController, animated: true)
-        
-        // 方式3: 使用便利方法
-        let wrappedVC = ModelManageViewController.wrappedInNavigationController()
-        present(wrappedVC, animated: true)
-    }
-}
-*/

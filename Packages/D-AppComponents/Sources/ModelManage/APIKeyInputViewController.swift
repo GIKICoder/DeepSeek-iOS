@@ -117,8 +117,7 @@ public class APIKeyInputViewController: UIViewController {
         iconContainer.backgroundColor = colorFromString(provider.iconColor).withAlphaComponent(0.1)
         iconContainer.layer.cornerRadius = 24
         
-        iconImageView.image = UIImage(systemName: provider.iconName)
-        iconImageView.tintColor = colorFromString(provider.iconColor)
+        iconImageView.image = UIImage(named: provider.iconName) ?? UIImage(systemName: provider.iconName)
         iconImageView.contentMode = .scaleAspectFit
         
         iconContainer.addSubview(iconImageView)

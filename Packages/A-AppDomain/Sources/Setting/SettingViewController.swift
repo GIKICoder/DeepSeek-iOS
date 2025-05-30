@@ -44,9 +44,9 @@ class SettingViewController: AppViewController {
     
     private func setupUI() {
 
-        view.backgroundColor = UIColor(hex: "#EEF5F3")
+        view.backgroundColor = UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.0)
         view.addSubview(nestedScrollView)
-        nestedScrollView.backgroundColor = UIColor(hex: "#EEF5F3")
+        nestedScrollView.backgroundColor  = UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.0)
         nestedScrollView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
@@ -280,7 +280,6 @@ class SettingViewController: AppViewController {
 extension SettingViewController {
     
     func gotoModelManage() {
-//        let wrappedVC = ModelManageViewController.wrappedInNavigationController()
         let vc = ModelAddViewController()
         present(vc, animated: true)
     }
