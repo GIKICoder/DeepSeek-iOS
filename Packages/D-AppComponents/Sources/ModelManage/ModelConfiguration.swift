@@ -32,7 +32,7 @@ public struct ModelProvider: Codable, Equatable {
             iconColor: "systemBlue",
             website: "https://anthropic.com",
             baseURL: "https://api.anthropic.com/v1",
-            description: "专注于AI安全的研究公司",
+            description: "Claude是由Anthropic开发的AI助手，专注于提供有用、无害且诚实的对话体验。",
             supportModels: ["claude-3-opus", "claude-3-sonnet", "claude-3-haiku"]
         ),
         ModelProvider(

@@ -76,7 +76,7 @@ public class ModelAddViewController: AppViewController {
         
         addCloseNavigationBar(title: "模型管理")
         navigationBar.setIgnoreStatusBar(true)
-        navigationBar.backgroundColor = UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.0)
+        navigationBar.setBackgroundColor(UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.0))
 
     }
     
@@ -470,7 +470,7 @@ public class ModelAddViewController: AppViewController {
     
     private func createAvailableModelCard(provider: ModelProvider) -> UIView {
         let cardView = UIView()
-        cardView.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
+        cardView.backgroundColor = .white
         cardView.layer.cornerRadius = 16
         cardView.layer.borderWidth = 1
         cardView.layer.borderColor = UIColor(white: 0.9, alpha: 1.0).cgColor
