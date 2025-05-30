@@ -83,7 +83,10 @@ public class ModelStorageManager {
                 selectedModel: config.selectedModel,
                 isActive: !config.isActive,
                 createdAt: config.createdAt,
-                lastUsed: Date()
+                lastUsed: Date(),
+                temperature: config.temperature,
+                topP: config.topP,
+                contextMessageLimit: config.contextMessageLimit
             )
             configurations[index] = newConfig
             

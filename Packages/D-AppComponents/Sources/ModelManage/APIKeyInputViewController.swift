@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 // MARK: - API Key Input View Controller
-public class APIKeyInputViewController: UIViewController {
+public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
     // MARK: - Properties
     private let provider: ModelProvider
@@ -42,7 +42,28 @@ public class APIKeyInputViewController: UIViewController {
     private let saveButton = UIButton()
     private let cancelButton = UIButton()
     
+    // Advanced Settings Sections
+    private let temperatureSection = UIView()
+    private let temperatureTitleLabel = UILabel()
+    private let temperatureValueLabel = UILabel()
+    private let temperatureSlider = UISlider()
+    
+    private let topPSection = UIView()
+    private let topPTitleLabel = UILabel()
+    private let topPValueLabel = UILabel()
+    private let topPSlider = UISlider()
+    
+    private let contextLimitSection = UIView()
+    private let contextLimitTitleLabel = UILabel()
+    private let contextLimitValueLabel = UILabel()
+    private let contextLimitSlider = UISlider()
+    
     private var selectedModel: String
+    
+    // Settings Values
+    private var temperature: Float = 0.7
+    private var topP: Float = 0.9
+    private var contextMessageLimit: Float = 100.0
     
     // MARK: - Lifecycle
     public init(provider: ModelProvider, existingConfiguration: ModelConfiguration? = nil) {
@@ -75,6 +96,22 @@ public class APIKeyInputViewController: UIViewController {
             apiKeyTextField.text = existingConfiguration.apiKey
             baseURLTextField.text = existingConfiguration.baseURL
             selectedModel = existingConfiguration.selectedModel
+            
+            // Load slider values
+            temperature = existingConfiguration.temperature
+            topP = existingConfiguration.topP
+            contextMessageLimit = existingConfiguration.contextMessageLimit
+            
+            // Update UI elements
+            temperatureSlider.value = temperature
+            topPSlider.value = topP
+            contextLimitSlider.value = contextMessageLimit
+            
+            // Update value labels
+            temperatureValueLabel.text = String(format: "%.1f", temperature)
+            topPValueLabel.text = String(format: "%.1f", topP)
+            updateContextLimitValueLabel()
+            
             updateModelButton()
             updateSaveButtonState()
             
@@ -151,12 +188,20 @@ public class APIKeyInputViewController: UIViewController {
         // Model Selection Section
         setupModelSection()
         
+        // Advanced Settings Sections
+        setupTemperatureSection()
+        setupTopPSection()
+        setupContextLimitSection()
+        
         // Info Section
         setupInfoSection()
         
         formStackView.addArrangedSubview(apiKeySection)
         formStackView.addArrangedSubview(baseURLSection)
         formStackView.addArrangedSubview(modelSection)
+        formStackView.addArrangedSubview(temperatureSection)
+        formStackView.addArrangedSubview(topPSection)
+        formStackView.addArrangedSubview(contextLimitSection)
         formStackView.addArrangedSubview(infoSection)
     }
     
@@ -177,6 +222,9 @@ public class APIKeyInputViewController: UIViewController {
         apiKeyTextField.backgroundColor = .clear
         apiKeyTextField.borderStyle = .none
         apiKeyTextField.returnKeyType = .done
+        apiKeyTextField.autocapitalizationType = .none
+        apiKeyTextField.autocorrectionType = .no
+        apiKeyTextField.delegate = self
         
         apiKeyContainer.addSubview(apiKeyTextField)
         
@@ -202,7 +250,8 @@ public class APIKeyInputViewController: UIViewController {
         baseURLTextField.keyboardType = .URL
         baseURLTextField.autocapitalizationType = .none
         baseURLTextField.autocorrectionType = .no
-        
+        baseURLTextField.returnKeyType = .done
+        baseURLTextField.delegate = self
         baseURLContainer.addSubview(baseURLTextField)
         
         baseURLSection.addSubview(baseURLTitleLabel)
@@ -241,6 +290,81 @@ public class APIKeyInputViewController: UIViewController {
         infoSection.addSubview(websiteButton)
     }
     
+    private func setupTemperatureSection() {
+        temperatureTitleLabel.text = "Temperature"
+        temperatureTitleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        temperatureTitleLabel.textColor = .label
+        
+        temperatureValueLabel.text = String(format: "%.2f", temperature)
+        temperatureValueLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        temperatureValueLabel.textColor = .secondaryLabel
+        temperatureValueLabel.backgroundColor = UIColor.systemGray5
+        temperatureValueLabel.textAlignment = .center
+        temperatureValueLabel.layer.cornerRadius = 6
+        temperatureValueLabel.clipsToBounds = true
+        
+        temperatureSlider.minimumValue = 0.0
+        temperatureSlider.maximumValue = 2.0
+        temperatureSlider.value = temperature
+        temperatureSlider.isContinuous = true
+        temperatureSlider.tintColor = .systemOrange
+        temperatureSlider.addTarget(self, action: #selector(temperatureSliderChanged), for: .valueChanged)
+        
+        temperatureSection.addSubview(temperatureTitleLabel)
+        temperatureSection.addSubview(temperatureValueLabel)
+        temperatureSection.addSubview(temperatureSlider)
+    }
+    
+    private func setupTopPSection() {
+        topPTitleLabel.text = "Top P"
+        topPTitleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        topPTitleLabel.textColor = .label
+        
+        topPValueLabel.text = String(format: "%.2f", topP)
+        topPValueLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        topPValueLabel.textColor = .secondaryLabel
+        topPValueLabel.backgroundColor = UIColor.systemGray5
+        topPValueLabel.textAlignment = .center
+        topPValueLabel.layer.cornerRadius = 6
+        topPValueLabel.clipsToBounds = true
+        
+        topPSlider.minimumValue = 0.0
+        topPSlider.maximumValue = 1.0
+        topPSlider.value = topP
+        topPSlider.isContinuous = true
+        topPSlider.tintColor = .systemBlue
+        topPSlider.addTarget(self, action: #selector(topPSliderChanged), for: .valueChanged)
+        
+        topPSection.addSubview(topPTitleLabel)
+        topPSection.addSubview(topPValueLabel)
+        topPSection.addSubview(topPSlider)
+    }
+    
+    private func setupContextLimitSection() {
+        contextLimitTitleLabel.text = "上下文的消息数量上限"
+        contextLimitTitleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        contextLimitTitleLabel.textColor = .label
+        
+        updateContextLimitValueLabel()
+        contextLimitValueLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        contextLimitValueLabel.textColor = .secondaryLabel
+        contextLimitValueLabel.backgroundColor = UIColor.systemGray5
+        contextLimitValueLabel.textAlignment = .center
+        contextLimitValueLabel.layer.cornerRadius = 6
+        contextLimitValueLabel.clipsToBounds = true
+        
+        contextLimitSlider.minimumValue = 0.0
+        contextLimitSlider.maximumValue = 510.0
+        contextLimitSlider.value = contextMessageLimit
+        contextLimitSlider.isContinuous = true
+        contextLimitSlider.tintColor = .systemGreen
+        contextLimitSlider.addTarget(self, action: #selector(contextLimitSliderChanged), for: .valueChanged)
+        
+        contextLimitSection.addSubview(contextLimitTitleLabel)
+        contextLimitSection.addSubview(contextLimitValueLabel)
+        contextLimitSection.addSubview(contextLimitSlider)
+    }
+    
     private func setupButtons() {
         saveButton.setTitle("保存配置", for: .normal)
         saveButton.backgroundColor = .systemBlue
@@ -276,6 +400,17 @@ public class APIKeyInputViewController: UIViewController {
         websiteButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Advanced Settings Components
+        temperatureTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        temperatureValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        temperatureSlider.translatesAutoresizingMaskIntoConstraints = false
+        topPTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        topPValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        topPSlider.translatesAutoresizingMaskIntoConstraints = false
+        contextLimitTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        contextLimitValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        contextLimitSlider.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             // Scroll View
@@ -379,6 +514,54 @@ public class APIKeyInputViewController: UIViewController {
             websiteButton.trailingAnchor.constraint(equalTo: infoSection.trailingAnchor),
             websiteButton.bottomAnchor.constraint(equalTo: infoSection.bottomAnchor),
             
+            // Temperature Section
+            temperatureTitleLabel.topAnchor.constraint(equalTo: temperatureSection.topAnchor),
+            temperatureTitleLabel.leadingAnchor.constraint(equalTo: temperatureSection.leadingAnchor),
+            
+            temperatureValueLabel.topAnchor.constraint(equalTo: temperatureSection.topAnchor),
+            temperatureValueLabel.trailingAnchor.constraint(equalTo: temperatureSection.trailingAnchor),
+            temperatureValueLabel.leadingAnchor.constraint(greaterThanOrEqualTo: temperatureTitleLabel.trailingAnchor, constant: 8),
+            temperatureValueLabel.widthAnchor.constraint(equalToConstant: 60),
+            temperatureValueLabel.heightAnchor.constraint(equalToConstant: 28),
+            
+            temperatureSlider.topAnchor.constraint(equalTo: temperatureTitleLabel.bottomAnchor, constant: 10),
+            temperatureSlider.leadingAnchor.constraint(equalTo: temperatureSection.leadingAnchor),
+            temperatureSlider.trailingAnchor.constraint(equalTo: temperatureSection.trailingAnchor),
+            temperatureSlider.bottomAnchor.constraint(equalTo: temperatureSection.bottomAnchor),
+            temperatureSlider.heightAnchor.constraint(equalToConstant: 30),
+            
+            // Top P Section
+            topPTitleLabel.topAnchor.constraint(equalTo: topPSection.topAnchor),
+            topPTitleLabel.leadingAnchor.constraint(equalTo: topPSection.leadingAnchor),
+            
+            topPValueLabel.topAnchor.constraint(equalTo: topPSection.topAnchor),
+            topPValueLabel.trailingAnchor.constraint(equalTo: topPSection.trailingAnchor),
+            topPValueLabel.leadingAnchor.constraint(greaterThanOrEqualTo: topPTitleLabel.trailingAnchor, constant: 8),
+            topPValueLabel.widthAnchor.constraint(equalToConstant: 60),
+            topPValueLabel.heightAnchor.constraint(equalToConstant: 28),
+            
+            topPSlider.topAnchor.constraint(equalTo: topPTitleLabel.bottomAnchor, constant: 10),
+            topPSlider.leadingAnchor.constraint(equalTo: topPSection.leadingAnchor),
+            topPSlider.trailingAnchor.constraint(equalTo: topPSection.trailingAnchor),
+            topPSlider.bottomAnchor.constraint(equalTo: topPSection.bottomAnchor),
+            topPSlider.heightAnchor.constraint(equalToConstant: 30),
+            
+            // Context Limit Section
+            contextLimitTitleLabel.topAnchor.constraint(equalTo: contextLimitSection.topAnchor),
+            contextLimitTitleLabel.leadingAnchor.constraint(equalTo: contextLimitSection.leadingAnchor),
+            
+            contextLimitValueLabel.topAnchor.constraint(equalTo: contextLimitSection.topAnchor),
+            contextLimitValueLabel.trailingAnchor.constraint(equalTo: contextLimitSection.trailingAnchor),
+            contextLimitValueLabel.leadingAnchor.constraint(greaterThanOrEqualTo: contextLimitTitleLabel.trailingAnchor, constant: 8),
+            contextLimitValueLabel.widthAnchor.constraint(equalToConstant: 80),
+            contextLimitValueLabel.heightAnchor.constraint(equalToConstant: 28),
+            
+            contextLimitSlider.topAnchor.constraint(equalTo: contextLimitTitleLabel.bottomAnchor, constant: 10),
+            contextLimitSlider.leadingAnchor.constraint(equalTo: contextLimitSection.leadingAnchor),
+            contextLimitSlider.trailingAnchor.constraint(equalTo: contextLimitSection.trailingAnchor),
+            contextLimitSlider.bottomAnchor.constraint(equalTo: contextLimitSection.bottomAnchor),
+            contextLimitSlider.heightAnchor.constraint(equalToConstant: 30),
+            
             // Save Button
             saveButton.topAnchor.constraint(equalTo: formStackView.bottomAnchor, constant: 32),
             saveButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
@@ -403,6 +586,14 @@ public class APIKeyInputViewController: UIViewController {
         // Add text field delegate for validation
         apiKeyTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         baseURLTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
+        // Add tap gesture to dismiss keyboard
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+        
+        // Add scroll view delegate to dismiss keyboard on scroll
+        scrollView.delegate = self
     }
     
     // MARK: - Actions
@@ -427,7 +618,10 @@ public class APIKeyInputViewController: UIViewController {
                 selectedModel: selectedModel,
                 isActive: existingConfig.isActive,
                 createdAt: existingConfig.createdAt,
-                lastUsed: Date()
+                lastUsed: Date(),
+                temperature: temperature,
+                topP: topP,
+                contextMessageLimit: contextMessageLimit
             )
         } else {
             // Create new configuration
@@ -439,7 +633,10 @@ public class APIKeyInputViewController: UIViewController {
                 selectedModel: selectedModel,
                 isActive: true,
                 createdAt: Date(),
-                lastUsed: Date()
+                lastUsed: Date(),
+                temperature: temperature,
+                topP: topP,
+                contextMessageLimit: contextMessageLimit
             )
         }
         
@@ -486,6 +683,36 @@ public class APIKeyInputViewController: UIViewController {
         updateSaveButtonState()
     }
     
+    @objc private func temperatureSliderChanged(_ sender: UISlider) {
+        temperature = sender.value
+        temperatureValueLabel.text = String(format: "%.2f", temperature)
+    }
+    
+    @objc private func topPSliderChanged(_ sender: UISlider) {
+        topP = sender.value
+        topPValueLabel.text = String(format: "%.2f", topP)
+    }
+    
+    @objc private func contextLimitSliderChanged(_ sender: UISlider) {
+        contextMessageLimit = sender.value
+        updateContextLimitValueLabel()
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // MARK: - UITextFieldDelegate
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        view.endEditing(true)
+    }
+    
     // MARK: - Helper Methods
     private func updateModelButton() {
         modelPickerButton.setTitle(selectedModel, for: .normal)
@@ -511,6 +738,14 @@ public class APIKeyInputViewController: UIViewController {
         let hasApiKey = !(apiKeyTextField.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true)
         saveButton.isEnabled = hasApiKey
         saveButton.alpha = hasApiKey ? 1.0 : 0.5
+    }
+    
+    private func updateContextLimitValueLabel() {
+        if contextMessageLimit > 500 {
+            contextLimitValueLabel.text = "无限制"
+        } else {
+            contextLimitValueLabel.text = "\(Int(contextMessageLimit))"
+        }
     }
     
     private func colorFromString(_ colorString: String) -> UIColor {

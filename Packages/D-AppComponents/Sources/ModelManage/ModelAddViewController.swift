@@ -360,7 +360,7 @@ public class ModelAddViewController: AppViewController {
         iconContainer.layer.cornerRadius = 12
         
         let iconImageView = UIImageView()
-        iconImageView.image = UIImage(systemName: provider.iconName)
+        iconImageView.image = UIImage(named: provider.iconName) ?? UIImage(systemName: provider.iconName)
         iconImageView.tintColor = iconColor
         iconImageView.contentMode = .scaleAspectFit
         

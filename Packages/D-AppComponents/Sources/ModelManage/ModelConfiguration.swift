@@ -82,6 +82,11 @@ public struct ModelConfiguration: Codable, Equatable {
     let createdAt: Date
     let lastUsed: Date
     
+    // Advanced Settings
+    let temperature: Float
+    let topP: Float
+    let contextMessageLimit: Float
+    
     var provider: ModelProvider? {
         ModelProvider.allProviders.first { $0.id == providerId }
     }

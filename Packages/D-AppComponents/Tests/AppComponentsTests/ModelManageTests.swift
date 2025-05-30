@@ -47,7 +47,10 @@ final class ModelManageTests: XCTestCase {
             selectedModel: "gpt-4",
             isActive: true,
             createdAt: Date(),
-            lastUsed: Date()
+            lastUsed: Date(),
+            temperature: 0.7,
+            topP: 0.9,
+            contextMessageLimit: 100.0
         )
         
         XCTAssertEqual(configuration.providerId, "openai")
