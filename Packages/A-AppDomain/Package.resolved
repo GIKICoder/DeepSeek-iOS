@@ -1,5 +1,5 @@
 {
-  "originHash" : "0b1ee397c6eb1a676b2246c8840695b02a96e157e0ab9cebf641b41f8dd4e077",
+  "originHash" : "4fd2b2d1f6400d0f0217af75a4d209ec6396bf31432da2987d1956da75687828",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/devicekit/DeviceKit.git",
       "state" : {
-        "revision" : "7ff5331960151aec74fb422e1d45f54ef6cc086d",
-        "version" : "5.5.0"
+        "revision" : "513b9d7e7a1bd46504a1009bbab943b75ce2f195",
+        "version" : "5.6.0"
       }
     },
     {
@@ -44,6 +44,15 @@
       "state" : {
         "revision" : "46434cd816f035271beb16d80f7bc91381cbd8e4",
         "version" : "3.5.1"
+      }
+    },
+    {
+      "identity" : "gmarkdown",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GIKICoder/GMarkdown.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "8743d4265df74f6c79483faea60729aac5e0c84a"
       }
     },
     {
@@ -83,12 +92,48 @@
       }
     },
     {
+      "identity" : "lookinserver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/QMUI/LookinServer",
+      "state" : {
+        "revision" : "e553d1b689d147817dc54ad5c28fcff71e860101",
+        "version" : "1.2.8"
+      }
+    },
+    {
       "identity" : "lottie-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/airbnb/lottie-ios.git",
       "state" : {
-        "revision" : "047aa81b77adcbf583a966dfef620d17650cc656",
-        "version" : "4.5.1"
+        "revision" : "a004050748dc197c56256a14dca49a035d74726c",
+        "version" : "4.5.2"
+      }
+    },
+    {
+      "identity" : "macaw",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/exyte/Macaw.git",
+      "state" : {
+        "revision" : "29ec199cbc9c814f8ceffc1a33b8775b7349dcdd",
+        "version" : "0.9.10"
+      }
+    },
+    {
+      "identity" : "mathjaxswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/colinc86/MathJaxSwift.git",
+      "state" : {
+        "revision" : "e23d6eab941da699ac4a60fb0e60f3ba5c937459",
+        "version" : "3.4.0"
+      }
+    },
+    {
+      "identity" : "mpitextkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/meitu/MPITextKit.git",
+      "state" : {
+        "revision" : "6b2e616f2648bcb7e3bc1c739bac3fb4a2626eec",
+        "version" : "0.2.4"
       }
     },
     {
@@ -105,8 +150,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "10d06f6a33bafae8c164fbfd1f03391f6d4692b3",
-        "version" : "5.20.0"
+        "revision" : "cac9a55a3ae92478a2c95042dcc8d9695d2129ca",
+        "version" : "5.21.0"
       }
     },
     {
@@ -137,6 +182,24 @@
       }
     },
     {
+      "identity" : "swift-cmark",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-cmark.git",
+      "state" : {
+        "revision" : "b022b08312decdc46585e0b3440d97f6f22ef703",
+        "version" : "0.6.0"
+      }
+    },
+    {
+      "identity" : "swift-markdown",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-markdown.git",
+      "state" : {
+        "revision" : "ea79e83c8744d2b50b0dc2d5bbd1e857e1253bf9",
+        "version" : "0.6.0"
+      }
+    },
+    {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-syntax.git",
@@ -146,12 +209,30 @@
       }
     },
     {
+      "identity" : "swiftmath",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mgriebling/SwiftMath.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1e49ab4e85eeb0986d0a63d1ca68f8a4b0b964d5"
+      }
+    },
+    {
+      "identity" : "swxmlhash",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/drmohundro/SWXMLHash",
+      "state" : {
+        "revision" : "6469881a3f30417c5bb02404ea4b69207f297592",
+        "version" : "6.0.0"
+      }
+    },
+    {
       "identity" : "tiercel",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Danie1s/Tiercel.git",
       "state" : {
-        "revision" : "203ef077ed3887cb8cb5729446ef018f890a8a9a",
-        "version" : "3.2.5"
+        "revision" : "7a0c4159651062911651917f892e5dc0a9caf8bb",
+        "version" : "3.2.6"
       }
     },
     {

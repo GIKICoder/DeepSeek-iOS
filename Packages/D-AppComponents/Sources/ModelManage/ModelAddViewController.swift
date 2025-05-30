@@ -11,6 +11,17 @@ import SnapKit
 
 public class ModelAddViewController: UIViewController {
     
+    // MARK: - Properties
+    private let storageManager = ModelStorageManager.shared
+    private var configurations: [ModelConfiguration] = []
+    private var usageStats: UsageStatistics = UsageStatistics(
+        todayRequests: 0,
+        monthlyRequests: 0,
+        monthlyLimit: 10000,
+        averageResponseTime: 0.0,
+        lastUpdated: Date()
+    )
+    
     // MARK: - UI Components
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -24,7 +35,6 @@ public class ModelAddViewController: UIViewController {
     
     // Sections
     private let activeModelsStackView = UIStackView()
-    private let localModelsStackView = UIStackView()
     private let availableModelsStackView = UIStackView()
     private let usageStatsView = UIView()
     
@@ -33,7 +43,13 @@ public class ModelAddViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
+        loadData()
         setupData()
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshData()
     }
     
     // MARK: - Setup Methods
@@ -56,7 +72,6 @@ public class ModelAddViewController: UIViewController {
         scrollView.addSubview(contentView)
         
         contentView.addSubview(activeModelsStackView)
-        contentView.addSubview(localModelsStackView)
         contentView.addSubview(availableModelsStackView)
         contentView.addSubview(usageStatsView)
     }
@@ -97,7 +112,7 @@ public class ModelAddViewController: UIViewController {
     }
     
     private func setupStackViews() {
-        [activeModelsStackView, localModelsStackView, availableModelsStackView].forEach { stackView in
+        [activeModelsStackView, availableModelsStackView].forEach { stackView in
             stackView.axis = .vertical
             stackView.spacing = 12
             stackView.alignment = .fill
@@ -151,13 +166,8 @@ public class ModelAddViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(24)
         }
         
-        localModelsStackView.snp.makeConstraints { make in
-            make.top.equalTo(activeModelsStackView.snp.bottom).offset(32)
-            make.leading.trailing.equalToSuperview().inset(24)
-        }
-        
         availableModelsStackView.snp.makeConstraints { make in
-            make.top.equalTo(localModelsStackView.snp.bottom).offset(32)
+            make.top.equalTo(activeModelsStackView.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview().inset(24)
         }
         
@@ -168,95 +178,70 @@ public class ModelAddViewController: UIViewController {
         }
     }
     
+    // MARK: - Data Management
+    private func loadData() {
+        configurations = storageManager.getAllConfigurations()
+        usageStats = storageManager.getUsageStatistics()
+    }
+    
+    private func refreshData() {
+        loadData()
+        setupData()
+    }
+    
     private func setupData() {
         setupActiveModels()
-        setupLocalModels()
         setupAvailableModels()
         setupUsageStats()
     }
     
     private func setupActiveModels() {
-        let sectionHeader = createSectionHeader(title: "已配置模型")
+        // Clear existing views
+        activeModelsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        let sectionHeader = createSectionHeader(title: configurations.isEmpty ? "暂无已配置模型" : "已配置模型")
         activeModelsStackView.addArrangedSubview(sectionHeader)
         
-        // GPT-4
-        let gpt4Card = createActiveModelCard(
-            iconName: "brain",
-            iconColor: .systemGreen,
-            title: "GPT-4",
-            subtitle: "OpenAI",
-            todayUsage: "127次",
-            responseTime: "1.2s",
-            isConnected: true
-        )
-        activeModelsStackView.addArrangedSubview(gpt4Card)
-        
-        // Claude
-        let claudeCard = createActiveModelCard(
-            iconName: "robot",
-            iconColor: .systemBlue,
-            title: "Claude",
-            subtitle: "Anthropic",
-            todayUsage: "43次",
-            responseTime: "0.9s",
-            isConnected: true
-        )
-        activeModelsStackView.addArrangedSubview(claudeCard)
-        
-        // DeepSeek
-        let deepSeekCard = createActiveModelCard(
-            iconName: "magnifyingglass",
-            iconColor: .systemPurple,
-            title: "DeepSeek",
-            subtitle: "DeepSeek AI",
-            todayUsage: "89次",
-            responseTime: "0.7s",
-            isConnected: true
-        )
-        activeModelsStackView.addArrangedSubview(deepSeekCard)
-    }
-    
-    private func setupLocalModels() {
-        let sectionHeader = createSectionHeader(title: "本地模型")
-        localModelsStackView.addArrangedSubview(sectionHeader)
-        
-        let localCard = createActiveModelCard(
-            iconName: "cpu",
-            iconColor: .systemOrange,
-            title: "本地助手",
-            subtitle: "实时提示模型",
-            todayUsage: "2.1GB",
-            responseTime: "0.1s",
-            isConnected: true,
-            usageLabel: "内存使用"
-        )
-        localModelsStackView.addArrangedSubview(localCard)
+        if configurations.isEmpty {
+            let emptyView = createEmptyStateView(
+                title: "还没有配置任何模型",
+                subtitle: "点击下方的模型厂商开始配置",
+                iconName: "plus.circle"
+            )
+            activeModelsStackView.addArrangedSubview(emptyView)
+        } else {
+            for config in configurations {
+                if let provider = config.provider {
+                    let card = createActiveModelCard(
+                        config: config,
+                        provider: provider
+                    )
+                    activeModelsStackView.addArrangedSubview(card)
+                }
+            }
+        }
     }
     
     private func setupAvailableModels() {
+        // Clear existing views
+        availableModelsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
         let sectionHeader = createSectionHeader(title: "可添加模型")
         availableModelsStackView.addArrangedSubview(sectionHeader)
         
-        // Gemini
-        let geminiCard = createAvailableModelCard(
-            iconName: "gem",
-            title: "Gemini Pro",
-            subtitle: "Google AI",
-            buttonTitle: "添加"
-        )
-        availableModelsStackView.addArrangedSubview(geminiCard)
+        let configuredProviderIds = Set(configurations.map { $0.providerId })
+        let availableProviders = ModelProvider.allProviders.filter { !configuredProviderIds.contains($0.id) }
         
-        // Custom Model
-        let customCard = createAvailableModelCard(
-            iconName: "plus",
-            title: "自定义模型",
-            subtitle: "添加其他API",
-            buttonTitle: "配置"
-        )
-        availableModelsStackView.addArrangedSubview(customCard)
+        for provider in availableProviders {
+            let card = createAvailableModelCard(provider: provider)
+            availableModelsStackView.addArrangedSubview(card)
+        }
     }
     
     private func setupUsageStats() {
+        // Clear existing views
+        usageStatsView.subviews.forEach { $0.removeFromSuperview() }
+        
         let sectionHeader = createSectionHeader(title: "使用统计")
         usageStatsView.addSubview(sectionHeader)
         
@@ -273,8 +258,16 @@ public class ModelAddViewController: UIViewController {
         topStatsStack.axis = .horizontal
         topStatsStack.distribution = .fillEqually
         
-        let todayRequestsView = createStatView(value: "259", label: "今日总请求", color: .systemBlue)
-        let avgResponseView = createStatView(value: "0.9s", label: "平均响应", color: .systemGreen)
+        let todayRequestsView = createStatView(
+            value: "\(usageStats.todayRequests)", 
+            label: "今日总请求", 
+            color: .systemBlue
+        )
+        let avgResponseView = createStatView(
+            value: String(format: "%.1fs", usageStats.averageResponseTime), 
+            label: "平均响应", 
+            color: .systemGreen
+        )
         
         topStatsStack.addArrangedSubview(todayRequestsView)
         topStatsStack.addArrangedSubview(avgResponseView)
@@ -286,12 +279,13 @@ public class ModelAddViewController: UIViewController {
         monthlyLabel.textColor = .gray
         
         let usageLabel = UILabel()
-        usageLabel.text = "7,432 / 10,000"
+        usageLabel.text = "\(usageStats.monthlyRequests) / \(usageStats.monthlyLimit)"
         usageLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         usageLabel.textColor = .black
         
         let progressView = UIProgressView(progressViewStyle: .default)
-        progressView.progress = 0.74
+        let progress = Float(usageStats.monthlyRequests) / Float(usageStats.monthlyLimit)
+        progressView.progress = min(progress, 1.0)
         progressView.progressTintColor = .systemBlue
         progressView.trackTintColor = UIColor(white: 0.9, alpha: 1.0)
         progressView.layer.cornerRadius = 4
@@ -356,16 +350,60 @@ public class ModelAddViewController: UIViewController {
         return label
     }
     
-    private func createActiveModelCard(
-        iconName: String,
-        iconColor: UIColor,
-        title: String,
-        subtitle: String,
-        todayUsage: String,
-        responseTime: String,
-        isConnected: Bool,
-        usageLabel: String = "今日使用"
-    ) -> UIView {
+    private func createEmptyStateViewv2(title: String, subtitle: String, iconName: String) -> UIView {
+        let containerView = UIView()
+        containerView.backgroundColor = .white
+        containerView.layer.cornerRadius = 16
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        containerView.layer.shadowOpacity = 0.05
+        containerView.layer.shadowRadius = 4
+        
+        let iconImageView = UIImageView()
+        iconImageView.image = UIImage(systemName: iconName)
+        iconImageView.tintColor = .systemGray3
+        iconImageView.contentMode = .scaleAspectFit
+        
+        let titleLabel = UILabel()
+        titleLabel.text = title
+        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        titleLabel.textColor = .secondaryLabel
+        titleLabel.textAlignment = .center
+        
+        let subtitleLabel = UILabel()
+        subtitleLabel.text = subtitle
+        subtitleLabel.font = UIFont.systemFont(ofSize: 14)
+        subtitleLabel.textColor = .tertiaryLabel
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.numberOfLines = 0
+        
+        containerView.addSubview(iconImageView)
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(subtitleLabel)
+        
+        iconImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(32)
+            make.width.height.equalTo(48)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(iconImageView.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(24)
+        }
+        
+        subtitleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().offset(-32)
+        }
+        
+        return containerView
+    }
+    
+    private func createActiveModelCard(config: ModelConfiguration, provider: ModelProvider) -> UIView {
         let cardView = UIView()
         cardView.backgroundColor = .white
         cardView.layer.cornerRadius = 16
@@ -376,11 +414,12 @@ public class ModelAddViewController: UIViewController {
         
         // Icon
         let iconContainer = UIView()
+        let iconColor = colorFromString(provider.iconColor)
         iconContainer.backgroundColor = iconColor.withAlphaComponent(0.1)
         iconContainer.layer.cornerRadius = 12
         
         let iconImageView = UIImageView()
-        iconImageView.image = UIImage(systemName: iconName)
+        iconImageView.image = UIImage(systemName: provider.iconName)
         iconImageView.tintColor = iconColor
         iconImageView.contentMode = .scaleAspectFit
         
@@ -388,33 +427,37 @@ public class ModelAddViewController: UIViewController {
         
         // Labels
         let titleLabel = UILabel()
-        titleLabel.text = title
+        titleLabel.text = provider.displayName
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         titleLabel.textColor = .black
         
         let subtitleLabel = UILabel()
-        subtitleLabel.text = subtitle
+        subtitleLabel.text = config.selectedModel
         subtitleLabel.font = UIFont.systemFont(ofSize: 14)
         subtitleLabel.textColor = .gray
         
         // Status
         let statusDot = UIView()
-        statusDot.backgroundColor = isConnected ? .systemGreen : .systemRed
+        statusDot.backgroundColor = config.isActive ? .systemGreen : .systemOrange
         statusDot.layer.cornerRadius = 4
         
         let statusLabel = UILabel()
-        statusLabel.text = isConnected ? "已连接" : "未连接"
+        statusLabel.text = config.isActive ? "已启用" : "已禁用"
         statusLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        statusLabel.textColor = isConnected ? .systemGreen : .systemRed
-        
-        // Stats
-        let usageStatView = createStatView(value: todayUsage, label: usageLabel, color: .black, isSmall: true)
-        let responseStatView = createStatView(value: responseTime, label: "响应时间", color: .black, isSmall: true)
+        statusLabel.textColor = config.isActive ? .systemGreen : .systemOrange
         
         // Settings button
         let settingsButton = UIButton(type: .system)
         settingsButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
         settingsButton.tintColor = .gray
+        
+        // Toggle button
+        let toggleButton = UIButton(type: .system)
+        toggleButton.setTitle(config.isActive ? "禁用" : "启用", for: .normal)
+        toggleButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        toggleButton.backgroundColor = config.isActive ? .systemRed : .systemGreen
+        toggleButton.setTitleColor(.white, for: .normal)
+        toggleButton.layer.cornerRadius = 8
         
         // Add subviews
         cardView.addSubview(iconContainer)
@@ -422,9 +465,15 @@ public class ModelAddViewController: UIViewController {
         cardView.addSubview(subtitleLabel)
         cardView.addSubview(statusDot)
         cardView.addSubview(statusLabel)
-        cardView.addSubview(usageStatView)
-        cardView.addSubview(responseStatView)
         cardView.addSubview(settingsButton)
+        cardView.addSubview(toggleButton)
+        
+        // Actions
+        settingsButton.addTarget(self, action: #selector(settingsButtonTapped(_:)), for: .touchUpInside)
+        settingsButton.tag = provider.id.hashValue
+        
+        toggleButton.addTarget(self, action: #selector(toggleButtonTapped(_:)), for: .touchUpInside)
+        toggleButton.tag = provider.id.hashValue
         
         // Constraints
         iconContainer.snp.makeConstraints { make in
@@ -458,32 +507,27 @@ public class ModelAddViewController: UIViewController {
             make.centerY.equalTo(titleLabel)
         }
         
-        usageStatView.snp.makeConstraints { make in
-            make.leading.equalTo(iconContainer)
-            make.top.equalTo(iconContainer.snp.bottom).offset(16)
+        toggleButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-16)
             make.bottom.equalToSuperview().offset(-16)
-        }
-        
-        responseStatView.snp.makeConstraints { make in
-            make.leading.equalTo(usageStatView.snp.trailing).offset(32)
-            make.centerY.equalTo(usageStatView)
+            make.width.equalTo(60)
+            make.height.equalTo(32)
         }
         
         settingsButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-16)
-            make.centerY.equalTo(usageStatView)
+            make.trailing.equalTo(toggleButton.snp.leading).offset(-12)
+            make.centerY.equalTo(toggleButton)
             make.width.height.equalTo(24)
+        }
+        
+        cardView.snp.makeConstraints { make in
+            make.height.equalTo(100)
         }
         
         return cardView
     }
     
-    private func createAvailableModelCard(
-        iconName: String,
-        title: String,
-        subtitle: String,
-        buttonTitle: String
-    ) -> UIView {
+    private func createAvailableModelCard(provider: ModelProvider) -> UIView {
         let cardView = UIView()
         cardView.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
         cardView.layer.cornerRadius = 16
@@ -496,7 +540,7 @@ public class ModelAddViewController: UIViewController {
         iconContainer.layer.cornerRadius = 12
         
         let iconImageView = UIImageView()
-        iconImageView.image = UIImage(systemName: iconName)
+        iconImageView.image = UIImage(systemName: provider.iconName)
         iconImageView.tintColor = .gray
         iconImageView.contentMode = .scaleAspectFit
         
@@ -504,22 +548,27 @@ public class ModelAddViewController: UIViewController {
         
         // Labels
         let titleLabel = UILabel()
-        titleLabel.text = title
+        titleLabel.text = provider.displayName
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         titleLabel.textColor = .darkGray
         
         let subtitleLabel = UILabel()
-        subtitleLabel.text = subtitle
+        subtitleLabel.text = provider.description
         subtitleLabel.font = UIFont.systemFont(ofSize: 14)
         subtitleLabel.textColor = .gray
+        subtitleLabel.numberOfLines = 2
         
         // Button
         let actionButton = UIButton(type: .system)
-        actionButton.setTitle(buttonTitle, for: .normal)
+        actionButton.setTitle("添加", for: .normal)
         actionButton.backgroundColor = .systemBlue
         actionButton.setTitleColor(.white, for: .normal)
         actionButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         actionButton.layer.cornerRadius = 12
+        
+        // Add tap action
+        actionButton.addTarget(self, action: #selector(addModelButtonTapped(_:)), for: .touchUpInside)
+        actionButton.tag = provider.id.hashValue
         
         // Add subviews
         cardView.addSubview(iconContainer)
@@ -542,11 +591,13 @@ public class ModelAddViewController: UIViewController {
         titleLabel.snp.makeConstraints { make in
             make.leading.equalTo(iconContainer.snp.trailing).offset(12)
             make.top.equalToSuperview().offset(20)
+            make.trailing.equalTo(actionButton.snp.leading).offset(-12)
         }
         
         subtitleLabel.snp.makeConstraints { make in
             make.leading.equalTo(titleLabel)
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.trailing.equalTo(titleLabel)
             make.bottom.equalToSuperview().offset(-20)
         }
         
@@ -555,6 +606,10 @@ public class ModelAddViewController: UIViewController {
             make.centerY.equalToSuperview()
             make.width.equalTo(60)
             make.height.equalTo(32)
+        }
+        
+        cardView.snp.makeConstraints { make in
+            make.height.equalTo(88)
         }
         
         return cardView
@@ -590,13 +645,177 @@ public class ModelAddViewController: UIViewController {
         return container
     }
     
+    // MARK: - Helper Methods
+    private func colorFromString(_ colorString: String) -> UIColor {
+        switch colorString.lowercased() {
+        case "blue", "#007AFF":
+            return .systemBlue
+        case "green", "#34C759":
+            return .systemGreen
+        case "orange", "#FF9500":
+            return .systemOrange
+        case "red", "#FF3B30":
+            return .systemRed
+        case "purple", "#AF52DE":
+            return .systemPurple
+        case "pink", "#FF2D92":
+            return .systemPink
+        case "indigo", "#5856D6":
+            return .systemIndigo
+        case "teal", "#30B0C7":
+            return .systemTeal
+        default:
+            return .systemBlue
+        }
+    }
+    
+    private func createEmptyStateView(title: String, subtitle: String, iconName: String) -> UIView {
+        let container = UIView()
+        container.backgroundColor = .white
+        container.layer.cornerRadius = 16
+        container.layer.shadowColor = UIColor.black.cgColor
+        container.layer.shadowOffset = CGSize(width: 0, height: 1)
+        container.layer.shadowOpacity = 0.05
+        container.layer.shadowRadius = 4
+        
+        let iconImageView = UIImageView()
+        iconImageView.image = UIImage(systemName: iconName)
+        iconImageView.tintColor = .lightGray
+        iconImageView.contentMode = .scaleAspectFit
+        
+        let titleLabel = UILabel()
+        titleLabel.text = title
+        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        titleLabel.textColor = .darkGray
+        titleLabel.textAlignment = .center
+        
+        let subtitleLabel = UILabel()
+        subtitleLabel.text = subtitle
+        subtitleLabel.font = UIFont.systemFont(ofSize: 14)
+        subtitleLabel.textColor = .lightGray
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.numberOfLines = 0
+        
+        container.addSubview(iconImageView)
+        container.addSubview(titleLabel)
+        container.addSubview(subtitleLabel)
+        
+        iconImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(24)
+            make.width.height.equalTo(48)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(iconImageView.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
+        
+        subtitleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().offset(-24)
+        }
+        
+        return container
+    }
+    
+    private func presentAPIKeyInput(for provider: ModelProvider) {
+        let apiKeyVC = APIKeyInputViewController(provider: provider)
+        apiKeyVC.onCompletion = { [weak self] configuration in
+            self?.storageManager.saveConfiguration(configuration)
+            self?.refreshData()
+        }
+        
+        let navController = UINavigationController(rootViewController: apiKeyVC)
+        navController.modalPresentationStyle = .pageSheet
+        
+        if #available(iOS 15.0, *) {
+            if let sheet = navController.sheetPresentationController {
+                sheet.detents = [.medium(), .large()]
+                sheet.prefersGrabberVisible = true
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        present(navController, animated: true)
+    }
+
     // MARK: - Actions
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
     
     @objc private func addButtonTapped() {
-        // Handle add model action
-        print("Add model tapped")
+        // Show alert to choose which provider to add
+        let alertController = UIAlertController(title: "添加模型", message: "选择要添加的AI模型厂商", preferredStyle: .actionSheet)
+        
+        let configuredProviderIds = Set(configurations.map { $0.providerId })
+        let availableProviders = ModelProvider.allProviders.filter { !configuredProviderIds.contains($0.id) }
+        
+        for provider in availableProviders {
+            let action = UIAlertAction(title: provider.displayName, style: .default) { [weak self] _ in
+                self?.presentAPIKeyInput(for: provider)
+            }
+            alertController.addAction(action)
+        }
+        
+        alertController.addAction(UIAlertAction(title: "取消", style: .cancel))
+        
+        if let popover = alertController.popoverPresentationController {
+            popover.sourceView = addButton
+            popover.sourceRect = addButton.bounds
+        }
+        
+        present(alertController, animated: true)
+    }
+    
+    @objc private func addModelButtonTapped(_ sender: UIButton) {
+        let providerHashValue = sender.tag
+        if let provider = ModelProvider.allProviders.first(where: { $0.id.hashValue == providerHashValue }) {
+            presentAPIKeyInput(for: provider)
+        }
+    }
+    
+    @objc private func settingsButtonTapped(_ sender: UIButton) {
+        let providerHashValue = sender.tag
+        if let provider = ModelProvider.allProviders.first(where: { $0.id.hashValue == providerHashValue }),
+           let config = configurations.first(where: { $0.providerId == provider.id }) {
+            
+            // Present settings for existing configuration
+            let apiKeyVC = APIKeyInputViewController(provider: provider, existingConfiguration: config)
+            apiKeyVC.onCompletion = { [weak self] updatedConfig in
+                self?.storageManager.saveConfiguration(updatedConfig)
+                self?.refreshData()
+            }
+            
+            let navController = UINavigationController(rootViewController: apiKeyVC)
+            navController.modalPresentationStyle = .pageSheet
+            
+            if #available(iOS 15.0, *) {
+                if let sheet = navController.sheetPresentationController {
+                    sheet.detents = [.medium(), .large()]
+                    sheet.prefersGrabberVisible = true
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+            
+            present(navController, animated: true)
+        }
+    }
+    
+    @objc private func toggleButtonTapped(_ sender: UIButton) {
+        let providerHashValue = sender.tag
+        if let provider = ModelProvider.allProviders.first(where: { $0.id.hashValue == providerHashValue }),
+           var config = configurations.first(where: { $0.providerId == provider.id }) {
+            
+            config.isActive.toggle()
+            storageManager.saveConfiguration(config)
+            refreshData()
+        }
     }
 }

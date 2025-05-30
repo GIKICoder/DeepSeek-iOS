@@ -1,13 +1,13 @@
 import SwiftUI
 
-public struct ModelProvider: Identifiable, Hashable {
+public struct ModelProviderV2: Identifiable, Hashable {
     public let id = UUID()
     public let name: String
     public let models: [String]
 }
 
 public struct ModeManageView: View {
-    @State private var selectedProvider: ModelProvider = providers[0]
+    @State private var selectedProvider: ModelProviderV2 = providers[0]
     @State private var apiKey: String = ""
     @State private var selectedModel: String = providers[0].models[0]
     @State private var temperature: Double = 0.7
@@ -20,11 +20,11 @@ public struct ModeManageView: View {
     @Namespace private var providerPickerNamespace
     @Namespace private var modelPickerNamespace
     
-    static let providers: [ModelProvider] = [
-        ModelProvider(name: "DeepSeek", models: ["deepseek-chat", "deepseek-coder"]),
-        ModelProvider(name: "OpenAI", models: ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo"]),
-        ModelProvider(name: "Azure", models: ["azure-gpt-4", "azure-gpt-35"]),
-        ModelProvider(name: "Google", models: ["gemini-pro", "gemini-ultra"])
+    static let providers: [ModelProviderV2] = [
+        ModelProviderV2(name: "DeepSeek", models: ["deepseek-chat", "deepseek-coder"]),
+        ModelProviderV2(name: "OpenAI", models: ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo"]),
+        ModelProviderV2(name: "Azure", models: ["azure-gpt-4", "azure-gpt-35"]),
+        ModelProviderV2(name: "Google", models: ["gemini-pro", "gemini-ultra"])
     ]
     
     public var body: some View {
