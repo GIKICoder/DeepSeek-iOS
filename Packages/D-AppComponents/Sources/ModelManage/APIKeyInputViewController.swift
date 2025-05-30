@@ -111,7 +111,7 @@ public class APIKeyInputViewController: UIViewController {
     }
     
     private func setupHeader() {
-        headerView.backgroundColor = UIColor.systemGroupedBackground
+        headerView.backgroundColor = UIColor.systemBackground
         
         // Icon
         iconContainer.backgroundColor = colorFromString(provider.iconColor).withAlphaComponent(0.1)
@@ -176,6 +176,7 @@ public class APIKeyInputViewController: UIViewController {
         apiKeyTextField.isSecureTextEntry = true
         apiKeyTextField.backgroundColor = .clear
         apiKeyTextField.borderStyle = .none
+        apiKeyTextField.returnKeyType = .done
         
         apiKeyContainer.addSubview(apiKeyTextField)
         
