@@ -377,44 +377,64 @@ public class ModelAddViewController: AppViewController {
         subtitleLabel.font = UIFont.systemFont(ofSize: 14)
         subtitleLabel.textColor = .gray
         
-        // Status
+        // Status badge
+        let statusContainer = UIView()
+        statusContainer.backgroundColor = config.isActive ? .systemGreen.withAlphaComponent(0.1) : .systemOrange.withAlphaComponent(0.1)
+        statusContainer.layer.cornerRadius = 10
+        
         let statusDot = UIView()
         statusDot.backgroundColor = config.isActive ? .systemGreen : .systemOrange
-        statusDot.layer.cornerRadius = 4
+        statusDot.layer.cornerRadius = 3
         
         let statusLabel = UILabel()
         statusLabel.text = config.isActive ? "已启用" : "已禁用"
-        statusLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        statusLabel.font = UIFont.systemFont(ofSize: 11, weight: .medium)
         statusLabel.textColor = config.isActive ? .systemGreen : .systemOrange
         
-        // Settings button
-        let settingsButton = UIButton(type: .system)
-        settingsButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
-        settingsButton.tintColor = .gray
+        statusContainer.addSubview(statusDot)
+        statusContainer.addSubview(statusLabel)
         
-        // Toggle button
-        let toggleButton = UIButton(type: .system)
-        toggleButton.setTitle(config.isActive ? "禁用" : "启用", for: .normal)
-        toggleButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        toggleButton.backgroundColor = config.isActive ? .systemRed : .systemGreen
-        toggleButton.setTitleColor(.white, for: .normal)
-        toggleButton.layer.cornerRadius = 8
+        // Menu button (更button for more actions)
+        let moreButton = UIButton(type: .system)
+        moreButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        moreButton.tintColor = .systemGray
+        moreButton.backgroundColor = UIColor.systemGray6
+        moreButton.layer.cornerRadius = 14
+        moreButton.showsMenuAsPrimaryAction = true
+        
+        // Create context menu
+        let toggleAction = UIAction(
+            title: config.isActive ? "禁用" : "启用",
+            image: UIImage(systemName: config.isActive ? "pause.circle" : "play.circle"),
+            attributes: config.isActive ? [.destructive] : []
+        ) { [weak self] _ in
+            self?.toggleButtonTapped(moreButton)
+        }
+        
+        let settingsAction = UIAction(
+            title: "设置",
+            image: UIImage(systemName: "gearshape")
+        ) { [weak self] _ in
+            self?.settingsButtonTapped(moreButton)
+        }
+        
+        let deleteAction = UIAction(
+            title: "删除",
+            image: UIImage(systemName: "trash"),
+            attributes: [.destructive]
+        ) { [weak self] _ in
+            self?.deleteButtonTapped(moreButton)
+        }
+        
+        moreButton.menu = UIMenu(children: [toggleAction, settingsAction, deleteAction])
+        moreButton.tag = provider.id.hashValue
         
         // Add subviews
         cardView.addSubview(iconContainer)
         cardView.addSubview(titleLabel)
         cardView.addSubview(subtitleLabel)
-        cardView.addSubview(statusDot)
-        cardView.addSubview(statusLabel)
-        cardView.addSubview(settingsButton)
-        cardView.addSubview(toggleButton)
-        
-        // Actions
-        settingsButton.addTarget(self, action: #selector(settingsButtonTapped(_:)), for: .touchUpInside)
-        settingsButton.tag = provider.id.hashValue
-        
-        toggleButton.addTarget(self, action: #selector(toggleButtonTapped(_:)), for: .touchUpInside)
-        toggleButton.tag = provider.id.hashValue
+        cardView.addSubview(statusContainer)
+        cardView.addSubview(moreButton)
         
         // Constraints
         iconContainer.snp.makeConstraints { make in
@@ -430,39 +450,42 @@ public class ModelAddViewController: AppViewController {
         titleLabel.snp.makeConstraints { make in
             make.leading.equalTo(iconContainer.snp.trailing).offset(12)
             make.top.equalTo(iconContainer).offset(4)
+            make.trailing.lessThanOrEqualTo(moreButton.snp.leading).offset(-8)
         }
         
         subtitleLabel.snp.makeConstraints { make in
             make.leading.equalTo(titleLabel)
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.trailing.lessThanOrEqualTo(moreButton.snp.leading).offset(-8)
+        }
+        
+        statusContainer.snp.makeConstraints { make in
+            make.leading.equalTo(iconContainer.snp.trailing).offset(12)
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(8)
+            make.bottom.equalToSuperview().offset(-16)
+            make.height.equalTo(20)
         }
         
         statusDot.snp.makeConstraints { make in
-            make.trailing.equalTo(statusLabel.snp.leading).offset(-6)
-            make.centerY.equalTo(titleLabel)
-            make.width.height.equalTo(8)
+            make.leading.equalToSuperview().offset(8)
+            make.centerY.equalToSuperview()
+            make.width.height.equalTo(6)
         }
         
         statusLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-16)
-            make.centerY.equalTo(titleLabel)
+            make.leading.equalTo(statusDot.snp.trailing).offset(6)
+            make.trailing.equalToSuperview().offset(-8)
+            make.centerY.equalToSuperview()
         }
         
-        toggleButton.snp.makeConstraints { make in
+        moreButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-16)
-            make.bottom.equalToSuperview().offset(-16)
-            make.width.equalTo(60)
-            make.height.equalTo(32)
-        }
-        
-        settingsButton.snp.makeConstraints { make in
-            make.trailing.equalTo(toggleButton.snp.leading).offset(-12)
-            make.centerY.equalTo(toggleButton)
-            make.width.height.equalTo(24)
+            make.top.equalToSuperview().offset(16)
+            make.width.height.equalTo(28)
         }
         
         cardView.snp.makeConstraints { make in
-            make.height.equalTo(100)
+            make.height.equalTo(88)
         }
         
         return cardView
@@ -708,5 +731,110 @@ public class ModelAddViewController: AppViewController {
             storageManager.saveConfiguration(config)
             refreshData()
         }
+    }
+    
+    @objc private func deleteButtonTapped(_ sender: UIButton) {
+        let providerHashValue = sender.tag
+        if let provider = ModelProvider.allProviders.first(where: { $0.id.hashValue == providerHashValue }),
+           let config = configurations.first(where: { $0.providerId == provider.id }) {
+            presentDeleteConfirmation(for: provider, config: config)
+        }
+    }
+    
+    // MARK: - Delete Confirmation
+    
+    private func presentDeleteConfirmation(for provider: ModelProvider, config: ModelConfiguration) {
+        let alert = UIAlertController(
+            title: "删除模型配置",
+            message: "确定要删除 \(provider.displayName) 的配置吗？\n\n此操作无法撤销，所有相关的设置和历史记录都会被删除。",
+            preferredStyle: .alert
+        )
+        
+        // 配置警告样式
+        alert.setValue(NSAttributedString(
+            string: alert.title ?? "",
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 17, weight: .semibold),
+                .foregroundColor: UIColor.label
+            ]
+        ), forKey: "attributedTitle")
+        
+        alert.setValue(NSAttributedString(
+            string: alert.message ?? "",
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 13),
+                .foregroundColor: UIColor.secondaryLabel
+            ]
+        ), forKey: "attributedMessage")
+        
+        // 取消按钮
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { _ in
+            // 可以添加取消时的动画或反馈
+            self.provideCancelFeedback()
+        }
+        
+        // 删除按钮 - 使用破坏性样式
+        let deleteAction = UIAlertAction(title: "删除", style: .destructive) { [weak self] _ in
+            self?.performDelete(for: provider, config: config)
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        
+        // iPad 适配
+        if let popover = alert.popoverPresentationController {
+            // 找到删除按钮的视图
+            if let deleteButton = findDeleteButton(with: provider.id.hashValue) {
+                popover.sourceView = deleteButton
+                popover.sourceRect = deleteButton.bounds
+            } else {
+                popover.sourceView = view
+                popover.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
+            }
+            popover.permittedArrowDirections = [.up, .down]
+        }
+        
+        present(alert, animated: true) {
+            // 弹窗出现时的反馈
+            self.provideAlertPresentationFeedback()
+        }
+    }
+    
+    private func performDelete(for provider: ModelProvider, config: ModelConfiguration) {
+        // 提供触觉反馈
+        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+        impactFeedback.impactOccurred()
+        
+        // 执行删除操作
+        storageManager.removeConfiguration(for: provider.id)
+        
+        // 刷新数据并提供成功反馈
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.refreshData()
+            self.provideDeleteSuccessFeedback()
+        }
+    }
+    
+    private func findDeleteButton(with tag: Int) -> UIView? {
+        return view.subviews.first { subview in
+            return subview.tag == tag && subview is UIButton
+        }
+    }
+    
+    // MARK: - Haptic Feedback
+    
+    private func provideCancelFeedback() {
+        let selectionFeedback = UISelectionFeedbackGenerator()
+        selectionFeedback.selectionChanged()
+    }
+    
+    private func provideAlertPresentationFeedback() {
+        let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+        impactFeedback.impactOccurred()
+    }
+    
+    private func provideDeleteSuccessFeedback() {
+        let notificationFeedback = UINotificationFeedbackGenerator()
+        notificationFeedback.notificationOccurred(.success)
     }
 }
