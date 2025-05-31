@@ -16,8 +16,6 @@ let package = Package(
         .package(path: "../R-AppInfra"),
         .package(path: "../F-AppServices"),
         .package(path: "../ZVendors/SideMenu"),
-        .package(path: "../ZVendors/route-composer"),
-        .package(path: "../ZVendors/RouterService"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -28,8 +26,6 @@ let package = Package(
               .product(name: "AppInfra", package: "R-AppInfra"),
               .product(name: "AppServices", package: "F-AppServices"),
               .product(name: "SideMenu", package: "SideMenu"),
-              .product(name: "RouteComposer", package: "route-composer"),
-              .product(name: "RouterService", package: "RouterService"),
             ],
             path: "Sources"
         ),
