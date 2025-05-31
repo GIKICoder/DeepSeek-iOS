@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "AppServices",
-    platforms: [.iOS(.v14)],
+    platforms: [.iOS(.v15)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -16,6 +16,7 @@ let package = Package(
         .package(path: "../R-AppInfra"),
         .package(path: "../ZVendors/Moya"),
         .package(path: "../ZVendors/wcdb-2.1.11"),
+        .package(url: "https://github.com/lzell/AIProxySwift.git", from: "0.102.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -26,6 +27,8 @@ let package = Package(
                 .product(name: "AppInfra", package: "R-AppInfra"),
                 .product(name: "Moya", package: "Moya"),
                 .product(name: "WCDBSwift", package: "wcdb-2.1.11"),
+                .product(name: "AIProxy", package: "AIProxySwift"),
+                
             ]
         ),
         .testTarget(

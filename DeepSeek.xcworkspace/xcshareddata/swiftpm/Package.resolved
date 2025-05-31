@@ -1,6 +1,15 @@
 {
-  "originHash" : "a63cb6ca296a1e8186b68a07aba18ab6eb51efccda2d4526f28bcbc8860465af",
+  "originHash" : "df3ed503dde3e8d69596f82cac5fe45ddad21f4b171126cd789d057a5c2808cc",
   "pins" : [
+    {
+      "identity" : "aiproxyswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lzell/AIProxySwift.git",
+      "state" : {
+        "revision" : "fb773215157159ce7fd8723e62394e38e6c74fbe",
+        "version" : "0.102.0"
+      }
+    },
     {
       "identity" : "alamofire",
       "kind" : "remoteSourceControl",
