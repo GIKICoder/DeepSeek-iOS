@@ -1,0 +1,68 @@
+53b7a7077a4706f4d6714a3156085b38de962dd3	not-for-merge	branch '1.1.x' of https://github.com/Tencent/sqlcipher
+314f5735d9797ad7743fc665711c3f34b935c57a	not-for-merge	branch 'Xcode5' of https://github.com/Tencent/sqlcipher
+6f4a0f2d8d452ebfb6ed62135d45d5ef84fd67ed	not-for-merge	branch 'attach' of https://github.com/Tencent/sqlcipher
+eb232251c2249ff50baed2846c453208277b0427	not-for-merge	branch 'compatible/swift_4.2' of https://github.com/Tencent/sqlcipher
+50bd041c8a17c97c2bc85a161302324f640b6dd8	not-for-merge	branch 'ditto' of https://github.com/Tencent/sqlcipher
+5ef4710d1bc9cc08b37e8ee5a547e70ca9be5b87	not-for-merge	branch 'ditto-4000kdf' of https://github.com/Tencent/sqlcipher
+cfee6c249ccbd7b558499e33c4aa6ed12e05773a	not-for-merge	branch 'kdfiter' of https://github.com/Tencent/sqlcipher
+27d58453c6e56c3dd85e02bca379161bc69c746a	not-for-merge	branch 'master' of https://github.com/Tencent/sqlcipher
+7d3f1c047697425daca32a1415412c994bc35d9f	not-for-merge	branch 'migrate' of https://github.com/Tencent/sqlcipher
+e8a54ad0efa737271270da52b55ebff87edafb8f	not-for-merge	branch 'multi-lib' of https://github.com/Tencent/sqlcipher
+e48b328fb9f5f7c46464504eaaa4be0d5501f183	not-for-merge	branch 'prerelease' of https://github.com/Tencent/sqlcipher
+eeaf77af36e974872274b1b8f686a574e1af6618	not-for-merge	branch 'rekey-hotfix' of https://github.com/Tencent/sqlcipher
+51ec837e61bb2ac2b710bc6f617854de1941591b	not-for-merge	branch 'sqlite-release' of https://github.com/Tencent/sqlcipher
+e0f372f79afdb05d7288bd2d3b39aec375f36a29	not-for-merge	branch 'v1.1.0' of https://github.com/Tencent/sqlcipher
+ff9a34003964900e2ee792169c544cd5d7696bdb	not-for-merge	branch 'v2.0-stable' of https://github.com/Tencent/sqlcipher
+5d8825c22feedb421ad6f9ecfc1399460e10d299	not-for-merge	branch 'wcdb' of https://github.com/Tencent/sqlcipher
+fd62c20888596684aabcff6320892c5ace5c68bc	not-for-merge	branch 'wcdb_archived' of https://github.com/Tencent/sqlcipher
+035036eb02f68c2978ae18693427cd0f786df93e	not-for-merge	branch 'wcdb_temp' of https://github.com/Tencent/sqlcipher
+4f37c817eb99e18e4fdc8ac63d67ac33610d66be	not-for-merge	branch 'wcdb_v1.0.8_archive' of https://github.com/Tencent/sqlcipher
+b89fdcd278ac5837813318ba25d0d669d1448e82	not-for-merge	'refs/pull/1/head' of https://github.com/Tencent/sqlcipher
+ae0d53951c0c5cae950234d6390bebeaf34f1b9e	not-for-merge	'refs/pull/2/head' of https://github.com/Tencent/sqlcipher
+391d632ac7e7b4c24e6e7da30b0fd190be4a8d53	not-for-merge	'refs/pull/3/head' of https://github.com/Tencent/sqlcipher
+59a57763d99b55146af5540346965b7bf49d971d	not-for-merge	'refs/pull/3/merge' of https://github.com/Tencent/sqlcipher
+f25a56d30c671af5a87eb313f82dfc76d9f3a3de	not-for-merge	'refs/pull/4/head' of https://github.com/Tencent/sqlcipher
+ddc488b3b222667e01b6b96d920a87b23561cc87	not-for-merge	'refs/pull/4/merge' of https://github.com/Tencent/sqlcipher
+d105c00f12c5d0be382b8e7270adfe7f5a1161d8	not-for-merge	'refs/pull/5/head' of https://github.com/Tencent/sqlcipher
+5f7ef74d1b0134ec505e8341eabcf62170347b68	not-for-merge	'refs/pull/6/head' of https://github.com/Tencent/sqlcipher
+4637334f25159307674f4211628802abdd7fd2ad	not-for-merge	tag '1.1.4' of https://github.com/Tencent/sqlcipher
+620fa52d05620d2a48ed6b5a6224dfd9a7c98f9a	not-for-merge	tag '2.0.1' of https://github.com/Tencent/sqlcipher
+3ae0c991dac0fb920f04d6790ad933946a6ee03c	not-for-merge	tag 'v1.1.0' of https://github.com/Tencent/sqlcipher
+e5331871c1435fe9642ccc3a0fbb349cf17199cf	not-for-merge	tag 'v1.1.1' of https://github.com/Tencent/sqlcipher
+2e2c97883260035e625bce720f06258191e81aea	not-for-merge	tag 'v1.1.10' of https://github.com/Tencent/sqlcipher
+6ee4f31c1ceb84f64e1c9a3037fdc888986b0c8e	not-for-merge	tag 'v1.1.2' of https://github.com/Tencent/sqlcipher
+0003e5a519a317d0da35c04100d408768a1c7c46	not-for-merge	tag 'v1.1.3' of https://github.com/Tencent/sqlcipher
+2738c66e908b4378280652cb1d7f4370613011f5	not-for-merge	tag 'v1.1.4' of https://github.com/Tencent/sqlcipher
+156d1f923e538cb88e914c3b739ae8096303dc9f	not-for-merge	tag 'v1.1.5' of https://github.com/Tencent/sqlcipher
+825b28bd8168a86fbffbc90fe6d93ffb75d4c7dc	not-for-merge	tag 'v1.1.6' of https://github.com/Tencent/sqlcipher
+9b9dbc01911a69f16fa6690adc671d13df41f048	not-for-merge	tag 'v1.1.7' of https://github.com/Tencent/sqlcipher
+ec5bbe6d5a8958cf4ab3d621703ace68621a5e4a	not-for-merge	tag 'v1.1.8' of https://github.com/Tencent/sqlcipher
+30c2f2f5c7a697e9ecdfc761a7d801fe279fcdfc	not-for-merge	tag 'v1.1.9' of https://github.com/Tencent/sqlcipher
+c541f48da99e538d7f6d913c98823d02b10336c6	not-for-merge	tag 'v1.4.3' of https://github.com/Tencent/sqlcipher
+f7e94ce2fad6fc55cfc1180592addd654f140058	not-for-merge	tag 'v1.4.4' of https://github.com/Tencent/sqlcipher
+3297bc894ff8053b128b3cf488c938d44d3f1e12	not-for-merge	tag 'v1.4.5' of https://github.com/Tencent/sqlcipher
+12c73015f37571e89206e6acecf36300873db8fa	not-for-merge	tag 'v1.4.6' of https://github.com/Tencent/sqlcipher
+5d8825c22feedb421ad6f9ecfc1399460e10d299	not-for-merge	tag 'v1.4.7' of https://github.com/Tencent/sqlcipher
+ff8fe91ec51ad79feadaa4a26a5a79c0974e093d	not-for-merge	tag 'v2.0.0' of https://github.com/Tencent/sqlcipher
+dd004be240cedaddbd22b3abe368c4cd0115bb72	not-for-merge	tag 'v2.0.2_RC2' of https://github.com/Tencent/sqlcipher
+f57695923698dbe68fba4973ac412769db88bd22	not-for-merge	tag 'v2.0.3' of https://github.com/Tencent/sqlcipher
+a929e02e98e7c41aea4f1fb04cb9c0411e6cc8a0	not-for-merge	tag 'v2.0.4_RC1' of https://github.com/Tencent/sqlcipher
+f7420fa6aa35f847bd32534a1a794866119c5559	not-for-merge	tag 'v2.0.5' of https://github.com/Tencent/sqlcipher
+331a1a38e3991daa8cc5379ae02516970fdc5950	not-for-merge	tag 'v2.0.5_RC1' of https://github.com/Tencent/sqlcipher
+f25590b10d0a6514e33cf6d2f8750239fc640943	not-for-merge	tag 'v2.0.5_RC2' of https://github.com/Tencent/sqlcipher
+9337b34022180baf725cfebed55f40f1a0b6ee84	not-for-merge	tag 'v2.0.6' of https://github.com/Tencent/sqlcipher
+f5340e2c2cb98dce5830e99d176e40e6e8415d9a	not-for-merge	tag 'v2.1.0' of https://github.com/Tencent/sqlcipher
+ee2ce3e17541e61bdd0478b1391894a53090e532	not-for-merge	tag 'v2.1.1' of https://github.com/Tencent/sqlcipher
+d3903c33e83109886cbcb568e24e7c44b360a4a5	not-for-merge	tag 'v2.2.0' of https://github.com/Tencent/sqlcipher
+ac918c39dc78ead9da68d78cf49539f5ea4b1a63	not-for-merge	tag 'v2.2.1' of https://github.com/Tencent/sqlcipher
+ef0edc3e521ddaaba38afbaf0a268a7a626a3233	not-for-merge	tag 'v3.0.0' of https://github.com/Tencent/sqlcipher
+4841ffdf4e4f22e55c8f30c71852a128d3faaffa	not-for-merge	tag 'v3.0.1' of https://github.com/Tencent/sqlcipher
+5d10f3b3e2167d336b8522091341e1338604f277	not-for-merge	tag 'v3.1.0' of https://github.com/Tencent/sqlcipher
+94f54278ecaabc2653366f58fcb20549ae90b95f	not-for-merge	tag 'v3.2.0' of https://github.com/Tencent/sqlcipher
+270263e343bf2a38715643af94d3e4c2ade31ac2	not-for-merge	tag 'v3.3.0' of https://github.com/Tencent/sqlcipher
+d6667a63cddf59f3b0468614a9dc0a3bef2f584e	not-for-merge	tag 'v3.3.1' of https://github.com/Tencent/sqlcipher
+acf7539c07db43c47e500fba27129efc747b0d05	not-for-merge	tag 'v3.4.0' of https://github.com/Tencent/sqlcipher
+8b6ce8883a1f14a06371f8623ae1be0c2aa3af7c	not-for-merge	tag 'v3.4.1' of https://github.com/Tencent/sqlcipher
+7a181a60d2cd81e2454b50ff5523b92f3272265d	not-for-merge	tag 'v3.4.2' of https://github.com/Tencent/sqlcipher
+bc8e763d28c447cbb8a793b2fe286278be4b8be9	not-for-merge	tag 'v4.0.0' of https://github.com/Tencent/sqlcipher
+a39e2c6c00c68929b63fb5ae3d90f8034d285234	not-for-merge	tag 'v4.0.1' of https://github.com/Tencent/sqlcipher

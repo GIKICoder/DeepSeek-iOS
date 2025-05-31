@@ -1,0 +1,4 @@
+module WCDBSwift {
+    header "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WCDBSwift-Swift.h"
+    requires objc
+}

@@ -3,22 +3,11 @@
 
 import AppInfra
 import AppFoundation
-import RouterService
 
 typealias AppC = AppComponents
 
 public final class AppComponents {
     
-    public let router = RouterService()
-    
-    public init() {}
-
-    public func setup() {
-        
-    }
-    
-    private func setupRouterService() {
-        
-    }
+   
     
 }

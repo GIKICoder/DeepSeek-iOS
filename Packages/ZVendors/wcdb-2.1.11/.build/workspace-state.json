@@ -1,0 +1,27 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "sqlcipher",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/Tencent/sqlcipher",
+          "name" : "sqlcipher"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "5d8825c22feedb421ad6f9ecfc1399460e10d299",
+            "version" : "1.4.7"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "sqlcipher"
+      }
+    ]
+  },
+  "version" : 6
+}

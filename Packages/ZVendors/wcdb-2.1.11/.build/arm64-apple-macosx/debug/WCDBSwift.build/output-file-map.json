@@ -1,0 +1,725 @@
+{
+  "": {
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/master.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/bridge/ErrorBridge.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ErrorBridge.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ErrorBridge.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ErrorBridge~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ErrorBridge.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/bridge/FTSBridge.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/FTSBridge.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/FTSBridge.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/FTSBridge~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/FTSBridge.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/bridge/ObjectBridge.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ObjectBridge.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ObjectBridge.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ObjectBridge~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ObjectBridge.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/bridge/WCTBridgeProperty.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WCTBridgeProperty.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WCTBridgeProperty.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WCTBridgeProperty~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WCTBridgeProperty.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/builtin/CodableType.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CodableType.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CodableType.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CodableType~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CodableType.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/builtin/Master.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Master.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Master.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Master~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Master.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/base/BaseType.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/BaseType.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/BaseType.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/BaseType~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/BaseType.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/base/Database+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Database+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Database+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Database+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Database+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/base/Database.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Database.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Database.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Database~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Database.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/base/Handle+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Handle+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Handle+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Handle+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Handle+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/base/Handle.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Handle.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Handle.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Handle~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Handle.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/base/HandleStatement+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/HandleStatement+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/HandleStatement+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/HandleStatement+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/HandleStatement+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/base/PreparedStatement.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/PreparedStatement.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/PreparedStatement.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/PreparedStatement~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/PreparedStatement.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/base/Table+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Table+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Table+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Table+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Table+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/base/Table.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Table.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Table.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Table~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Table.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/binding/CheckExpressionConfig.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CheckExpressionConfig.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CheckExpressionConfig.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CheckExpressionConfig~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CheckExpressionConfig.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/binding/ColumnConstraintConfig.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnConstraintConfig.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnConstraintConfig.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnConstraintConfig~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnConstraintConfig.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/binding/ForeignKeyConfig.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ForeignKeyConfig.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ForeignKeyConfig.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ForeignKeyConfig~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ForeignKeyConfig.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/binding/IndexConfig.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/IndexConfig.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/IndexConfig.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/IndexConfig~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/IndexConfig.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/binding/MultiPrimaryConfig.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiPrimaryConfig.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiPrimaryConfig.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiPrimaryConfig~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiPrimaryConfig.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/binding/MultiUniqueConfig.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiUniqueConfig.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiUniqueConfig.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiUniqueConfig~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiUniqueConfig.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/binding/Property.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Property.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Property.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Property~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Property.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/binding/Redirectable.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Redirectable.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Redirectable.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Redirectable~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Redirectable.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/binding/TableBinding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableBinding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableBinding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableBinding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableBinding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/binding/TableConfiguration.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableConfiguration.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableConfiguration.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableConfiguration~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableConfiguration.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/binding/VirtualTableConfig.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/VirtualTableConfig.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/VirtualTableConfig.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/VirtualTableConfig~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/VirtualTableConfig.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/ChainCall+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ChainCall+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ChainCall+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ChainCall+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ChainCall+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/ChainCall.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ChainCall.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ChainCall.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ChainCall~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ChainCall.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/Declare.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Declare.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Declare.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Declare~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Declare.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/Delete.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Delete.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Delete.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Delete~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Delete.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/Insert+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Insert+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Insert+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Insert+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Insert+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/Insert.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Insert.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Insert.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Insert~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Insert.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/MultiSelect.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiSelect.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiSelect.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiSelect~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/MultiSelect.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/RowSelect.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/RowSelect.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/RowSelect.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/RowSelect~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/RowSelect.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/Select+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Select+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Select+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Select+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Select+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/Select.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Select.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Select.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Select~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Select.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/Selectable.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Selectable.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Selectable.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Selectable~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Selectable.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/TableChainCall+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableChainCall+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableChainCall+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableChainCall+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableChainCall+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/TableChainCall.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableChainCall.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableChainCall.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableChainCall~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableChainCall.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/Update+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Update+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Update+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Update+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Update+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/chaincall/Update.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Update.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Update.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Update~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Update.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/codable/CodingTableKey.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CodingTableKey.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CodingTableKey.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CodingTableKey~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CodingTableKey.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/codable/ColumnCodable.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnCodable.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnCodable.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnCodable~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnCodable.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/codable/ColumnTypeDecoder.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnTypeDecoder.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnTypeDecoder.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnTypeDecoder~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnTypeDecoder.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/codable/TableCodable.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCodable.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCodable.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCodable~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCodable.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/codable/TableDecoder.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableDecoder.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableDecoder.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableDecoder~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableDecoder.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/codable/TableEncoder.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableEncoder.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableEncoder.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableEncoder~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableEncoder.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/DeleteInterface.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/DeleteInterface.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/DeleteInterface.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/DeleteInterface~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/DeleteInterface.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/InsertInterface+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/InsertInterface+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/InsertInterface+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/InsertInterface+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/InsertInterface+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/InsertInterface.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/InsertInterface.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/InsertInterface.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/InsertInterface~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/InsertInterface.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/SelectInterface+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SelectInterface+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SelectInterface+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SelectInterface+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SelectInterface+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/SelectInterface.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SelectInterface.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SelectInterface.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SelectInterface~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SelectInterface.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/StatementInterface+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInterface+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInterface+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInterface+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInterface+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/StatementInterface.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInterface.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInterface.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInterface~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInterface.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/StatementSelectInterface.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSelectInterface.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSelectInterface.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSelectInterface~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSelectInterface.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/TableCRUDInterface+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCRUDInterface+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCRUDInterface+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCRUDInterface+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCRUDInterface+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/TableCRUDInterface.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCRUDInterface.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCRUDInterface.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCRUDInterface~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableCRUDInterface.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/TableInterface+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableInterface+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableInterface+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableInterface+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableInterface+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/TableInterface.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableInterface.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableInterface.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableInterface~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableInterface.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/TransactionInterface.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TransactionInterface.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TransactionInterface.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TransactionInterface~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TransactionInterface.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/UpdateInterface+WCTTableCoding.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/UpdateInterface+WCTTableCoding.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/UpdateInterface+WCTTableCoding.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/UpdateInterface+WCTTableCoding~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/UpdateInterface+WCTTableCoding.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/core/interface/UpdateInterface.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/UpdateInterface.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/UpdateInterface.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/UpdateInterface~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/UpdateInterface.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/util/Convenience.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Convenience.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Convenience.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Convenience~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Convenience.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/util/Lock.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Lock.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Lock.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Lock~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Lock.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/util/Optional.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Optional.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Optional.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Optional~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Optional.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/util/Recyclable.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Recyclable.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Recyclable.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Recyclable~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Recyclable.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/util/WCDBError.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WCDBError.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WCDBError.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WCDBError~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WCDBError.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/Convertible.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Convertible.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Convertible.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Convertible~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Convertible.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/Identifier.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Identifier.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Identifier.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Identifier~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Identifier.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/Statement.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Statement.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Statement.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Statement~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Statement.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/SyntaxConst.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SyntaxConst.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SyntaxConst.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SyntaxConst~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/SyntaxConst.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/Value.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Value.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Value.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Value~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Value.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/BindParameter.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/BindParameter.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/BindParameter.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/BindParameter~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/BindParameter.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/Column.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Column.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Column.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Column~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Column.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/ColumnConstraint.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnConstraint.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnConstraint.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnConstraint~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnConstraint.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/ColumnDef.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnDef.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnDef.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnDef~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ColumnDef.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/CommonTableExpression.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CommonTableExpression.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CommonTableExpression.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CommonTableExpression~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/CommonTableExpression.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/Expression.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Expression.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Expression.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Expression~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Expression.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/ForeignKey.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ForeignKey.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ForeignKey.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ForeignKey~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ForeignKey.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/FrameSpec.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/FrameSpec.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/FrameSpec.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/FrameSpec~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/FrameSpec.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/IndexedColumn.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/IndexedColumn.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/IndexedColumn.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/IndexedColumn~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/IndexedColumn.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/Join.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Join.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Join.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Join~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Join.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/LiteralValue.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/LiteralValue.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/LiteralValue.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/LiteralValue~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/LiteralValue.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/Operable.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Operable.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Operable.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Operable~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Operable.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/OrderingTerm.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/OrderingTerm.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/OrderingTerm.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/OrderingTerm~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/OrderingTerm.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/Pragma.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Pragma.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Pragma.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Pragma~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Pragma.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/QualifiedTable.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/QualifiedTable.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/QualifiedTable.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/QualifiedTable~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/QualifiedTable.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/RaiseFunction.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/RaiseFunction.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/RaiseFunction.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/RaiseFunction~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/RaiseFunction.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/ResultColumn.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ResultColumn.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ResultColumn.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ResultColumn~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/ResultColumn.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/Schema.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Schema.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Schema.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Schema~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Schema.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/TableConstraint.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableConstraint.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableConstraint.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableConstraint~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableConstraint.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/TableOrSubquery.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableOrSubquery.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableOrSubquery.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableOrSubquery~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/TableOrSubquery.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/Upsert.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Upsert.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Upsert.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Upsert~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/Upsert.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/identifier/WindowDef.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WindowDef.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WindowDef.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WindowDef~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/WindowDef.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementAlterTable.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAlterTable.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAlterTable.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAlterTable~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAlterTable.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementAnalyze.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAnalyze.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAnalyze.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAnalyze~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAnalyze.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementAttach.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAttach.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAttach.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAttach~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementAttach.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementBegin.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementBegin.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementBegin.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementBegin~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementBegin.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementCommit.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCommit.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCommit.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCommit~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCommit.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementCreateIndex.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateIndex.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateIndex.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateIndex~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateIndex.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementCreateTable.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateTable.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateTable.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateTable~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateTable.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementCreateTrigger.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateTrigger.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateTrigger.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateTrigger~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateTrigger.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementCreateView.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateView.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateView.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateView~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateView.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementCreateVirtualTable.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateVirtualTable.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateVirtualTable.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateVirtualTable~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementCreateVirtualTable.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementDelete.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDelete.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDelete.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDelete~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDelete.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementDetach.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDetach.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDetach.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDetach~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDetach.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementDropIndex.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropIndex.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropIndex.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropIndex~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropIndex.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementDropTable.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropTable.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropTable.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropTable~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropTable.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementDropTrigger.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropTrigger.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropTrigger.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropTrigger~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropTrigger.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementDropView.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropView.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropView.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropView~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementDropView.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementExplain.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementExplain.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementExplain.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementExplain~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementExplain.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementInsert.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInsert.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInsert.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInsert~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementInsert.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementPragma.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementPragma.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementPragma.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementPragma~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementPragma.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementReindex.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementReindex.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementReindex.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementReindex~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementReindex.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementRelease.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementRelease.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementRelease.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementRelease~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementRelease.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementRollback.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementRollback.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementRollback.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementRollback~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementRollback.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementSavepoint.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSavepoint.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSavepoint.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSavepoint~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSavepoint.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementSelect.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSelect.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSelect.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSelect~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementSelect.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementUpdate.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementUpdate.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementUpdate.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementUpdate~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementUpdate.swiftdeps"
+  },
+  "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/src/swift/winq/statement/StatementVacuum.swift": {
+    "dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementVacuum.d",
+    "object": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementVacuum.swift.o",
+    "swiftmodule": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementVacuum~partial.swiftmodule",
+    "swift-dependencies": "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/arm64-apple-macosx/debug/WCDBSwift.build/StatementVacuum.swiftdeps"
+  }
+}

@@ -1,0 +1,4 @@
+module sqlcipher {
+    umbrella "/Users/giki/Desktop/GIKICode/DeepSeek-iOS/Packages/ZVendors/wcdb-2.1.11/.build/checkouts/sqlcipher/include"
+    export *
+}
