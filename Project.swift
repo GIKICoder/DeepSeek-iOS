@@ -8,7 +8,7 @@
 import ProjectDescription
 
 let projectName: String = "DeepSeek"
-let deploymentTarget: String = "14.0"
+let deploymentTarget: String = "15.6"
 let bundleId: String = "com.giki.deepseek"
 
 let packageNames = [

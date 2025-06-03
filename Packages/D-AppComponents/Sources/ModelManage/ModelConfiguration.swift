@@ -1,5 +1,15 @@
 import Foundation
 
+public enum ModelProviderID: String {
+    public typealias RawValue = String
+    
+    case openai = "openai"
+    case anthropic = "anthropic"
+    case deepseek = "deepseek"
+    case google = "google"
+    case local = "local"
+}
+
 // MARK: - Model Provider
 public struct ModelProvider: Codable, Equatable {
     let id: String
@@ -14,7 +24,7 @@ public struct ModelProvider: Codable, Equatable {
     
     static let allProviders: [ModelProvider] = [
         ModelProvider(
-            id: "openai",
+            id: ModelProviderID.openai.rawValue,
             name: "OpenAI",
             displayName: "OpenAI",
             iconName: "openai_ic",
@@ -25,7 +35,7 @@ public struct ModelProvider: Codable, Equatable {
             supportModels: ["gpt-4", "gpt-4-turbo", "gpt-3.5-turbo"]
         ),
         ModelProvider(
-            id: "anthropic",
+            id: ModelProviderID.anthropic.rawValue,
             name: "Anthropic",
             displayName: "Claude",
             iconName: "claude_ic",
@@ -36,7 +46,7 @@ public struct ModelProvider: Codable, Equatable {
             supportModels: ["claude-3-opus", "claude-3-sonnet", "claude-3-haiku"]
         ),
         ModelProvider(
-            id: "deepseek",
+            id: ModelProviderID.deepseek.rawValue,
             name: "DeepSeek",
             displayName: "DeepSeek",
             iconName: "deepseek_ic",
@@ -47,7 +57,7 @@ public struct ModelProvider: Codable, Equatable {
             supportModels: ["deepseek-chat", "deepseek-coder"]
         ),
         ModelProvider(
-            id: "google",
+            id: ModelProviderID.google.rawValue,
             name: "Google",
             displayName: "Gemini",
             iconName: "geminiai_ic",
@@ -58,7 +68,7 @@ public struct ModelProvider: Codable, Equatable {
             supportModels: ["gemini-pro", "gemini-pro-vision"]
         ),
         ModelProvider(
-            id: "local",
+            id: ModelProviderID.local.rawValue,
             name: "Local",
             displayName: "本地模型",
             iconName: "cpu",
@@ -73,30 +83,30 @@ public struct ModelProvider: Codable, Equatable {
 
 // MARK: - Model Configuration
 public struct ModelConfiguration: Codable, Equatable {
-    let id: String
-    let providerId: String
-    let apiKey: String
-    let baseURL: String
-    let selectedModel: String
-    var isActive: Bool
-    let createdAt: Date
-    let lastUsed: Date
+    public let id: String
+    public let providerId: String
+    public let apiKey: String
+    public let baseURL: String
+    public let selectedModel: String
+    public var isActive: Bool
+    public let createdAt: Date
+    public let lastUsed: Date
     
     // Advanced Settings
-    let temperature: Float
-    let topP: Float
-    let contextMessageLimit: Float
+    public let temperature: Float
+    public let topP: Float
+    public let contextMessageLimit: Float
     
-    var provider: ModelProvider? {
+    public var provider: ModelProvider? {
         ModelProvider.allProviders.first { $0.id == providerId }
     }
 }
 
 // MARK: - Usage Statistics
 public struct UsageStatistics: Codable {
-    let todayRequests: Int
-    let monthlyRequests: Int
-    let monthlyLimit: Int
-    let averageResponseTime: Double
-    let lastUpdated: Date
+    public let todayRequests: Int
+    public let monthlyRequests: Int
+    public let monthlyLimit: Int
+    public let averageResponseTime: Double
+    public let lastUpdated: Date
 }

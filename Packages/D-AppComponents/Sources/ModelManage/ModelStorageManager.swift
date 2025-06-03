@@ -4,13 +4,31 @@ import Security
 
 // MARK: - Model Storage Manager
 public class ModelStorageManager {
-    static let shared = ModelStorageManager()
+    public static let shared = ModelStorageManager()
     
     private let userDefaults = UserDefaults.standard
     private let configurationsKey = "ModelConfigurations"
     private let usageStatsKey = "UsageStatistics"
     
     private init() {}
+    
+    // MARK: - Public Method
+    
+    public func getAllConfigurations() -> [ModelConfiguration] {
+        return loadConfigurations()
+    }
+    
+    public func getActiveConfigurations() -> [ModelConfiguration] {
+        return loadConfigurations().filter { $0.isActive }
+    }
+    
+    public func getActiveConfiguration(for providerID: ModelProviderID) -> ModelConfiguration? {
+        return loadConfigurations().first { $0.providerId == providerID.rawValue && $0.isActive }
+    }
+    
+    public func getConfiguration(for providerId: String) -> ModelConfiguration? {
+        return loadConfigurations().first { $0.providerId == providerId }
+    }
     
     // MARK: - Model Configurations
     func saveConfiguration(_ config: ModelConfiguration) {
@@ -34,18 +52,6 @@ public class ModelStorageManager {
             return []
         }
         return configurations
-    }
-    
-    func getAllConfigurations() -> [ModelConfiguration] {
-        return loadConfigurations()
-    }
-    
-    func getActiveConfigurations() -> [ModelConfiguration] {
-        return loadConfigurations().filter { $0.isActive }
-    }
-    
-    func getConfiguration(for providerId: String) -> ModelConfiguration? {
-        return loadConfigurations().first { $0.providerId == providerId }
     }
     
     func deleteConfiguration(withId id: String) {

@@ -43,7 +43,7 @@ extension String {
         }
         
         // 设置属性
-        var attributes: [NSAttributedString.Key: Any] = [
+        let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
             .paragraphStyle: paragraphStyle
         ]

@@ -9,6 +9,7 @@ import Foundation
 import AppInfra
 import AppFoundation
 import UIKit
+import AppComponents
 import AppServices
 
 extension AppDomain {
@@ -25,11 +26,13 @@ extension AppDomain {
 class AuthTokenProvider: NetworkClient.HeaderProvider {
     func provideHeaders() -> [String: String] {
         var headers: [String: String] = [:]
-        if let auth = StorageService.shared.standard.string(forKey: UserDefaultsKeys.authorization),auth.isNotEmpty {
+        if let activeDeepseek = ModelStorageManager.shared.getActiveConfiguration(for: .deepseek) {
+            headers["Authorization"] = "Bearer \(activeDeepseek.apiKey)"
+            logDebug("Authorization: \(activeDeepseek.apiKey)")
+        } else if let auth = StorageService.shared.standard.string(forKey: UserDefaultsKeys.authorization),auth.isNotEmpty {
             headers["Authorization"] = "Bearer \(auth)"
             logDebug("Authorization: \(auth)")
         }
-        
         return headers
     }
 }
