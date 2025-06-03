@@ -62,7 +62,7 @@ extension ChatViewController {
         - 适当补充上下文使内容连贯
         
         #### 2.3 关键要点
-        - 用bullet points列出3-5个核心要点
+        - 用bullet points列出核心要点
         
         ### 3. 对话总结
         - 概括对话的主要内容（100-200字）
@@ -75,10 +75,16 @@ extension ChatViewController {
         - 主要话题：[提取1-3个关键词]
         
         ## 格式要求
-        - 使用Markdown格式
+        - 使用Markdown格式,最外层不要用```来包裹
         - 层级清晰，逻辑连贯
         - 专业术语保持一致
         - 重要信息加粗标注
+        - 保持语气正式、客观
+        - 避免使用口语化表达
+        - 确保内容完整、准确
+        
+        ## 注意
+        - 使用Markdown格式,最外层不要用```来包裹
         """
         
         // User Prompt - 包含具体的对话内容
@@ -90,11 +96,12 @@ extension ChatViewController {
         
         for select in selects {
             userPrompt += """
-            \(select.aiMessage ? "assistant" : "user"): \(select.content ?? "")
+            \(select.aiMessage ? "assistant" : "user"): \(select.content)
             """
         }
         
         userPrompt += """
+        
         </conversation>
         """
         
