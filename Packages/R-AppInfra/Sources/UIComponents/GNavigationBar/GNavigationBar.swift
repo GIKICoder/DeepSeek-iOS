@@ -230,8 +230,14 @@ open class GNavigationBar: UIView {
             totalHeight = customHeight
         }
         frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: totalHeight)
-        statusBarView.snp.updateConstraints { make in
-            make.height.equalTo(statusBarHeight)
+        if ignoreStatusbar {
+            statusBarView.snp.updateConstraints { make in
+                make.height.equalTo(0)
+            }
+        } else {
+            statusBarView.snp.updateConstraints { make in
+                make.height.equalTo(statusBarHeight)
+            }
         }
     }
     // MARK: - Public Methods
