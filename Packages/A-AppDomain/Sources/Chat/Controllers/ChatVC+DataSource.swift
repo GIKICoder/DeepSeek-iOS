@@ -20,6 +20,7 @@ public extension ChatViewController {
     
     func loadMoreDatas() {
         dataCenter.loadMoreMessages()
+        refreshHeader?.endRefreshing()
     }
     
     func setupBinding() {

@@ -29,6 +29,14 @@ public class MainViewController: AppViewController {
         return settings
     }()
     
+    lazy var noteButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "home_note_chat_ic"), for: .normal)
+        button.setImage(UIImage(named: "home_note_cancel_ic"), for: .selected)
+        button.addTarget(self, action: #selector(didTapNoteChat), for: .touchUpInside)
+        return button
+    }()
+    
     private let maskContainer: UIView = {
         let view = UIView()
         view.isHidden = true
@@ -76,7 +84,8 @@ extension MainViewController {
         navigationBar.setTitle("新对话")
         navigationBar.addLeft(UIImage(named: "home_left_nav_ic"),target: self,action: #selector(didTapSideMenu))
         navigationBar.addRight(UIImage(named: "home_new_chat_ic"),target: self,action: #selector(didTapNewChat))
-        navigationBar.addRight(UIImage(named: "home_note_chat_ic"),target: self,action: #selector(didTapNoteChat))
+        let noteItem = NavigationItem(view: noteButton,size: CGSize(width: 24, height: 24))
+        navigationBar.addRightItem(noteItem)
         
     }
     
@@ -158,6 +167,12 @@ extension MainViewController {
     
     @objc private func didTapNoteChat() {
         chatvc?.toggleNoteChat()
+        noteButton.isSelected = !noteButton.isSelected
+        if noteButton.isSelected {
+            chatvc?.showEditAction()
+        } else {
+            chatvc?.hiddenEditAction()
+        }
     }
 }
 

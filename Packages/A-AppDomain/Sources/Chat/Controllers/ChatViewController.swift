@@ -14,6 +14,7 @@ import AppInfra
 import MagazineLayout
 import Combine
 import AppRefreshView
+import AppServices
 
 public class ChatViewController: AppViewController {
     
@@ -30,6 +31,8 @@ public class ChatViewController: AppViewController {
     
     public private(set) var dataCenter: ChatDataCenter
     public private(set) var refreshHeader: RefreshView?
+    
+    lazy var editedToolbar = ChatEditedToolbar()
     
     var animator: ManualAnimator?
     
@@ -72,6 +75,7 @@ public class ChatViewController: AppViewController {
         view.backgroundColor = .white
         setupCollectionView()
         setupEmptyView()
+        setupeditedToolbar()
     }
     
     private func setupCollectionView() {
@@ -106,6 +110,36 @@ public class ChatViewController: AppViewController {
         
     }
  
+    private func setupeditedToolbar() {
+        view.addSubview(editedToolbar)
+        editedToolbar.isHidden = true
+        editedToolbar.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(view.snp.bottom)
+            make.height.equalTo(76+AppF.screenBottomSafeAreaHeight)
+        }
+        editedToolbar.selectAll = { [weak self] selected in
+            guard let self else { return }
+            if selected {
+                listContext.editNotifier.selectAll(items: dataCenter.sections)
+            } else {
+                listContext.editNotifier.deselectAll()
+            }
+        }
+        editedToolbar.shareCreateAction = { [weak self] in
+            guard let self else { return }
+            AppHUD.loading("笔记转录中...")
+            self.createNote(with: self.selectMessages)
+            self.hiddenEditAction()
+        }
+    }
+    
+    public var selectMessages: [ChatMessage] {
+        let selectedSet = listContext.editNotifier.selectedItems
+        return dataCenter.messages.filter { message in
+            selectedSet.contains(where: { $0.message.messageId == message.messageId })
+        }
+    }
     
     fileprivate var isUserInitiatedScrolling: Bool {
         collectionView.isDragging || collectionView.isDecelerating
@@ -125,7 +159,6 @@ extension ChatViewController {
     func showEditAction() {
         self.view.endEditing(true)
         showBottomShareView()
-//        navigationBar.replaceItem(shareItem, with: cancelShareItem)
         listContext?.editNotifier.setIsEditing(true, duration: .animated(duration: 0.25))
         let sections = dataCenter.sections
         listContext?.editNotifier.selectAll(items: sections)
@@ -133,7 +166,6 @@ extension ChatViewController {
     
     func hiddenEditAction() {
         hideBottomShareView()
-//        navigationBar.replaceItem(cancelShareItem, with: shareItem)
         listContext?.editNotifier.setIsEditing(false, duration: .animated(duration: 0.25))
     }
     
@@ -148,30 +180,30 @@ extension ChatViewController {
     
     
     private func showBottomShareView() {
-//        shareBottomView.isHidden = false
-//        chatInputToolView.isHidden = true
-//        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut) {
-//            self.shareBottomView.snp.remakeConstraints { make in
-//                make.leading.trailing.equalToSuperview()
-//                make.bottom.equalTo(self.view.snp.bottom)
-//                make.height.equalTo(76+AppF.screenBottomSafeAreaHeight)
-//            }
-//            self.view.layoutIfNeeded()
-//        }
+        editedToolbar.isHidden = false
+        chatInputToolView.isHidden = true
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut) {
+            self.editedToolbar.snp.remakeConstraints { make in
+                make.leading.trailing.equalToSuperview()
+                make.bottom.equalTo(self.view.snp.bottom)
+                make.height.equalTo(76+AppF.screenBottomSafeAreaHeight)
+            }
+            self.view.layoutIfNeeded()
+        }
     }
     
     private func hideBottomShareView() {
-//        chatInputToolView.isHidden = false
-//        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut) {
-//            self.shareBottomView.snp.remakeConstraints { make in
-//                make.leading.trailing.equalToSuperview()
-//                make.top.equalTo(self.view.snp.bottom)
-//                make.height.equalTo(76+AppF.screenBottomSafeAreaHeight)
-//            }
-//            self.view.layoutIfNeeded()
-//        } completion: { finish in
-//            self.shareBottomView.isHidden = true
-//        }
+        chatInputToolView.isHidden = false
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut) {
+            self.editedToolbar.snp.remakeConstraints { make in
+                make.leading.trailing.equalToSuperview()
+                make.top.equalTo(self.view.snp.bottom)
+                make.height.equalTo(76+AppF.screenBottomSafeAreaHeight)
+            }
+            self.view.layoutIfNeeded()
+        } completion: { finish in
+            self.editedToolbar.isHidden = true
+        }
     }
     
 }

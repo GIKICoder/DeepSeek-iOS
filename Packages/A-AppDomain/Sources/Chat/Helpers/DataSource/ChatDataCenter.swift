@@ -151,6 +151,7 @@ public class ChatDataCenter {
         sendMessageStatePublisher.eraseToAnyPublisher()
     }
     
+ 
     /// Retrieves the ChatMessage immediately before the message with the specified messageID.
     /// - Parameter messageID: The unique identifier of the current message.
     /// - Returns: The previous ChatMessage if it exists, otherwise nil.
