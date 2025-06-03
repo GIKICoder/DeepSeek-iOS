@@ -113,18 +113,65 @@ public class ChatViewController: AppViewController {
     
 }
 
+
 // MARK: - Action Method
 
 extension ChatViewController {
-
+    
+    func toggleNoteChat() {
+        showEditAction()
+    }
+    
+    func showEditAction() {
+        self.view.endEditing(true)
+        showBottomShareView()
+//        navigationBar.replaceItem(shareItem, with: cancelShareItem)
+        listContext?.editNotifier.setIsEditing(true, duration: .animated(duration: 0.25))
+        let sections = dataCenter.sections
+        listContext?.editNotifier.selectAll(items: sections)
+    }
+    
+    func hiddenEditAction() {
+        hideBottomShareView()
+//        navigationBar.replaceItem(cancelShareItem, with: shareItem)
+        listContext?.editNotifier.setIsEditing(false, duration: .animated(duration: 0.25))
+    }
     
     @objc func headerRefresh() {
         logUI("headerRefresh xxxxxx")
         loadMoreDatas()
     }
-
+    
     @objc func panCollectionView() {
         view.endEditing(true)
+    }
+    
+    
+    private func showBottomShareView() {
+//        shareBottomView.isHidden = false
+//        chatInputToolView.isHidden = true
+//        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut) {
+//            self.shareBottomView.snp.remakeConstraints { make in
+//                make.leading.trailing.equalToSuperview()
+//                make.bottom.equalTo(self.view.snp.bottom)
+//                make.height.equalTo(76+AppF.screenBottomSafeAreaHeight)
+//            }
+//            self.view.layoutIfNeeded()
+//        }
+    }
+    
+    private func hideBottomShareView() {
+//        chatInputToolView.isHidden = false
+//        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut) {
+//            self.shareBottomView.snp.remakeConstraints { make in
+//                make.leading.trailing.equalToSuperview()
+//                make.top.equalTo(self.view.snp.bottom)
+//                make.height.equalTo(76+AppF.screenBottomSafeAreaHeight)
+//            }
+//            self.view.layoutIfNeeded()
+//        } completion: { finish in
+//            self.shareBottomView.isHidden = true
+//        }
     }
     
 }

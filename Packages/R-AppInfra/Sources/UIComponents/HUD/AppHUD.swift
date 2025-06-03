@@ -129,7 +129,7 @@ public extension AppHUD {
     /// 显示Toast
     static func showToast(_ message: String?,
                          duration: TimeInterval = 2.0,
-                         position: ToastPosition = .bottom,
+                         position: ToastPosition = .center,
                          title: String? = nil,
                          image: UIImage? = nil,
                          style: ToastStyle? = nil,

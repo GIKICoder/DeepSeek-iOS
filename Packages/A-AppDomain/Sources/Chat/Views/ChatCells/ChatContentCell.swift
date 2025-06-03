@@ -16,8 +16,8 @@ public class ChatContentCell: UICollectionViewCell,
     
     private let editButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "pop_chat_un_select"), for: .normal)
-        button.setImage(UIImage(named: "pop_chat_select"), for: .selected)
+        button.setImage(UIImage(named: "chat_un_select"), for: .normal)
+        button.setImage(UIImage(named: "chat_select"), for: .selected)
         return button
     }()
     

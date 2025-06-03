@@ -76,6 +76,8 @@ extension MainViewController {
         navigationBar.setTitle("新对话")
         navigationBar.addLeft(UIImage(named: "home_left_nav_ic"),target: self,action: #selector(didTapSideMenu))
         navigationBar.addRight(UIImage(named: "home_new_chat_ic"),target: self,action: #selector(didTapNewChat))
+        navigationBar.addRight(UIImage(named: "home_note_chat_ic"),target: self,action: #selector(didTapNoteChat))
+        
     }
     
     private func setupSideMenu() {
@@ -147,7 +149,15 @@ extension MainViewController {
     }
     
     @objc private func didTapNewChat() {
+        if let chatvc = chatvc,chatvc.dataCenter.messages.isEmpty {
+            AppHUD.showToast("已经在新对话中")
+            return
+        }
         addNewChat()
+    }
+    
+    @objc private func didTapNoteChat() {
+        chatvc?.toggleNoteChat()
     }
 }
 
