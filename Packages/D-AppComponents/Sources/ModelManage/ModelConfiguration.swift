@@ -119,15 +119,15 @@ public struct ModelConfiguration: Codable, Equatable {
     public let providerId: String
     public let apiKey: String
     public let baseURL: String
-    public let selectedModel: AIModel
+    public var selectedModel: AIModel
     public var isActive: Bool
     public let createdAt: Date
     public let lastUsed: Date
     
     // Advanced Settings
-    public let temperature: Float
-    public let topP: Float
-    public let contextMessageLimit: Float
+    public var temperature: Float
+    public var topP: Float
+    public var contextMessageLimit: Float
     
     public var provider: ModelProvider? {
         ModelProvider.allProviders.first { $0.id == providerId }

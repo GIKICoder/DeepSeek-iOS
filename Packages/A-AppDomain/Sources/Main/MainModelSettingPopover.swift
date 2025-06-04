@@ -97,8 +97,16 @@ class MainModelSettingPopover: UIView {
     }()
     
     // MARK: - Initialization
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+        if let current = ModelStorageManager.shared.currentConfig() {
+            self.selectedModel = current.selectedModel
+            self.temperature = current.temperature
+            self.topP = current.topP
+            self.contextMessageLimit = current.contextMessageLimit
+        }
+        
         setupUI()
     }
     
@@ -279,11 +287,15 @@ extension MainModelSettingPopover: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let model = activeConfigs[indexPath.section].supportModels[indexPath.row]
+        let config = activeConfigs[indexPath.section]
+        let model = config.supportModels[indexPath.row]
         
         // 更新选中状态
         let previousSelectedModel = selectedModel
         selectedModel = model
+        var currentConfig = config
+        currentConfig.selectedModel = model
+        ModelStorageManager.shared.setCurrent(currentConfig)
         
         // 刷新相关行
         if let previousModel = previousSelectedModel {
