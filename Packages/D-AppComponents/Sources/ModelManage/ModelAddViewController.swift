@@ -121,8 +121,8 @@ public class ModelAddViewController: AppViewController {
     
     // MARK: - Data Management
     private func loadData() {
-        configurations = storageManager.getAllConfigurations()
-        usageStats = storageManager.getUsageStatistics()
+        configurations = storageManager.allConfigs()
+        usageStats = storageManager.getUsageStats()
     }
     
     private func refreshData() {
@@ -689,7 +689,7 @@ public class ModelAddViewController: AppViewController {
     private func presentAPIKeyInput(for provider: ModelProvider) {
         let apiKeyVC = APIKeyInputViewController(provider: provider)
         apiKeyVC.onCompletion = { [weak self] configuration in
-            self?.storageManager.saveConfiguration(configuration)
+            self?.storageManager.saveConfig(configuration)
             self?.refreshData()
         }
         
@@ -714,7 +714,7 @@ public class ModelAddViewController: AppViewController {
             // Present settings for existing configuration
             let apiKeyVC = APIKeyInputViewController(provider: provider, existingConfiguration: config)
             apiKeyVC.onCompletion = { [weak self] updatedConfig in
-                self?.storageManager.saveConfiguration(updatedConfig)
+                self?.storageManager.saveConfig(updatedConfig)
                 self?.refreshData()
             }
             
@@ -729,7 +729,7 @@ public class ModelAddViewController: AppViewController {
            var config = configurations.first(where: { $0.providerId == provider.id }) {
             
             config.isActive.toggle()
-            storageManager.saveConfiguration(config)
+            storageManager.saveConfig(config)
             refreshData()
         }
     }
@@ -807,7 +807,7 @@ public class ModelAddViewController: AppViewController {
         impactFeedback.impactOccurred()
         
         // 执行删除操作
-        storageManager.removeConfiguration(for: provider.id)
+        storageManager.removeConfig(for: provider.id)
         
         // 刷新数据并提供成功反馈
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

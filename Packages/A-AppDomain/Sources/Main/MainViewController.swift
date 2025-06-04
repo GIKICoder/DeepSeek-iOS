@@ -51,7 +51,18 @@ public class MainViewController: AppViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        updateModelTipViews()
     }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateModelTipViews()
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
 
 }
 
@@ -94,20 +105,10 @@ extension MainViewController {
         }
         modelSelectView.addTarget(self, action: #selector(modelSelectTapped), for: .touchUpInside)
         
-        if let active = ModelStorageManager.shared.getCurrentActiveConfiguration() {
-            modelSelectView.configure(
-                providerIcon: UIImage(named: active.provider?.iconName ?? "default_ic"),
-                modelInfo: active.selectedModel,
-                isSelectable: true
-            )
-        } else {
-            modelSelectView.configure(
-                providerIcon: nil,
-                modelInfo: "Not Configured",
-                isSelectable: true
-            )
-        }
+       
     }
+    
+    
     
     private func setupSideMenu() {
         SideMenuManager.default.leftMenuNavigationController = leftSideMenu
@@ -118,6 +119,22 @@ extension MainViewController {
     private func bringSubviewToFront() {
         view.bringSubviewToFront(navigationBar)
         view.bringSubviewToFront(maskContainer)
+    }
+    
+    func updateModelTipViews() {
+        if let active = ModelStorageManager.shared.currentConfig() {
+            modelSelectView.configure(
+                providerIcon: UIImage(named: active.selectedModel.avatar),
+                modelInfo: active.selectedModel.name,
+                isSelectable: true
+            )
+        } else {
+            modelSelectView.configure(
+                providerIcon: nil,
+                modelInfo: "Not Configured",
+                isSelectable: true
+            )
+        }
     }
 }
 
@@ -196,7 +213,7 @@ extension MainViewController {
     }
     
     @objc private func modelSelectTapped() {
-        if ModelStorageManager.shared.getActiveConfigurations().isEmpty {
+        if ModelStorageManager.shared.activeConfigs().isEmpty {
             let vc = ModelAddViewController()
             present(vc, animated: true)
             return
@@ -224,6 +241,7 @@ extension MainViewController: SideMenuNavigationControllerDelegate {
     
     public func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
         print("SideMenu Disappearing! (animated: \(animated))")
+        updateModelTipViews()
     }
     
     public func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {

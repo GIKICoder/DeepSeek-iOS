@@ -28,7 +28,7 @@ extension ChatViewController {
     }
     
     func createNoteAsync(with selects: [ChatMessage]) async throws {
-        guard let activeDeepseek = ModelStorageManager.shared.getActiveConfiguration(for: .deepseek) else {
+        guard let activeDeepseek = ModelStorageManager.shared.activeConfig(for: .deepseek) else {
             AppHUD.dismiss()
             AppHUD.showToast("创建笔记失败")
             return

@@ -20,8 +20,7 @@ class MainModelSettingPopover: UIView {
     private var temperature: Float = 0.7
     private var topP: Float = 0.9
     private var contextMessageLimit: Float = 10
-    
-    private var modelProviders: [ModelProvider] = ModelProvider.allProviders
+    private var activeConfigs: [ModelConfiguration] = ModelStorageManager.shared.activeConfigs()
     
     // MARK: - UI Components
     private lazy var backgroundView: UIView = {
@@ -236,27 +235,28 @@ class MainModelSettingPopover: UIView {
 extension MainModelSettingPopover: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return modelProviders.count
+        return activeConfigs.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return modelProviders[section].supportModels.count
+        let config = activeConfigs[section]
+        return config.supportModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ModelCell", for: indexPath) as! ModelTableViewCell
-        let model = modelProviders[indexPath.section].supportModels[indexPath.row]
-        let provider = modelProviders[indexPath.section]
+        let model = activeConfigs[indexPath.section].supportModels[indexPath.row]
+        let config = activeConfigs[indexPath.section]
         
         let isSelected = selectedModel?.value == model.value
-        cell.configure(with: model, provider: provider, isSelected: isSelected)
+        cell.configure(with: model, config: config, isSelected: isSelected)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = ModelSectionHeaderView()
-        headerView.configure(with: modelProviders[section])
+        headerView.configure(with: activeConfigs[section])
         return headerView
     }
     
@@ -279,7 +279,7 @@ extension MainModelSettingPopover: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let model = modelProviders[indexPath.section].supportModels[indexPath.row]
+        let model = activeConfigs[indexPath.section].supportModels[indexPath.row]
         
         // 更新选中状态
         let previousSelectedModel = selectedModel
@@ -287,8 +287,8 @@ extension MainModelSettingPopover: UITableViewDataSource, UITableViewDelegate {
         
         // 刷新相关行
         if let previousModel = previousSelectedModel {
-            for (sectionIndex, provider) in modelProviders.enumerated() {
-                if let rowIndex = provider.supportModels.firstIndex(where: { $0.value == previousModel.value }) {
+            for (sectionIndex, config) in activeConfigs.enumerated() {
+                if let rowIndex = config.supportModels.firstIndex(where: { $0.value == previousModel.value }) {
                     tableView.reloadRows(at: [IndexPath(row: rowIndex, section: sectionIndex)], with: .none)
                     break
                 }
@@ -511,16 +511,15 @@ class ModelTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(with model: AIModel, provider: ModelProvider, isSelected: Bool) {
+    func configure(with model: AIModel, config: ModelConfiguration, isSelected: Bool) {
         nameLabel.text = model.name
         descriptionLabel.text = model.description
         
         // 设置图标，不设置tintColor
         if let image = UIImage(named: model.avatar) {
             iconImageView.image = image
-        } else {
-            iconImageView.image = UIImage(systemName: "cpu.fill")
-            // 不设置tintColor，保持系统默认
+        } else if let provier = config.provider {
+            iconImageView.image = UIImage(named: provier.iconName ) ?? UIImage(systemName: "brain.head.profile")
         }
         
         updateSelectedState(isSelected)
@@ -595,7 +594,8 @@ class ModelSectionHeaderView: UIView {
         }
     }
     
-    func configure(with provider: ModelProvider) {
+    func configure(with config: ModelConfiguration) {
+        guard let provider = config.provider else { return }
         titleLabel.text = provider.displayName
         
         if let image = UIImage(named: provider.iconName) {

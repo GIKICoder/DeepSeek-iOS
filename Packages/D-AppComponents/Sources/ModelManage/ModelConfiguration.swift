@@ -132,6 +132,9 @@ public struct ModelConfiguration: Codable, Equatable {
     public var provider: ModelProvider? {
         ModelProvider.allProviders.first { $0.id == providerId }
     }
+    public var supportModels: [AIModel] {
+        provider?.supportModels ?? []
+    }
 }
 
 // MARK: - Usage Statistics
