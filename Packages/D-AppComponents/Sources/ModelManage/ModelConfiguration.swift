@@ -119,7 +119,7 @@ public struct ModelConfiguration: Codable, Equatable {
     public let providerId: String
     public let apiKey: String
     public let baseURL: String
-    public let selectedModel: String
+    public let selectedModel: AIModel
     public var isActive: Bool
     public let createdAt: Date
     public let lastUsed: Date

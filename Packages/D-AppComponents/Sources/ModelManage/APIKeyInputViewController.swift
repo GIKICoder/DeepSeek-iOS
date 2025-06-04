@@ -58,7 +58,7 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
     private let contextLimitValueLabel = UILabel()
     private let contextLimitSlider = UISlider()
     
-    private var selectedModel: String
+    private var selectedModel: AIModel
     
     // Settings Values
     private var temperature: Float = 0.7
@@ -69,7 +69,7 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
     public init(provider: ModelProvider, existingConfiguration: ModelConfiguration? = nil) {
         self.provider = provider
         self.existingConfiguration = existingConfiguration
-        self.selectedModel = existingConfiguration?.selectedModel ?? provider.supportModels.first?.name ?? ""
+        self.selectedModel = existingConfiguration?.selectedModel ?? provider.supportModels.first ?? AIModel(name: "Default", value: "default", avatar: "default_avatar", description: "默认模型")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -647,10 +647,10 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
         
         for model in provider.supportModels {
             let action = UIAlertAction(title: model.name, style: .default) { [weak self] _ in
-                self?.selectedModel = model.name
+                self?.selectedModel = model
                 self?.updateModelButton()
             }
-            if model.name == selectedModel {
+            if model.value == selectedModel.value {
                 action.setValue(true, forKey: "checked")
             }
             alert.addAction(action)
@@ -709,7 +709,7 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
     
     // MARK: - Helper Methods
     private func updateModelButton() {
-        modelPickerButton.setTitle(selectedModel, for: .normal)
+        modelPickerButton.setTitle(selectedModel.name, for: .normal)
         modelPickerButton.setTitleColor(.label, for: .normal)
         modelPickerButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         modelPickerButton.contentHorizontalAlignment = .left
