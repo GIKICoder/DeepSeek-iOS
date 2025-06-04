@@ -44,6 +44,8 @@ public class MainViewController: AppViewController {
         return view
     }()
     
+    let modelSelectView = MainModelSelectView()
+    
     private var chatvc: ChatViewController?
     
     override public func viewDidLoad() {
@@ -59,8 +61,7 @@ extension MainViewController {
     private func setupUI() {
         setupNavigationBar()
         setupSideMenu()
-        
-
+    
         let entrance = ChatEntrance(channel: nil)
         chatvc = createChat(entrance: entrance)
         addChild(chatvc!)
@@ -81,12 +82,31 @@ extension MainViewController {
     
     private func setupNavigationBar() {
         addNavigationbar()
-        navigationBar.setTitle("新对话")
         navigationBar.addLeft(UIImage(named: "home_left_nav_ic"),target: self,action: #selector(didTapSideMenu))
         navigationBar.addRight(UIImage(named: "home_new_chat_ic"),target: self,action: #selector(didTapNewChat))
         let noteItem = NavigationItem(view: noteButton,size: CGSize(width: 24, height: 24))
         navigationBar.addRightItem(noteItem)
         
+        navigationBar.addSubview(modelSelectView)
+        modelSelectView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(navigationBar.contentView.snp.centerY)
+        }
+        modelSelectView.addTarget(self, action: #selector(modelSelectTapped), for: .touchUpInside)
+        
+        if let active = ModelStorageManager.shared.getCurrentActiveConfiguration() {
+            modelSelectView.configure(
+                providerIcon: UIImage(named: active.provider?.iconName ?? "default_ic"),
+                modelInfo: active.selectedModel,
+                isSelectable: true
+            )
+        } else {
+            modelSelectView.configure(
+                providerIcon: nil,
+                modelInfo: "Not Configured",
+                isSelectable: true
+            )
+        }
     }
     
     private func setupSideMenu() {
@@ -172,6 +192,14 @@ extension MainViewController {
             chatvc?.showEditAction()
         } else {
             chatvc?.hiddenEditAction()
+        }
+    }
+    
+    @objc private func modelSelectTapped() {
+        if ModelStorageManager.shared.getActiveConfigurations().isEmpty {
+            let vc = ModelAddViewController()
+            present(vc, animated: true)
+            return
         }
     }
 }

@@ -8,15 +8,29 @@ public class ModelStorageManager {
     
     private let userDefaults = UserDefaults.standard
     private let configurationsKey = "ModelConfigurations"
+    private let currentConfigurationsKey = "ModelConfigurations.current"
     private let usageStatsKey = "UsageStatistics"
     
     private init() {}
     
     // MARK: - Public Method
     
+    
+    public func getCurrentActiveConfiguration() -> ModelConfiguration? {
+        if let current = loadCurrentConfiguration(), let config = getActiveConfiguration(with: current.providerId) {
+            return config
+        }
+        return loadConfigurations().first { $0.isActive }
+    }
+    
+    public func setCurrentActiveConfiguration(_ config: ModelConfiguration) {
+        saveCurrentConfiguration(config)
+    }
+    
     public func getAllConfigurations() -> [ModelConfiguration] {
         return loadConfigurations()
     }
+   
     
     public func getActiveConfigurations() -> [ModelConfiguration] {
         return loadConfigurations().filter { $0.isActive }
@@ -26,11 +40,32 @@ public class ModelStorageManager {
         return loadConfigurations().first { $0.providerId == providerID.rawValue && $0.isActive }
     }
     
+    public func getActiveConfiguration(with Id: String) -> ModelConfiguration? {
+        return loadConfigurations().first { $0.providerId == Id && $0.isActive }
+    }
+    
     public func getConfiguration(for providerId: String) -> ModelConfiguration? {
         return loadConfigurations().first { $0.providerId == providerId }
     }
     
     // MARK: - Model Configurations
+    
+    /// 保存当前活跃的模型配置
+    func saveCurrentConfiguration(_ config: ModelConfiguration) {
+        // 保存到UserDefaults
+        if let data = try? JSONEncoder().encode(config) {
+            userDefaults.set(data, forKey: currentConfigurationsKey)
+        }
+    }
+    /// 加载当前活跃的模型配置
+    func loadCurrentConfiguration() -> ModelConfiguration? {
+        guard let data = userDefaults.data(forKey: currentConfigurationsKey),
+              let configuration = try? JSONDecoder().decode(ModelConfiguration.self, from: data) else {
+            return nil
+        }
+        return configuration
+    }
+    
     func saveConfiguration(_ config: ModelConfiguration) {
         var configurations = loadConfigurations()
         

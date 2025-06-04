@@ -372,11 +372,11 @@ public class ModelAddViewController: AppViewController {
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         titleLabel.textColor = .black
         
-        let subtitleLabel = UILabel()
-        subtitleLabel.text = config.selectedModel
-        subtitleLabel.font = UIFont.systemFont(ofSize: 14)
-        subtitleLabel.textColor = .gray
-        
+//        let subtitleLabel = UILabel()
+//        subtitleLabel.text = config.selectedModel
+//        subtitleLabel.font = UIFont.systemFont(ofSize: 14)
+//        subtitleLabel.textColor = .gray
+//        
         // Status badge
         let statusContainer = UIView()
         statusContainer.backgroundColor = config.isActive ? .systemGreen.withAlphaComponent(0.1) : .systemOrange.withAlphaComponent(0.1)
@@ -432,13 +432,14 @@ public class ModelAddViewController: AppViewController {
         // Add subviews
         cardView.addSubview(iconContainer)
         cardView.addSubview(titleLabel)
-        cardView.addSubview(subtitleLabel)
+//        cardView.addSubview(subtitleLabel)
         cardView.addSubview(statusContainer)
         cardView.addSubview(moreButton)
         
         // Constraints
         iconContainer.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
             make.width.height.equalTo(48)
         }
         
@@ -453,15 +454,15 @@ public class ModelAddViewController: AppViewController {
             make.trailing.lessThanOrEqualTo(moreButton.snp.leading).offset(-8)
         }
         
-        subtitleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(titleLabel)
-            make.top.equalTo(titleLabel.snp.bottom).offset(4)
-            make.trailing.lessThanOrEqualTo(moreButton.snp.leading).offset(-8)
-        }
+//        subtitleLabel.snp.makeConstraints { make in
+//            make.leading.equalTo(titleLabel)
+//            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+//            make.trailing.lessThanOrEqualTo(moreButton.snp.leading).offset(-8)
+//        }
         
         statusContainer.snp.makeConstraints { make in
             make.leading.equalTo(iconContainer.snp.trailing).offset(12)
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(8)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.bottom.equalToSuperview().offset(-16)
             make.height.equalTo(20)
         }

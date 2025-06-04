@@ -12,15 +12,15 @@ public enum ModelProviderID: String {
 
 // MARK: - Model Provider
 public struct ModelProvider: Codable, Equatable {
-    let id: String
-    let name: String
-    let displayName: String
-    let iconName: String
-    let iconColor: String
-    let website: String
-    let baseURL: String
-    let description: String
-    let supportModels: [String]
+    public let id: String
+    public let name: String
+    public let displayName: String
+    public let iconName: String
+    public let iconColor: String
+    public let website: String
+    public let baseURL: String
+    public let description: String
+    public let supportModels: [String]
     
     static let allProviders: [ModelProvider] = [
         ModelProvider(
@@ -32,7 +32,7 @@ public struct ModelProvider: Codable, Equatable {
             website: "https://openai.com",
             baseURL: "https://api.openai.com/v1",
             description: "领先的人工智能研究公司",
-            supportModels: ["gpt-4", "gpt-4-turbo", "gpt-3.5-turbo"]
+            supportModels: ["gpt-4o","gpt-4.1","gpt-4.1 mini","o1 mini","03 mini","o3","o4 mini","o4"]
         ),
         ModelProvider(
             id: ModelProviderID.anthropic.rawValue,
@@ -43,7 +43,7 @@ public struct ModelProvider: Codable, Equatable {
             website: "https://anthropic.com",
             baseURL: "https://api.anthropic.com/v1",
             description: "Claude是由Anthropic开发的AI助手，专注于提供有用、无害且诚实的对话体验。",
-            supportModels: ["claude-3-opus", "claude-3-sonnet", "claude-3-haiku"]
+            supportModels: ["claude-opus-4-0","claude-sonnet-4-0","claude-3-7-sonnet-latest","claude-3-5-sonnet-latest","claude-3-5-haiku-latest","claude-3-opus-latest"]
         ),
         ModelProvider(
             id: ModelProviderID.deepseek.rawValue,
@@ -54,7 +54,7 @@ public struct ModelProvider: Codable, Equatable {
             website: "https://deepseek.com",
             baseURL: "https://api.deepseek.com/v1",
             description: "深度推理AI模型",
-            supportModels: ["deepseek-chat", "deepseek-coder"]
+            supportModels: ["deepseek-chat", "deepseek-reasoner"]
         ),
         ModelProvider(
             id: ModelProviderID.google.rawValue,
