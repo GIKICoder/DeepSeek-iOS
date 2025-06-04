@@ -209,13 +209,17 @@ class MainModelSettingPopover: UIView {
     }
     
     func hide() {
-        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.98, initialSpringVelocity: 0) {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
             self.backgroundView.alpha = 0
-            self.containerView.transform = CGAffineTransform(scaleX: 0.85, y: 0.85).translatedBy(x: 0, y: -50)
+            self.containerView.alpha = 0
+            self.containerView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         } completion: { _ in
             self.removeFromSuperview()
         }
     }
+
+
+
     
     // MARK: - Actions
     @objc private func backgroundTapped() {
