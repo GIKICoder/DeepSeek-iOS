@@ -22,7 +22,12 @@
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum DeepSeekAsset: Sendable {
   public enum App {
-  public static let frame1095Normal = DeepSeekImages(name: "Frame 1095_Normal")
+  public static let claudeAvatar = DeepSeekImages(name: "claude_avatar")
+    public static let deepseekAvatar = DeepSeekImages(name: "deepseek_avatar")
+    public static let gpt4oAvatar = DeepSeekImages(name: "gpt-4o_avatar")
+    public static let o1MiniAvatar = DeepSeekImages(name: "o1-mini_avatar")
+    public static let o3MiniAvatar = DeepSeekImages(name: "o3-mini_avatar")
+    public static let frame1095Normal = DeepSeekImages(name: "Frame 1095_Normal")
     public static let frame872Normal = DeepSeekImages(name: "Frame 872_Normal")
     public static let frame986Normal = DeepSeekImages(name: "Frame 986_Normal")
     public static let frame990Normal = DeepSeekImages(name: "Frame 990_Normal")
@@ -52,6 +57,10 @@ public enum DeepSeekAsset: Sendable {
     public static let dpIcon = DeepSeekImages(name: "dp_icon")
     public static let homeLeftNavIc = DeepSeekImages(name: "home_left_nav_ic")
     public static let homeNewChatIc = DeepSeekImages(name: "home_new_chat_ic")
+    public static let homeNoteCancelIc = DeepSeekImages(name: "home_note_cancel_ic")
+    public static let homeNoteChatIc = DeepSeekImages(name: "home_note_chat_ic")
+    public static let chatSelect = DeepSeekImages(name: "chat_select")
+    public static let chatUnSelect = DeepSeekImages(name: "chat_un_select")
     public static let messageCopyIc = DeepSeekImages(name: "message_copy_ic")
     public static let messageDislikeIc = DeepSeekImages(name: "message_dislike_ic")
     public static let messageDislikeIcHl = DeepSeekImages(name: "message_dislike_ic_hl")

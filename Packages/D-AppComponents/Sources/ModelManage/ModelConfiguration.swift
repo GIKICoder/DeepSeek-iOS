@@ -135,6 +135,10 @@ public struct ModelConfiguration: Codable, Equatable {
     public var supportModels: [AIModel] {
         provider?.supportModels ?? []
     }
+    
+    public var prividerType: ModelProviderID {
+        ModelProviderID(rawValue: providerId) ?? .local
+    }
 }
 
 // MARK: - Usage Statistics

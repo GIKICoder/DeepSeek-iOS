@@ -2,7 +2,7 @@
 //  DBChatSessionHistory.swift
 //  AppComponents
 //
-//  Created by 巩柯 on 2025/6/1.
+//  Created by GIKI on 2025/6/1.
 //
 
 import Foundation
