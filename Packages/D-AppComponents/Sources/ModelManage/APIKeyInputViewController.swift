@@ -69,7 +69,7 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
     public init(provider: ModelProvider, existingConfiguration: ModelConfiguration? = nil) {
         self.provider = provider
         self.existingConfiguration = existingConfiguration
-        self.selectedModel = existingConfiguration?.selectedModel ?? provider.supportModels.first ?? ""
+        self.selectedModel = existingConfiguration?.selectedModel ?? provider.supportModels.first?.name ?? ""
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -646,11 +646,11 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
         let alert = UIAlertController(title: "选择模型", message: nil, preferredStyle: .actionSheet)
         
         for model in provider.supportModels {
-            let action = UIAlertAction(title: model, style: .default) { [weak self] _ in
-                self?.selectedModel = model
+            let action = UIAlertAction(title: model.name, style: .default) { [weak self] _ in
+                self?.selectedModel = model.name
                 self?.updateModelButton()
             }
-            if model == selectedModel {
+            if model.name == selectedModel {
                 action.setValue(true, forKey: "checked")
             }
             alert.addAction(action)

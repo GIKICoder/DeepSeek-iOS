@@ -196,3 +196,25 @@ public class ModelStorageManager {
         return apiKey
     }
 }
+
+/*
+public func addConfiguration(_ config: ModelConfiguration) {
+    var configurations = loadConfigurations()
+    configurations.append(config)
+    saveConfigurations(configurations)
+}
+
+public func updateConfiguration(_ config: ModelConfiguration) {
+    var configurations = loadConfigurations()
+    if let index = configurations.firstIndex(where: { $0.id == config.id }) {
+        configurations[index] = config
+        saveConfigurations(configurations)
+    }
+}
+
+private func saveConfigurations(_ configurations: [ModelConfiguration]) {
+    if let data = try? JSONEncoder().encode(configurations) {
+        userDefaults.set(data, forKey: configurationsKey)
+    }
+}
+*/
