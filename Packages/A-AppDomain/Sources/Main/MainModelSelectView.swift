@@ -10,18 +10,6 @@ import AppComponents
 import AppInfra
 import AppFoundation
 import SnapKit
-//
-//  MainModelSelectView.swift
-//  AppDomain
-//
-//  Created by GIKI on 2025/6/4.
-//
-
-import UIKit
-import AppComponents
-import AppInfra
-import AppFoundation
-import SnapKit
 
 class MainModelSelectView: UIButton {
     

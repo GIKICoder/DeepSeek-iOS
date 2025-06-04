@@ -201,6 +201,10 @@ extension MainViewController {
             present(vc, animated: true)
             return
         }
+        // 创建和显示弹窗
+        let popover = MainModelSettingPopover()
+        popover.show()
+        /// , sourceRect: self.modelSelectView.frame
     }
 }
 
