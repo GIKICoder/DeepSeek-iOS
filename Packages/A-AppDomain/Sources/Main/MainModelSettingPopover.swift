@@ -622,7 +622,7 @@ class ModernParameterSettingsView: UIView {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 24
+        stackView.spacing = 12
         stackView.distribution = .fill
         return stackView
     }()
@@ -645,8 +645,9 @@ class ModernParameterSettingsView: UIView {
         }
         
         stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(24)
-            make.width.equalToSuperview().offset(-48)
+            make.top.bottom.equalToSuperview().inset(10)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.width.equalToSuperview().offset(-48)  // 减少宽度以适应屏幕
         }
     }
     
@@ -700,8 +701,11 @@ class ModernParameterSlider: UIView {
     
     private lazy var containerView: UIView = {
         let view = UIView()
+        view.backgroundColor = UIColor.red
+        view.layer.cornerRadius = 8
         view.backgroundColor = UIColor.secondarySystemGroupedBackground
-        view.layer.cornerRadius = 16
+        view.layer.borderWidth = 1  // 添加淡色边框
+        view.layer.borderColor = UIColor.systemGray5.cgColor  // 淡色边框
         return view
     }()
     
@@ -714,20 +718,19 @@ class ModernParameterSlider: UIView {
         let imageView = UIImageView()
         let config = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
         imageView.preferredSymbolConfiguration = config
-        // 不设置tintColor，保持系统默认
         return imageView
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = UIColor.label
         return label
     }()
     
     private lazy var valueLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         label.textColor = UIColor.systemBlue
         label.textAlignment = .right
         return label
@@ -737,7 +740,7 @@ class ModernParameterSlider: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = UIColor.secondaryLabel
-        label.numberOfLines = 0  // 允许多行
+        label.numberOfLines = 1
         return label
     }()
     
@@ -786,13 +789,13 @@ class ModernParameterSlider: UIView {
         // 设置约束
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-            make.height.equalTo(60)  // 增加高度以容纳更长的subtitle
+            make.height.equalTo(80)  // 增加高度以容纳更长的subtitle
         }
         
         // 头部视图约束
         headerView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(40)
+            make.height.equalTo(30)
         }
         
         iconImageView.snp.makeConstraints { make in
@@ -815,17 +818,16 @@ class ModernParameterSlider: UIView {
         // 副标题约束 - 增加高度
         subtitleLabel.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(4)
-            make.leading.equalToSuperview().offset(48)  // 与title对齐
+            make.leading.equalTo(titleLabel.snp.leading)
             make.trailing.equalToSuperview().offset(-16)
-            make.height.greaterThanOrEqualTo(24)  // 确保足够高度显示两行文字
         }
         
         // 滑块约束
         slider.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(12)
-            make.bottom.equalToSuperview().offset(-16)
+//            make.top.equalTo(subtitleLabel.snp.bottom).offset(12)
+            make.bottom.equalToSuperview().offset(-8)
             make.height.equalTo(20)
         }
     }
