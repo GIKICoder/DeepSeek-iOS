@@ -135,7 +135,7 @@ class MainModelSettingPopover: UIView {
         
         containerView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-30)
+            make.top.equalToSuperview().offset(88+30)
             make.width.equalTo(360)
             make.height.lessThanOrEqualTo(UIScreen.main.bounds.height * 0.75)
             make.height.greaterThanOrEqualTo(400)
@@ -209,7 +209,7 @@ class MainModelSettingPopover: UIView {
     }
     
     func hide() {
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0) {
+        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.98, initialSpringVelocity: 0) {
             self.backgroundView.alpha = 0
             self.containerView.transform = CGAffineTransform(scaleX: 0.85, y: 0.85).translatedBy(x: 0, y: -50)
         } completion: { _ in
