@@ -1,6 +1,13 @@
+//
+//  ModelAddViewController.swift
+//  AppComponents
+//
+//  Created by GIKI on 2025/5/29.
+//
+
 import Foundation
 
-public enum ModelProviderID: String {
+public enum ModelProviderType: String {
     public typealias RawValue = String
     
     case openai = "openai"
@@ -32,7 +39,7 @@ public struct ModelProvider: Codable, Equatable {
     
     public static let allProviders: [ModelProvider] = [
         ModelProvider(
-            id: ModelProviderID.openai.rawValue,
+            id: ModelProviderType.openai.rawValue,
             name: "OpenAI",
             displayName: "OpenAI",
             iconName: "openai_ic",
@@ -52,7 +59,7 @@ public struct ModelProvider: Codable, Equatable {
             ]
         ),
         ModelProvider(
-            id: ModelProviderID.anthropic.rawValue,
+            id: ModelProviderType.anthropic.rawValue,
             name: "Anthropic",
             displayName: "Claude",
             iconName: "claude_ic",
@@ -70,7 +77,7 @@ public struct ModelProvider: Codable, Equatable {
             ]
         ),
         ModelProvider(
-            id: ModelProviderID.deepseek.rawValue,
+            id: ModelProviderType.deepseek.rawValue,
             name: "DeepSeek",
             displayName: "DeepSeek",
             iconName: "deepseek_ic",
@@ -84,7 +91,7 @@ public struct ModelProvider: Codable, Equatable {
             ]
         ),
         ModelProvider(
-            id: ModelProviderID.google.rawValue,
+            id: ModelProviderType.google.rawValue,
             name: "Google",
             displayName: "Gemini",
             iconName: "geminiai_ic",
@@ -98,7 +105,7 @@ public struct ModelProvider: Codable, Equatable {
             ]
         ),
         ModelProvider(
-            id: ModelProviderID.local.rawValue,
+            id: ModelProviderType.local.rawValue,
             name: "Local",
             displayName: "本地模型",
             iconName: "cpu",
@@ -136,8 +143,8 @@ public struct ModelConfiguration: Codable, Equatable {
         provider?.supportModels ?? []
     }
     
-    public var prividerType: ModelProviderID {
-        ModelProviderID(rawValue: providerId) ?? .local
+    public var prividerType: ModelProviderType {
+        ModelProviderType(rawValue: providerId) ?? .local
     }
 }
 

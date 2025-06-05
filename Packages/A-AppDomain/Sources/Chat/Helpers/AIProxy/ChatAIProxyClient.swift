@@ -68,7 +68,7 @@ public actor ChatAIProxyClient {
     /// - Parameter providerId: The provider ID to create a service for
     /// - Returns: The appropriate service or nil if not supported
     private func createService(for providerId: String) -> Any? {
-        guard let provider = ModelProviderID(rawValue: providerId) else {
+        guard let provider = ModelProviderType(rawValue: providerId) else {
             logError("Unsupported provider ID: \(providerId)")
             return nil
         }
@@ -125,7 +125,7 @@ public actor ChatAIProxyClient {
     /// - Returns: An AsyncThrowingStream that emits stream chunks as they arrive
     public func sendMessage(_ message: SendAIMessageParam) -> AsyncThrowingStream<[ChatAIChunk], Error> {
         return AsyncThrowingStream { continuation in
-            guard let provider = ModelProviderID(rawValue: modelConfig.providerId) else {
+            guard let provider = ModelProviderType(rawValue: modelConfig.providerId) else {
                 continuation.finish(throwing: NSError(domain: "ChatAIProxyClient", code: -1, userInfo: ["message": "Invalid provider ID"]))
                 return
             }

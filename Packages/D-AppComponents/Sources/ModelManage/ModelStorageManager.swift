@@ -1,5 +1,24 @@
+//
+//  ModelAddViewController.swift
+//  AppComponents
+//
+//  Created by GIKI on 2025/5/29.
+//
+
+
 import Foundation
 import Security
+import Combine
+
+// MARK: - Model Storage Events
+public enum ModelStorageEvent {
+    case configSaved(ModelConfiguration)
+    case configDeleted(configId: String)
+    case configRemoved(providerId: String)
+    case configToggled(providerId: String, isActive: Bool)
+    case allConfigsCleared
+    case currentConfigChanged(ModelConfiguration)
+}
 
 // MARK: - Model Storage Manager
 public class ModelStorageManager {
@@ -10,6 +29,14 @@ public class ModelStorageManager {
     private let currentConfigurationsKey = "ModelConfigurations.current"
     private let usageStatsKey = "UsageStatistics"
     
+    // MARK: - Event System
+    private let eventSubject = PassthroughSubject<ModelStorageEvent, Never>()
+    
+    /// 配置变更事件的发布者
+    public var eventPublisher: AnyPublisher<ModelStorageEvent, Never> {
+        return eventSubject.eraseToAnyPublisher()
+    }
+    
     private init() {}
     
     // MARK: - Public Methods
@@ -18,7 +45,7 @@ public class ModelStorageManager {
     /// - Returns: 当前活跃的模型配置，如果不存在则返回第一个活跃配置
     public func currentConfig() -> ModelConfiguration? {
         if let current = loadCurrentConfig(), let active = activeConfig(withId: current.providerId) {
-            return current
+            return active
         }
         return loadConfigs().first { $0.isActive }
     }
@@ -26,7 +53,9 @@ public class ModelStorageManager {
     /// 设置当前活跃的模型配置
     /// - Parameter config: 要设置为当前活跃的模型配置
     public func setCurrent(_ config: ModelConfiguration) {
+        saveConfig(config)
         saveCurrentConfig(config)
+        eventSubject.send(.currentConfigChanged(config))
     }
     
     /// 获取所有已保存的模型配置
@@ -44,7 +73,7 @@ public class ModelStorageManager {
     /// 根据提供商ID获取活跃的模型配置
     /// - Parameter providerID: 模型提供商ID枚举
     /// - Returns: 匹配的活跃模型配置，如果不存在则返回nil
-    public func activeConfig(for providerID: ModelProviderID) -> ModelConfiguration? {
+    public func activeConfig(for providerID: ModelProviderType) -> ModelConfiguration? {
         return loadConfigs().first { $0.providerId == providerID.rawValue && $0.isActive }
     }
     
@@ -76,6 +105,8 @@ public class ModelStorageManager {
         // 保存到UserDefaults
         if let data = try? JSONEncoder().encode(configurations) {
             userDefaults.set(data, forKey: configurationsKey)
+            // 发送事件
+            eventSubject.send(.configSaved(config))
         }
     }
     
@@ -87,6 +118,8 @@ public class ModelStorageManager {
         
         if let data = try? JSONEncoder().encode(configurations) {
             userDefaults.set(data, forKey: configurationsKey)
+            // 发送事件
+            eventSubject.send(.configDeleted(configId: id))
         }
     }
     
@@ -98,12 +131,16 @@ public class ModelStorageManager {
         
         if let data = try? JSONEncoder().encode(configurations) {
             userDefaults.set(data, forKey: configurationsKey)
+            // 发送事件
+            eventSubject.send(.configRemoved(providerId: providerId))
         }
     }
     
     /// 清除所有模型配置
     public func clearAllConfigs() {
         userDefaults.removeObject(forKey: configurationsKey)
+        // 发送事件
+        eventSubject.send(.allConfigsCleared)
     }
     
     /// 切换指定提供商配置的活跃状态
@@ -130,6 +167,8 @@ public class ModelStorageManager {
             
             if let data = try? JSONEncoder().encode(configurations) {
                 userDefaults.set(data, forKey: configurationsKey)
+                // 发送事件
+                eventSubject.send(.configToggled(providerId: providerId, isActive: newConfig.isActive))
             }
         }
     }

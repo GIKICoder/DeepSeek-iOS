@@ -10,11 +10,11 @@ extension Foundation.Bundle {
 static let module = Bundle(for: BundleFinder.self)
 }
 // MARK: - Objective-C Bundle Accessor
-@objc
-public class DeepSeekResources: NSObject {
-@objc public class var bundle: Bundle {
-    return .module
-}
+@objcMembers
+public final class DeepSeekResources: NSObject {
+    public static var bundle: Bundle {
+        .module
+    }
 }
 // swiftformat:enable all
 // swiftlint:enable all

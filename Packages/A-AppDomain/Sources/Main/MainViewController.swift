@@ -11,9 +11,10 @@ import AppInfra
 import SideMenu
 import AppFoundation
 import AppServices
+import Combine
 
 public class MainViewController: AppViewController {
-
+    
     lazy var leftSideMenu: SideMenuNavigationController = {
         let side = SideMenuNavigationController(rootViewController: historyVC)
         return side
@@ -46,12 +47,20 @@ public class MainViewController: AppViewController {
     
     let modelSelectView = MainModelSelectView()
     
+    private var cancellables = Set<AnyCancellable>()
+    
     private var chatvc: ChatViewController?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         updateModelTipViews()
+        // 订阅配置变更事件
+        ModelStorageManager.shared.eventPublisher
+            .sink { [weak self] event in
+                self?.handleModelStorageEvent(event)
+            }
+            .store(in: &cancellables)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -63,16 +72,16 @@ public class MainViewController: AppViewController {
         super.viewDidAppear(animated)
     }
     
-
+    
 }
 
 // MARK: - Setup UI
 extension MainViewController {
-
+    
     private func setupUI() {
         setupNavigationBar()
         setupSideMenu()
-    
+        
         let entrance = ChatEntrance(channel: nil)
         chatvc = createChat(entrance: entrance)
         addChild(chatvc!)
@@ -105,7 +114,7 @@ extension MainViewController {
         }
         modelSelectView.addTarget(self, action: #selector(modelSelectTapped), for: .touchUpInside)
         
-       
+        
     }
     
     
@@ -165,7 +174,7 @@ extension MainViewController {
         chatvc!.view.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         bringSubviewToFront()
     }
-
+    
     private func removeCurrentChat() {
         
         guard let chatViewController = chatvc else { return }
@@ -173,7 +182,7 @@ extension MainViewController {
         chatViewController.willMove(toParent: nil)
         chatViewController.view.removeFromSuperview()
         chatViewController.removeFromParent()
-    
+        
         chatvc = nil
     }
     
@@ -222,6 +231,31 @@ extension MainViewController {
         let popover = MainModelSettingPopover()
         popover.show()
         /// , sourceRect: self.modelSelectView.frame
+    }
+    
+    private func handleModelStorageEvent(_ event: ModelStorageEvent) {
+        
+        updateModelTipViews()
+        
+        switch event {
+        case .configSaved(let config):
+            print("配置已保存: \(config.providerId)")
+            
+        case .configDeleted(let configId):
+            print("配置已删除: \(configId)")
+            
+        case .configRemoved(let providerId):
+            print("提供商配置已移除: \(providerId)")
+            
+        case .configToggled(let providerId, let isActive):
+            print("配置状态已切换: \(providerId), 活跃状态: \(isActive)")
+            
+        case .allConfigsCleared:
+            print("所有配置已清除")
+            
+        case .currentConfigChanged(let config):
+            print("当前配置已变更: \(config.providerId)")
+        }
     }
 }
 
