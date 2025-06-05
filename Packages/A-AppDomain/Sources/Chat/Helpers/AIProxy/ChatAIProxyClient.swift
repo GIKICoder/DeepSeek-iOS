@@ -89,20 +89,9 @@ public actor ChatAIProxyClient {
     
     // MARK: - Service Creation Methods
     
-    /// Creates an OpenAI service instance
-    private func createOpenAIService() -> Any? {
-        // Placeholder for OpenAI service creation
-        // Implementation would depend on the OpenAI service protocol
-        logInfo("Creating OpenAI service with base URL: \(modelConfig.baseURL)")
-        return nil
-    }
+   
     
-    /// Creates an Anthropic service instance
-    private func createAnthropicService() -> Any? {
-        // Placeholder for Anthropic service creation
-        logInfo("Creating Anthropic service with base URL: \(modelConfig.baseURL)")
-        return nil
-    }
+    
     
     /// Creates a Google service instance
     private func createGoogleService() -> Any? {
@@ -154,24 +143,9 @@ public actor ChatAIProxyClient {
     
     // MARK: - Provider Specific Message Methods
     
-    private func sendOpenAIMessage(
-        message: SendAIMessageParam,
-        continuation: AsyncThrowingStream<[ChatAIChunk], Error>.Continuation
-    ) async throws {
-        // Placeholder for OpenAI implementation
-        logInfo("Sending request to OpenAI service")
-        throw NSError(domain: "ChatAIProxyClient", code: -1, userInfo: ["message": "OpenAI service not implemented"])
-    }
+   
     
-    private func sendAnthropicMessage(
-        message: SendAIMessageParam,
-        continuation: AsyncThrowingStream<[ChatAIChunk], Error>.Continuation
-    ) async throws {
-        // Placeholder for Anthropic implementation
-        logInfo("Sending request to Anthropic service")
-        throw NSError(domain: "ChatAIProxyClient", code: -1, userInfo: ["message": "Anthropic service not implemented"])
-    }
-    
+   
     private func sendGoogleMessage(
         message: SendAIMessageParam,
         continuation: AsyncThrowingStream<[ChatAIChunk], Error>.Continuation

@@ -1,8 +1,8 @@
 //
-//  ChatAIProxy+DeepSeek.swift
+//  ChatAIProxy+OpenAI.swift
 //  AppDomain
 //
-//  Created by GIKI on 2025/6/5.
+//  Created by 巩柯 on 2025/6/6.
 //
 
 
@@ -16,60 +16,50 @@ import AIProxy
 extension ChatAIProxyClient {
     // MARK: - Service Creation Methods
     
-    /// Creates a DeepSeek service instance
-    internal func createDeepSeekService() -> DeepSeekService {
-         let deepSeekService = AIProxy.deepSeekDirectService(
-             unprotectedAPIKey: modelConfig.apiKey
-         )
-        return deepSeekService
+    /// Creates an OpenAI service instance
+    internal func createOpenAIService() -> OpenAIService {
+        let openAIService = AIProxy.openAIDirectService(
+            unprotectedAPIKey: modelConfig.apiKey
+        )
+        return openAIService
     }
-    
+  
     // MARK: - Provider Specific Message Methods
     
-    internal func sendDeepSeekMessage(
+    internal func sendOpenAIMessage(
         message: SendAIMessageParam,
         continuation: AsyncThrowingStream<[ChatAIChunk], Error>.Continuation
     ) async throws {
         // Get the DeepSeek service
-        guard let service = getService() as? DeepSeekService else {
-            throw NSError(domain: "ChatAIProxyClient", code: -1, userInfo: ["message": "DeepSeek service unavailable"])
+        guard let service = getService() as? OpenAIService else {
+            throw NSError(domain: "ChatAIProxyClient", code: -1, userInfo: ["message": "OpenAI service unavailable"])
         }
-        
-        
-        logInfo("Preparing request to DeepSeek service")
-        
+        logInfo("Sending request to OpenAI service")
         // Convert generic messages to DeepSeek-specific messages
-        var deepSeekMessages: [DeepSeekChatCompletionRequestBody.Message] = []
+        var openAIMessages: [OpenAIChatCompletionRequestBody.Message] = []
         for aimessage in message.messages {
             switch aimessage {
             case .assistant(let content, let name, let prefix, let reasoningContent):
-                deepSeekMessages.append(.assistant(content: content, name: name, prefix: prefix, reasoningContent: reasoningContent))
+                openAIMessages.append(.assistant(content: .text(content), name: name))
             case .system(let content, let name):
-                deepSeekMessages.append(.system(content: content, name: name))
+                openAIMessages.append(.system(content: .text(content), name: name))
             case .tool(let content, let toolCallID):
-                deepSeekMessages.append(.tool(content: content, toolCallID: toolCallID))
+                openAIMessages.append(.tool(content: .text(content), toolCallID: toolCallID))
             case .user(let content, let name):
-                deepSeekMessages.append(.user(content: content, name: name))
+                openAIMessages.append(.user(content: .text(content), name: name))
             }
         }
         
-        // Create the request body
-        let requestBody = DeepSeekChatCompletionRequestBody(
-            messages: deepSeekMessages,
+        let requestBody = OpenAIChatCompletionRequestBody(
             model: modelConfig.selectedModel.value,
+            messages: openAIMessages,
             stream: message.stream,
             temperature: Double(modelConfig.temperature),
             topP: Double(modelConfig.topP)
         )
-        
         if message.stream {
             do {
-                // Streaming request
-                let stream = try await service.streamingChatCompletionRequest(
-                    body: requestBody,
-                    secondsToWait: 360
-                )
-                
+                let stream = try await service.streamingChatCompletionRequest(body: requestBody)
                 var accumulatedContent = ""
                 var chunkId: String = ""
                 // Process the stream
@@ -98,28 +88,13 @@ extension ChatAIProxyClient {
                 
                 continuation.yield([finalChunk])
                 continuation.finish()
+            } catch AIProxyError.unsuccessfulRequest(let statusCode, let responseBody) {
+                print("Received \(statusCode) status code with response body: \(responseBody)")
+                continuation.finish(throwing:  NSError(domain: "ChatAIProxyClient", code: statusCode, userInfo: ["message": responseBody]))
             } catch {
-                logError("Streaming request failed: \(error)")
+                print("Could not create OpenAI streaming chat completion: \(error.localizedDescription)")
                 continuation.finish(throwing: error)
             }
-        } else {
-            // Non-streaming request - send complete response at once
-            let response = try await service.chatCompletionRequest(
-                body: requestBody,
-                secondsToWait: 60
-            )
-            
-            let content = response.choices.first?.message.content ?? ""
-            
-            let streamChunk = ChatAIChunk(
-                id: response.id,
-                content: content,
-                isComplete: true,
-                usage: response.usage
-            )
-            
-            continuation.yield([streamChunk])
-            continuation.finish()
         }
     }
     

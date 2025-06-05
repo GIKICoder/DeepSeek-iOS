@@ -135,6 +135,7 @@ public struct ModelConfiguration: Codable, Equatable {
     public var temperature: Float
     public var topP: Float
     public var contextMessageLimit: Float
+    public var maxTokens: Int = 4096
     
     public var provider: ModelProvider? {
         ModelProvider.allProviders.first { $0.id == providerId }
