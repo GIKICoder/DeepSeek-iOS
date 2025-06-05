@@ -108,6 +108,7 @@ public class AppDomain {
         setupThirdPartySDKs()
         setupNetworkConfiguration()
         setupUserConfiguration()
+        setupAIProxy()
 //        setupNotifications()
     }
     

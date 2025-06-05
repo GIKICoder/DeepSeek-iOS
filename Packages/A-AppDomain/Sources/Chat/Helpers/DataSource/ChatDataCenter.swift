@@ -11,6 +11,8 @@ import AppInfra
 import AppServices
 import AppFoundation
 import UIKit
+import AppComponents
+import AIProxy
 
 
 // MARK: - ChatEntrance
@@ -396,9 +398,10 @@ extension ChatDataCenter {
         }
     }
     
+    /*
     /// 发送文本消息
     /// - Parameter text: 要发送的文本内容
-    public func sendMessageWith(text: String?, imageUrl: String?) {
+    public func sendMessageWithV2(text: String?, imageUrl: String?) {
         
         isCancelled = false
         currentTask = Task {
@@ -440,6 +443,63 @@ extension ChatDataCenter {
                     guard let streamChunk = streamChunks.first else { continue }
                     let updatedMessage = ChatMessage.convertToMessage(streamChunk)
                     if streamChunk.first {
+                        // 替换本地消息和加载中消息
+                        await replaceMessages(localMessageId: localMessageId, loadingMessageId: loadingMessageId, with: [localMessage, updatedMessage])
+                    } else {
+                        // 更新单个消息
+                        await updateSingleMessage(updatedMessage)
+                    }
+                }
+                logUI("消息接收完成")
+                sendMessageStatePublisher.send(.finished)
+                updateGenerateSection()
+            } catch {
+                logUI("发送消息时出错：\(error)")
+                sendMessageStatePublisher.send(.error(error))
+                updateGenerateSection()
+            }
+        }
+    }
+    */
+    /// 发送文本消息
+    /// - Parameter text: 要发送的文本内容
+    public func sendMessageWith(text: String?, imageUrl: String?) {
+        
+        isCancelled = false
+        currentTask = Task {
+            do {
+                let localMessageId: String = String(Int.random(in: 50000...100000))
+                let loadingMessageId: String = String(Int.random(in: 50000...100000))
+                // 1. 创建本地消息（优先执行）
+                let localMessage = createLocalMessage(text: text,imageUrl: imageUrl, messageId:localMessageId)
+                appendMessages([localMessage], isInitial: false)
+                
+                // 2. 检查 channel 状态并处理
+                var currentChannel: ChatChannel = ChatChannel.default
+                
+                // 创建加载中消息
+                let loadingMessage = createLoadingMessage(channel:currentChannel,messageId:loadingMessageId)
+                appendMessages([loadingMessage], isInitial: false)
+
+                
+                // 3. 构建发送参数
+                let sendMessage: SendAIMessage = .user(content: text ?? "")
+                let sendParam = SendAIMessageParam(messages: [sendMessage], stream: true)
+                
+                // 4. 发送消息并处理流
+                sendMessageStatePublisher.send(.generating)
+                
+                let chatproxy = ChatAIProxyClient(modelConfig: ModelStorageManager.shared.currentConfig()!)
+        
+                let messageStream = await chatproxy.sendMessage(sendParam)
+                var first = true
+                // 5. 处理消息流
+                for try await streamChunks in messageStream {
+                    if Task.isCancelled || isCancelled { return }
+                    guard let streamChunk = streamChunks.first else { continue }
+                    let updatedMessage = ChatMessage.convertToMessage(streamChunk)
+                    if first {
+                        first = false
                         // 替换本地消息和加载中消息
                         await replaceMessages(localMessageId: localMessageId, loadingMessageId: loadingMessageId, with: [localMessage, updatedMessage])
                     } else {
@@ -600,7 +660,7 @@ private extension ChatDataCenter {
 public extension ChatDataCenter {
     
     func regenMessage(section:ChatSection) {
-         
+         /*
         guard let channel = self.channel else {return}
         let regen = section.message
         guard let userMessage = getPreviousMessage(of:regen.messageId) else { return }
@@ -649,7 +709,7 @@ public extension ChatDataCenter {
                 logUI("regenMessage 出现异常: \(error)")
             }
         }
-        
+        */
     }
 }
 
@@ -677,7 +737,7 @@ public extension ChatDataCenter {
 
 public extension ChatMessage {
     
-    static func convertToMessage(_ chunk:StreamChunk) -> ChatMessage {
+    static func convertToMessage(_ chunk:ChatAIChunk) -> ChatMessage {
         var message = ChatMessage.default
         message.id = chunk.id
         message.content = chunk.content

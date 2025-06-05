@@ -170,7 +170,7 @@ public class ChatAssembly {
         generator.addLaTexHandler()
         generator.identifier = message.messageId
         generator.style = style
-        generator.maxAttributedStringLength = 200
+        generator.maxAttributedStringLength = 20000
         generator.imageLoader = ChatMarkdownImageLoader()
         let processor = GMarkProcessor(parser:parser, chunkGenerator: generator)
         let chunks = processor.process(markdown: message.content)

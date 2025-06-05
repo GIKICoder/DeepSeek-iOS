@@ -17,7 +17,7 @@ public class ModelStorageManager {
     /// 获取当前活跃的模型配置
     /// - Returns: 当前活跃的模型配置，如果不存在则返回第一个活跃配置
     public func currentConfig() -> ModelConfiguration? {
-        if let current = loadCurrentConfig(), let _ = activeConfig(withId: current.providerId) {
+        if let current = loadCurrentConfig(), let active = activeConfig(withId: current.providerId) {
             return current
         }
         return loadConfigs().first { $0.isActive }
