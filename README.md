@@ -37,6 +37,8 @@ Here are some screenshots of the application:
 
 <p align="center"> <img src="Screenshot/screen-1.png" alt="Screen 1" width="200"/> <img src="Screenshot/screen-2.png" alt="Screen 2" width="200"/> <img src="Screenshot/screen-3.png" alt="Screen 3" width="200"/> </p>
 
+<p align="center"> <img src="Screenshot/screen-4.png" alt="Screen 1" width="200"/> <img src="Screenshot/screen-5.png" alt="Screen 2" width="200"/> <img src="Screenshot/screen-6.png" alt="Screen 3" width="200"/> <img src="Screenshot/screen-7.png" alt="Screen 3" width="200"/> </p>
+
 ## Requirements
 
 - iOS 15.0+
