@@ -19,7 +19,7 @@ class MainModelSettingPopover: UIView {
     private var selectedModel: AIModel?
     private var temperature: Float = 0.7
     private var topP: Float = 0.9
-    private var contextMessageLimit: Float = 10
+    private var contextMessageLimit: Int = 10
     private var activeConfigs: [ModelConfiguration] = ModelStorageManager.shared.activeConfigs()
     
     // MARK: - UI Components
@@ -87,11 +87,11 @@ class MainModelSettingPopover: UIView {
         view.configure(
             temperature: temperature,
             topP: topP,
-            contextLimit: contextMessageLimit
+            contextLimit: Float(contextMessageLimit)
         ) { [weak self] temp, topP, limit in
             self?.temperature = temp
             self?.topP = topP
-            self?.contextMessageLimit = limit
+            self?.contextMessageLimit = Int(limit)
         }
         return view
     }()

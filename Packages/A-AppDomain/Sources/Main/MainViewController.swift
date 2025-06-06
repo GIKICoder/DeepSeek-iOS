@@ -133,8 +133,8 @@ extension MainViewController {
     func updateModelTipViews() {
         if let active = ModelStorageManager.shared.currentConfig() {
             modelSelectView.configure(
-                providerIcon: UIImage(named: active.selectedModel.avatar),
-                modelInfo: active.selectedModel.name,
+                providerIcon: UIImage(named: active.currentModel.avatar),
+                modelInfo: active.currentModel.name,
                 isSelectable: true
             )
         } else {

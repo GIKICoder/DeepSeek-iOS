@@ -19,7 +19,7 @@ extension ChatAIProxyClient {
     /// Creates an Anthropic service instance
     internal func createAnthropicService() -> AnthropicService {
         let anthropicService = AIProxy.anthropicDirectService(
-            unprotectedAPIKey: "your-anthropic-key"
+            unprotectedAPIKey: modelConfig.apiKey
         )
         return anthropicService
     }
@@ -40,14 +40,14 @@ extension ChatAIProxyClient {
         var sendMessages: [AnthropicInputMessage] = []
         for aimessage in message.messages {
             switch aimessage {
-            case .assistant(let content, let name, let prefix, let reasoningContent):
+            case .assistant(let content, _, _, _):
                 sendMessages.append(
                     .init(
                         content: [.text(content)],
                         role: .assistant
                     )
                 )
-            case .user(let content, let name):
+            case .user(let content, _):
                 sendMessages.append(
                     .init(
                         content: [.text(content)],
@@ -62,7 +62,7 @@ extension ChatAIProxyClient {
         let requestBody = AnthropicMessageRequestBody(
             maxTokens: modelConfig.maxTokens,
             messages: sendMessages,
-            model:modelConfig.selectedModel.value,
+            model:modelConfig.currentModel.value,
             temperature: Double(modelConfig.temperature),
             topP: Double(modelConfig.topP)
         )

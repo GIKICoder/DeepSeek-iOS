@@ -24,6 +24,8 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
     private let apiKeyTitleLabel = UILabel()
     private let apiKeyTextField = UITextField()
     private let apiKeyContainer = UIView()
+    private weak var passwordToggleButton: UIButton?
+    private weak var clearButton: UIButton?
     
     private let baseURLSection = UIView()
     private let baseURLTitleLabel = UILabel()
@@ -63,7 +65,7 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
     // Settings Values
     private var temperature: Float = 0.7
     private var topP: Float = 0.9
-    private var contextMessageLimit: Float = 100.0
+    private var contextMessageLimit: Int = 20
     
     // MARK: - Lifecycle
     public init(provider: ModelProvider, existingConfiguration: ModelConfiguration? = nil) {
@@ -95,7 +97,7 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
         if let existingConfiguration = existingConfiguration {
             apiKeyTextField.text = existingConfiguration.apiKey
             baseURLTextField.text = existingConfiguration.baseURL
-            selectedModel = existingConfiguration.selectedModel
+            selectedModel = existingConfiguration.selectedModel ?? existingConfiguration.supportModels.first ?? AIModel(name: "Default", value: "default", avatar: "default_avatar", description: "默认模型")
             
             // Load slider values
             temperature = existingConfiguration.temperature
@@ -105,7 +107,7 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
             // Update UI elements
             temperatureSlider.value = temperature
             topPSlider.value = topP
-            contextLimitSlider.value = contextMessageLimit
+            contextLimitSlider.value = Float(contextMessageLimit)
             
             // Update value labels
             temperatureValueLabel.text = String(format: "%.1f", temperature)
@@ -223,11 +225,62 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
         apiKeyTextField.autocapitalizationType = .none
         apiKeyTextField.autocorrectionType = .no
         apiKeyTextField.delegate = self
+
         
         apiKeyContainer.addSubview(apiKeyTextField)
         
         apiKeySection.addSubview(apiKeyTitleLabel)
         apiKeySection.addSubview(apiKeyContainer)
+        
+        setupTextFieldRightView()
+    }
+    
+    // MARK: - 设置右侧按钮
+    private func setupTextFieldRightView() {
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // 密码可见性切换按钮
+        let toggleButton = UIButton(type: .custom)
+        toggleButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        toggleButton.setImage(UIImage(systemName: "eye"), for: .selected)
+        toggleButton.tintColor = .systemGray
+        toggleButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        toggleButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        // 删除按钮
+        let clearButton = UIButton(type: .custom)
+        clearButton.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        clearButton.tintColor = .systemGray3
+        clearButton.addTarget(self, action: #selector(clearTextField), for: .touchUpInside)
+        clearButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        containerView.addSubview(clearButton)
+        containerView.addSubview(toggleButton)
+        
+        // 设置约束
+        NSLayoutConstraint.activate([
+            clearButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            clearButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            clearButton.widthAnchor.constraint(equalToConstant: 24),
+            clearButton.heightAnchor.constraint(equalToConstant: 24),
+            
+            toggleButton.leadingAnchor.constraint(equalTo: clearButton.trailingAnchor, constant: 8),
+            toggleButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            toggleButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            toggleButton.widthAnchor.constraint(equalToConstant: 24),
+            toggleButton.heightAnchor.constraint(equalToConstant: 24),
+            
+            containerView.widthAnchor.constraint(equalToConstant: 56),
+            containerView.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        
+        apiKeyTextField.rightView = containerView
+        apiKeyTextField.rightViewMode = .whileEditing
+        
+        // 保存按钮引用
+        self.passwordToggleButton = toggleButton
+        self.clearButton = clearButton
     }
     
     private func setupBaseURLSection() {
@@ -353,7 +406,7 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
         
         contextLimitSlider.minimumValue = 0.0
         contextLimitSlider.maximumValue = 510.0
-        contextLimitSlider.value = contextMessageLimit
+        contextLimitSlider.value = Float(contextMessageLimit)
         contextLimitSlider.isContinuous = true
         contextLimitSlider.tintColor = .systemGreen
         contextLimitSlider.addTarget(self, action: #selector(contextLimitSliderChanged), for: .valueChanged)
@@ -688,14 +741,23 @@ public class APIKeyInputViewController: UIViewController, UITextFieldDelegate, U
     }
     
     @objc private func contextLimitSliderChanged(_ sender: UISlider) {
-        contextMessageLimit = sender.value
+        contextMessageLimit = Int(sender.value)
         updateContextLimitValueLabel()
     }
     
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
-    
+    // MARK: - 按钮事件
+    @objc private func togglePasswordVisibility() {
+        apiKeyTextField.isSecureTextEntry.toggle()
+        passwordToggleButton?.isSelected = !apiKeyTextField.isSecureTextEntry
+    }
+
+    @objc private func clearTextField() {
+        apiKeyTextField.text = ""
+        apiKeyTextField.sendActions(for: .editingChanged)
+    }
     // MARK: - UITextFieldDelegate
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

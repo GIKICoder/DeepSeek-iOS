@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ReerCodable
 
 public enum ModelProviderType: String {
     public typealias RawValue = String
@@ -90,6 +91,7 @@ public struct ModelProvider: Codable, Equatable {
                 AIModel(name: "DeepSeek-R1", value: "deepseek-reasoner", avatar: "deepseek_avatar", description: "DeepSeek的推理型AI模型")
             ]
         ),
+        /*
         ModelProvider(
             id: ModelProviderType.google.rawValue,
             name: "Google",
@@ -103,7 +105,7 @@ public struct ModelProvider: Codable, Equatable {
                 AIModel(name: "Gemini Pro", value: "gemini-pro", avatar: "geminiai_ic", description: "Gemini的高性能文本模型"),
                 AIModel(name: "Gemini Pro Vision", value: "geminiai_ic", avatar: "gemini_avatar", description: "Gemini的多模态模型，支持图像理解")
             ]
-        ),
+        ), */
         ModelProvider(
             id: ModelProviderType.local.rawValue,
             name: "Local",
@@ -121,21 +123,28 @@ public struct ModelProvider: Codable, Equatable {
 }
 
 // MARK: - Model Configuration
+@Codable
+@Copyable
+@DefaultInstance
 public struct ModelConfiguration: Codable, Equatable {
     public let id: String
     public let providerId: String
     public let apiKey: String
-    public let baseURL: String
-    public var selectedModel: AIModel
-    public var isActive: Bool
-    public let createdAt: Date
-    public let lastUsed: Date
+    public var baseURL: String?
+    public var selectedModel: AIModel?
+    public var isActive: Bool = false
+    public var createdAt: Date = Date()
+    public var lastUsed: Date = Date()
     
     // Advanced Settings
-    public var temperature: Float
-    public var topP: Float
-    public var contextMessageLimit: Float
+    public var temperature: Float = 0.7
+    public var topP: Float = 0.9
+    public var contextMessageLimit: Int = 20
     public var maxTokens: Int = 4096
+    
+    public var currentModel: AIModel {
+        selectedModel ?? supportModels.first ?? AIModel(name: "默认模型", value: "default-model", avatar: "default_avatar", description: "未选择模型")
+    }
     
     public var provider: ModelProvider? {
         ModelProvider.allProviders.first { $0.id == providerId }

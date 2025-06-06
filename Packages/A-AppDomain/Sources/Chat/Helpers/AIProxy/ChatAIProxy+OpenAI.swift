@@ -39,7 +39,7 @@ extension ChatAIProxyClient {
         var openAIMessages: [OpenAIChatCompletionRequestBody.Message] = []
         for aimessage in message.messages {
             switch aimessage {
-            case .assistant(let content, let name, let prefix, let reasoningContent):
+            case .assistant(let content, let name, _, _):
                 openAIMessages.append(.assistant(content: .text(content), name: name))
             case .system(let content, let name):
                 openAIMessages.append(.system(content: .text(content), name: name))
@@ -51,7 +51,7 @@ extension ChatAIProxyClient {
         }
         
         let requestBody = OpenAIChatCompletionRequestBody(
-            model: modelConfig.selectedModel.value,
+            model: modelConfig.currentModel.value,
             messages: openAIMessages,
             stream: message.stream,
             temperature: Double(modelConfig.temperature),
@@ -93,6 +93,24 @@ extension ChatAIProxyClient {
                 continuation.finish(throwing:  NSError(domain: "ChatAIProxyClient", code: statusCode, userInfo: ["message": responseBody]))
             } catch {
                 print("Could not create OpenAI streaming chat completion: \(error.localizedDescription)")
+                continuation.finish(throwing: error)
+            }
+        } else {
+            do {
+                let response = try await service.chatCompletionRequest(body: requestBody)
+                print("Received OpenAI chat completion response: \(response)")
+                // Send final completion
+                let finalChunk = ChatAIChunk(
+                    id: UUID().uuidString,
+                    content: response.choices.first?.message.content ?? "",
+                    isComplete: true,
+                    usage: nil
+                )
+                
+                continuation.yield([finalChunk])
+                continuation.finish()
+            } catch {
+                print("Could not create OpenAI chat completion: \(error.localizedDescription)")
                 continuation.finish(throwing: error)
             }
         }

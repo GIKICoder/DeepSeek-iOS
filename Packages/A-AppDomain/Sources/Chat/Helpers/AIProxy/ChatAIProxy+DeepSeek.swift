@@ -18,9 +18,9 @@ extension ChatAIProxyClient {
     
     /// Creates a DeepSeek service instance
     internal func createDeepSeekService() -> DeepSeekService {
-         let deepSeekService = AIProxy.deepSeekDirectService(
-             unprotectedAPIKey: modelConfig.apiKey
-         )
+        let deepSeekService = AIProxy.deepSeekDirectService(
+            unprotectedAPIKey: modelConfig.apiKey
+        )
         return deepSeekService
     }
     
@@ -56,7 +56,7 @@ extension ChatAIProxyClient {
         // Create the request body
         let requestBody = DeepSeekChatCompletionRequestBody(
             messages: deepSeekMessages,
-            model: modelConfig.selectedModel.value,
+            model: modelConfig.currentModel.value,
             stream: message.stream,
             temperature: Double(modelConfig.temperature),
             topP: Double(modelConfig.topP)
@@ -103,23 +103,28 @@ extension ChatAIProxyClient {
                 continuation.finish(throwing: error)
             }
         } else {
-            // Non-streaming request - send complete response at once
-            let response = try await service.chatCompletionRequest(
-                body: requestBody,
-                secondsToWait: 60
-            )
-            
-            let content = response.choices.first?.message.content ?? ""
-            
-            let streamChunk = ChatAIChunk(
-                id: response.id,
-                content: content,
-                isComplete: true,
-                usage: response.usage
-            )
-            
-            continuation.yield([streamChunk])
-            continuation.finish()
+            do {
+                // Non-streaming request - send complete response at once
+                let response = try await service.chatCompletionRequest(
+                    body: requestBody,
+                    secondsToWait: 120
+                )
+                
+                let content = response.choices.first?.message.content ?? ""
+                
+                let streamChunk = ChatAIChunk(
+                    id: response.id,
+                    content: content,
+                    isComplete: true,
+                    usage: response.usage
+                )
+                
+                continuation.yield([streamChunk])
+                continuation.finish()
+            } catch {
+                logError("Non-streaming request failed: \(error)")
+                continuation.finish(throwing: error)
+            }
         }
     }
     
