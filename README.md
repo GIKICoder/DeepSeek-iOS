@@ -6,9 +6,9 @@ DeepSeek-iOS is an open-source iOS client implemented in Swift. The project is i
 
 #  Project Status & Future Plans ❌
 
-Due to some interesting new ideas that have emerged, I plan to fork this repository to a private repository and continue developing a complete app called DeepNote.
+Due to some interesting new ideas that have emerged, I plan to fork this repository to a private one and continue developing a complete app.
 
-Currently, this project has achieved some reasonably complete capabilities. If the development of DeepNote goes smoothly, I may not continue iterating on this public repository in the future.
+Currently, this project has achieved some reasonably complete capabilities. If the development of the new app goes smoothly, I may not continue iterating on this public repository in the future.
 
 This repository will remain available as a reference for learning and educational purposes.
 
